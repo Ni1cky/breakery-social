@@ -1,0 +1,40 @@
+<MainMenuScreen@Screen>:
+    listBox:listBox
+    orientation: 'vertical'
+
+    BoxLayout:
+        BoxLayout:
+            size_hint: '0.3', '0.8'
+            pos_hint: {'y': 0.17}
+            orientation: 'vertical'
+            GridLayout:
+                cols: 1
+                rows: 8
+
+
+        BoxLayout:
+            orientation: 'vertical'
+            AnchorLayout:
+                anchor_y: 'top'
+                size_hint: 1, 0.05
+                GridLayout:
+                    size_hint: 1, 0.05
+                    cols: 4
+                    rows: 1
+
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: 0.7, 0.1
+                Image:
+                    source: "scala/scala.png"
+                TwoLineAvatarListItem:
+                    text: "Name Surname"
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: 2,2
+                BoxLayout:
+                    ScrollView:
+                        id: listBox
+                        source: "scala/scala.jpg"
