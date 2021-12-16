@@ -1,7 +1,8 @@
-<MainMenuScreen@Screen>:
+<MessageScreen>:
     listBox:listBox
     orientation: 'vertical'
-
+    Label:
+        text: 'lalala'
     BoxLayout:
         BoxLayout:
             size_hint: '0.3', '0.8'
@@ -26,10 +27,11 @@
             BoxLayout:
                 orientation: 'vertical'
                 size_hint: 0.7, 0.1
-                Image:
-                    source: "scala/scala.png"
-                TwoLineAvatarListItem:
-                    text: "Name Surname"
+                OneLineAvatarListItem:
+                    text: "Single-line item with avatar"
+
+                    ImageLeftWidget:
+                        source: "scala/scala.png"
 
             BoxLayout:
                 orientation: 'vertical'
@@ -37,4 +39,3 @@
                 BoxLayout:
                     ScrollView:
                         id: listBox
-                        source: "scala/scala.jpg"

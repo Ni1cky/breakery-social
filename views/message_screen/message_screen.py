@@ -1,23 +1,17 @@
-from tkinter import Image
-
-from kivy.uix.behaviors import ButtonBehavior
-from kivy.uix.button import Button
-from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.core.window import Window
-from kivymd.app import MDApp
 from kivymd.uix.list import OneLineListItem, MDList
-from kivy.properties import ObjectProperty, NumericProperty
+from kivy.properties import ObjectProperty
 from kivy.uix.scrollview import ScrollView
-from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
-from kivymd.uix.list import TwoLineAvatarListItem
-from kivymd.uix.list import ImageLeftWidget
+from views.base import BaseScreen
+from views.meta import SCREENS
+from kivy.lang import Builder
 
+Builder.load_file('views/message_screen/message_screen.kv')
 
-class MainMenuScreen(Screen):
+class MessageScreen(BaseScreen):
     listBox = ObjectProperty()
-
-    def __init__(self, **kw):
-        super().__init__(**kw)
+    SCREEN_NAME = SCREENS.MESSAGE_SCREEN
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         scroll = ScrollView()
         list_view = MDList()
         for i in range(1, 10):
@@ -26,9 +20,13 @@ class MainMenuScreen(Screen):
         scroll.add_widget(list_view)
         self.listBox.add_widget(scroll)
 
-class ToDoListApp(MDApp):
+
+
+
+
+'''class ToDoListApp(MDApp):
     def build(self):
-        Window.size = (700, 1000)
+        Window.size = (500, 800)
         sm = ScreenManager()
         sm.add_widget(MainMenuScreen(name='main_menu_screen'))
         sm.add_widget(EditingInputScreenTemplate(name='goodbye_screen'))
@@ -44,3 +42,4 @@ class EditingInputScreenTemplate(Screen):
 
 if __name__ == '__main__':
     ToDoListApp().run()
+'''
