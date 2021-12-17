@@ -7,3 +7,4 @@ class Manager(ScreenManager):
         super().__init__(**kwargs)
         self.add_widget(MessageScreen())
         self.current = MessageScreen.SCREEN_NAME
+

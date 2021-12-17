@@ -3,7 +3,7 @@ from kivymd.app import MDApp
 
 from screen_manager import Manager
 
-Window.size = (400, 800)
+Window.size = (400, 700)
 
 
 class SocialApp(MDApp):
