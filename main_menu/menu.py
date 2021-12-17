@@ -1,15 +1,13 @@
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
-from kivy.uix.widget import Widget
-from kivymd.uix.boxlayout import MDBoxLayout
-
 from views import meta
-
+from views.base import BaseScreen
 
 Builder.load_file('main_menu/menu.kv')
 
 
-class MainMenuScreen(MDBoxLayout):
+class MainMenuScreen(BaseScreen):
+    SCREEN_NAME = meta.SCREENS.MAINMENU_SCREEN
     manager_screen = ObjectProperty()
     def __init__(self, **kw):
         super().__init__(**kw)
