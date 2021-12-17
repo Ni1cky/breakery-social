@@ -1,0 +1,26 @@
+#:import Manager screen_manager
+<MainMenuScreen>:
+    manager_screen: manager_screen
+    MDBackdrop:
+        id: backdrop
+        left_action_items: [['menu', lambda x: self.open()]]
+        title: "Example Backdrop"
+        radius_left: "25dp"
+        radius_right: "0dp"
+        header_text: "VK:"
+        MDBackdropBackLayer:
+            TwoLineAvatarListItem:
+                backdrop: None
+                text: "Lower the front layer"
+                secondary_text: " by 50 %"
+                icon: "transfer-down"
+                on_press: root.go_to_message_screen()
+                pos_hint: {"top": 1}
+                _no_ripple_effect: True
+                title: "android"
+                IconLeftWidget:
+                    icon: "android"
+
+        MDBackdropFrontLayer:
+            Manager:
+                id: manager_screen
