@@ -1,0 +1,41 @@
+<MessageScreen>:
+    listBox:listBox
+    orientation: 'vertical'
+    Label:
+        text: 'lalala'
+    BoxLayout:
+        BoxLayout:
+            size_hint: '0.3', '0.8'
+            pos_hint: {'y': 0.17}
+            orientation: 'vertical'
+            GridLayout:
+                cols: 1
+                rows: 8
+
+
+        BoxLayout:
+            orientation: 'vertical'
+            AnchorLayout:
+                anchor_y: 'top'
+                size_hint: 1, 0.05
+                GridLayout:
+                    size_hint: 1, 0.05
+                    cols: 4
+                    rows: 1
+
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: 0.7, 0.1
+                OneLineAvatarListItem:
+                    text: "Single-line item with avatar"
+
+                    ImageLeftWidget:
+                        source: "scala/scala.png"
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: 2,2
+                BoxLayout:
+                    ScrollView:
+                        id: listBox
