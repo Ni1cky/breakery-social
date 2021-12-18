@@ -1,0 +1,3 @@
+kivymd @ https://github.com/kivymd/KivyMD/archive/master.zip
+SQLAlchemy==1.4.28
+pydantic==1.8.2
