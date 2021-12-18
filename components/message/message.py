@@ -1,4 +1,5 @@
 from kivy.uix.widget import Widget
+from kivymd.uix.list import OneLineListItem
 from store.models.models import Message
 from kivy.lang import Builder
 
