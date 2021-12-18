@@ -2,13 +2,15 @@ from kivy.uix.screenmanager import ScreenManager
 from main_menu.menu import MainMenuScreen
 from views.authorization.authorization import LoginScreen
 from views.message_screen.message_screen import MessageScreen
+from views.profile_screen.profile_screen import ProfileScreen
 
 
 class Manager(ScreenManager):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.add_widget(MessageScreen())
-        self.current = MessageScreen.SCREEN_NAME
+        self.add_widget(ProfileScreen())
+        self.current = ProfileScreen.SCREEN_NAME
 
 
 class MainManager(ScreenManager):

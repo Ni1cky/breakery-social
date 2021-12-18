@@ -1,5 +1,6 @@
 #:import Manager screen_manager
 <MainMenuScreen>:
+
     manager_screen: manager_screen
     MDBackdrop:
         id: backdrop
@@ -8,15 +9,38 @@
         radius_left: "25dp"
         radius_right: "0dp"
         header_text: "VK:"
+        back_layer_color: 0.28, 0.24, 0.55, 1
+        front_layer_color: 0.96, 1, 0.98, 1
+#        theme_text_color: 'Custom'
+#        title_color: 0.16, 1, 0.98, 1     не работает
         MDBackdropBackLayer:
-            OneLineIconListItem:
-                backdrop: None
-                text: "Message"
-                on_press: root.go_to_message_screen()
+            orientation: "vertical"
+            AnchorLayout:
                 pos_hint: {"top": 1}
-                IconLeftWidget:
-                    icon: "message"
+                OneLineIconListItem:
+                    backdrop: None
+                    text: "Message"
+                    on_press: root.go_to_message_screen()
 
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "forum"
+            AnchorLayout:
+                pos_hint: {"top": 1}
+                OneLineIconListItem:
+                    backdrop: None
+                    text: "Profile"
+                    on_press: root.go_to_profile_screen()
+
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "account"
         MDBackdropFrontLayer:
             Manager:
                 id: manager_screen
