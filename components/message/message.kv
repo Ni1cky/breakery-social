@@ -1,8 +1,6 @@
 <MessageWidget>:
-    canvas:
-        Color:
-            rgba: [int(app.all_colors[app.app_color]['A200'][:2], 16) / 255, int(app.all_colors[app.app_color]['A200'][2:4], 16) / 255, int(app.all_colors[app.app_color]['A200'][4:], 16) / 255] + [1]
-        RoundedRectangle:
-            radius: [(10, 10), (10, 10), (10, 10), (10, 10)]
-            pos: self.pos
-            size: self.size
+    TwoLineAvatarListItem:
+        text: "Two-line item with avatar"
+        secondary_text: "Secondary text here"
+    ImageLeftWidget:
+        source: "scala/scala.png"
