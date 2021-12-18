@@ -20,7 +20,7 @@
                 OneLineIconListItem:
                     backdrop: None
                     text: "Message"
-                    on_press: root.go_to_message_screen()
+                    on_press: root.go_to_message_screen(), backdrop.open()
 
                     theme_text_color: 'Custom'
                     text_color: 0.96, 1, 0.98, 1
@@ -33,7 +33,7 @@
                 OneLineIconListItem:
                     backdrop: None
                     text: "Profile"
-                    on_press: root.go_to_profile_screen()
+                    on_press: root.go_to_profile_screen(), backdrop.open()
 
                     theme_text_color: 'Custom'
                     text_color: 0.96, 1, 0.98, 1
