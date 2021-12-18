@@ -13,7 +13,6 @@ from components.dialog_widget.dialog_widget import DialogWidget
 Builder.load_file('views/message_screen/message_screen.kv')
 
 class MessageScreen(BaseScreen):
-    dialog = ObjectProperty()
     SCREEN_NAME = SCREENS.MESSAGE_SCREEN
 
 
