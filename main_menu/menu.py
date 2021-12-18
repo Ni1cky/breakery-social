@@ -14,3 +14,6 @@ class MainMenuScreen(BaseScreen):
 
     def go_to_message_screen(self):
         self.manager_screen.current = meta.SCREENS.MESSAGE_SCREEN
+
+    def go_to_profile_screen(self):
+        self.manager_screen.current = meta.SCREENS.PROFILE_SCREEN
