@@ -8,6 +8,7 @@ def get_users():
     return users
 
 
-def get_user(user_id):
-    user = User(**requests.get(f"http://127.0.0.1:8000/users/{user_id}").json())
+def get_user(user_id: int):
+    response = requests.get(f"http://127.0.0.1:8000/users/{user_id}")
+    user = User(**response.json())
     return user
