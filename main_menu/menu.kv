@@ -28,6 +28,15 @@
                         text_color: 0.96, 1, 0.98, 1
                         icon: "account"
                 OneLineIconListItem:
+                    text: "News"
+                    on_press: root.go_to_news_screen(), backdrop.open()
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "newspaper-variant"
+                OneLineIconListItem:
                     text: "Message"
                     on_press: root.go_to_message_screen(), backdrop.open()
                     theme_text_color: 'Custom'

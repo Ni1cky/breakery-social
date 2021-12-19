@@ -12,7 +12,7 @@ class Manager(ScreenManager):
         self.add_widget(MessageScreen())
         self.add_widget(ProfileScreen())
         self.add_widget(NewsScreen())
-        self.current = NewsScreen.SCREEN_NAME
+        self.current = ProfileScreen.SCREEN_NAME
 
 
 class MainManager(ScreenManager):
