@@ -1,9 +1,6 @@
-from kivy.uix.widget import Widget
-from kivymd.uix.list import OneLineListItem, TwoLineAvatarListItem, TwoLineAvatarIconListItem
-
-from components.message.message import MessageWidget
-from store.models.models import Message
 from kivy.lang import Builder
+from kivymd.uix.list import TwoLineAvatarIconListItem
+from store.models.models import Message
 
 Builder.load_file('components/dialog_widget/dialog_widget.kv')
 
