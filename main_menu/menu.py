@@ -9,6 +9,7 @@ Builder.load_file('main_menu/menu.kv')
 class MainMenuScreen(BaseScreen):
     SCREEN_NAME = meta.SCREENS.MAINMENU_SCREEN
     manager_screen = ObjectProperty()
+
     def __init__(self, **kw):
         super().__init__(**kw)
 
@@ -17,3 +18,6 @@ class MainMenuScreen(BaseScreen):
 
     def go_to_profile_screen(self):
         self.manager_screen.current = meta.SCREENS.PROFILE_SCREEN
+
+    def go_to_dialog(self):
+        self.manager_screen.current = meta.SCREENS.DIALOG_SCREEN

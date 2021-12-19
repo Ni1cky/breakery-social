@@ -1,0 +1,20 @@
+#: import DialogWidget components.dialog_widget.dialog_widget
+
+<DialogScreen>:
+    scrollable_messages: scrollable_messages
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint: 1, 0.3
+#            pos_hint: {'top': 1}
+            orientation: "horizontal"
+            size_hint: 1, 0.3
+            MDIconButton:
+                icon: 'arrow-left'
+            TwoLineAvatarIconListItem:
+                text: "Gosha"
+                secondary_text: "Был(а) в сети завтра"
+                ImageLeftWidget:
+                    source: "img/profile.jpg"
+        ScrollView:
+                    id: scrollable_messages

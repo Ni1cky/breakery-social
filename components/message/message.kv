@@ -1,6 +1,8 @@
 <MessageWidget>:
-    TwoLineAvatarListItem:
-        text: "Two-line item with avatar"
-        secondary_text: "Secondary text here"
-    ImageLeftWidget:
-        source: "scala/scala.png"
+    canvas:
+        Color:
+            rgba: (.4,.4,.4,1)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [(40, 40), (40, 40), (20, 20), (20, 20)]
