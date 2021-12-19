@@ -17,3 +17,11 @@ class Message(BaseModel):
     is_read: bool
     is_important: bool
     is_edited: bool
+
+class Post(BaseModel):
+    text: str
+    text: str
+    time_send: datetime.datetime
+    is_read: bool
+    is_important: bool
+    is_edited: bool
