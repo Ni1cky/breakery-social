@@ -6,7 +6,7 @@ from kivy.lang import Builder
 Builder.load_file('components/message/message.kv')
 
 
-class MessageWidget(Widget):
+class MessageWidget(OneLineListItem):
     def __init__(self, message: Message, **kwargs):
         super().__init__(**kwargs)
         self.data = message

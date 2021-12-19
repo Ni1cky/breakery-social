@@ -5,6 +5,7 @@ from kivymd.uix.list import MDList
 from components.dialog_widget.dialog_widget import DialogWidget
 from views.base import BaseScreen
 from views.meta import SCREENS
+from components.message.message import MessageWidget
 
 Builder.load_file('views/dialog_screen/dialog_screen.kv')
 
@@ -24,9 +25,9 @@ class DialogScreen(BaseScreen):
     'is_edited': False})
             
             list_view.add_widget(MessageWidget(tmp_message))'''
-            list_view.add_widget(DialogWidget(message={'text': 'dsdssd',
+            list_view.add_widget(MessageWidget(message={'text': 'dsdssd',
                                                        'time_send': datetime.datetime(2019, 6, 1, 12, 22),
                                                        'is_read': False,
                                                        'is_important': False,
-                                                       'is_edited': False}, name="User"))
+                                                       'is_edited': False}))
         self.scrollable_messages.add_widget(list_view)

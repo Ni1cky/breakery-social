@@ -2,9 +2,9 @@
 
 <DialogScreen>:
     scrollable_messages: scrollable_messages
-    BoxLayout:
+    MDBoxLayout:
         orientation: "vertical"
-        BoxLayout:
+        MDBoxLayout:
             size_hint: 1, 0.1
             orientation: "horizontal"
             MDIconButton:
@@ -15,5 +15,18 @@
                 ImageLeftWidget:
                     source: "img/profile.jpg"
         RecycleView:
-            size_hint: 1, 0.9
+            size_hint: 1, 0.8
             id: scrollable_messages
+        MDBoxLayout:
+            size_hint: 1, 0.1
+            orientation: "horizontal"
+            AnchorLayout:
+                padding: 10
+                size_hint: 0.8, 1
+                MDTextField:
+                    hint_text: "Введите сообщение"
+            AnchorLayout:
+                padding: 10
+                size_hint: 0.2, 1
+                MDIconButton:
+                    icon: "send"
