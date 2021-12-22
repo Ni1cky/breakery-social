@@ -1,22 +1,39 @@
 import datetime
 from pydantic import BaseModel
 
-class User(BaseModel):
-    id: int
+
+class UserBase(BaseModel):
     login: str
-    hash_pass: str
+    password_hash: str
     name: str
     surname: str
     photo: str
     additional_data: str
 
 
-class Message(BaseModel):
+class User(UserBase):
+    id: int
+
+
+class UserCreate(UserBase):
+    pass
+
+
+class MessageBase(BaseModel):
     text: str
     time_send: datetime.datetime
     is_read: bool
     is_important: bool
     is_edited: bool
+
+
+class Message(MessageBase):
+    id: int
+
+
+class MessageCreate(MessageBase):
+    pass
+
 
 class Post(BaseModel):
     text: str
