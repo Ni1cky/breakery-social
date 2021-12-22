@@ -20,8 +20,5 @@ class Message(BaseModel):
 
 class Post(BaseModel):
     text: str
-    text: str
+    author: str
     time_send: datetime.datetime
-    is_read: bool
-    is_important: bool
-    is_edited: bool
