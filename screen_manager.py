@@ -9,16 +9,19 @@ from views.profile_screen.profile_screen import ProfileScreen
 class Manager(ScreenManager):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        #self.add_widget(MainMenuScreen())
         self.add_widget(MessageScreen())
         self.add_widget(ProfileScreen())
         self.add_widget(NewsScreen())
-        self.current = NewsScreen.SCREEN_NAME
-
-
-class MainManager(ScreenManager):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
         self.add_widget(LoginScreen())
-        self.add_widget(MainMenuScreen())
+
         self.current = LoginScreen.SCREEN_NAME
+
+
+# class MainManager(ScreenManager):
+#     def __init__(self, **kwargs):
+#         super().__init__(**kwargs)
+#         self.add_widget(LoginScreen())
+#         self.add_widget(MainMenuScreen())
+#         self.current = LoginScreen.SCREEN_NAME
 

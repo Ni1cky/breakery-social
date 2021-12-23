@@ -21,3 +21,5 @@ class MainMenuScreen(BaseScreen):
     def go_to_news_screen(self):
         self.manager_screen.current = meta.SCREENS.NEWS_SCREEN
 
+
+
