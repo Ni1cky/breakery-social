@@ -9,17 +9,48 @@ Builder.load_file('main_menu/menu.kv')
 class MainMenuScreen(BaseScreen):
     SCREEN_NAME = meta.SCREENS.MAINMENU_SCREEN
     manager_screen = ObjectProperty()
+    backdrop = ObjectProperty()
+    backdrop_front = ObjectProperty()
+    button_profile = ObjectProperty()
+    button_news = ObjectProperty()
+    button_message = ObjectProperty()
+    is_backdrop_front_open = True
+
     def __init__(self, **kw):
         super().__init__(**kw)
+        self.backdrop.bind(on_open=self.backdrop_front_open_True)
+        self.backdrop.bind(on_close=self.backdrop_front_open_False)
+
+    def backdrop_front_open_True(self, instance):
+        self.is_backdrop_front_open = False
+        print(self.is_backdrop_front_open)
+    def backdrop_front_open_False(self, instance):
+        self.is_backdrop_front_open = True
+        print(self.is_backdrop_front_open)
 
     def go_to_message_screen(self):
-        self.manager_screen.current = meta.SCREENS.MESSAGE_SCREEN
+        if not self.is_backdrop_front_open:
+            self.manager_screen.current = meta.SCREENS.MESSAGE_SCREEN
 
     def go_to_profile_screen(self):
-        self.manager_screen.current = meta.SCREENS.PROFILE_SCREEN
+        if not self.is_backdrop_front_open:
+            self.manager_screen.current = meta.SCREENS.PROFILE_SCREEN
 
     def go_to_news_screen(self):
-        self.manager_screen.current = meta.SCREENS.NEWS_SCREEN
+        if not self.is_backdrop_front_open:
+            self.manager_screen.current = meta.SCREENS.NEWS_SCREEN
+
+    def open_menu_backdrop(self):
+        if not self.is_backdrop_front_open:
+            if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
+                self.backdrop.open()
+
+    def open_menu_backdrop1(self):
+        if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
+            self.backdrop.open()
+
+
+
 
 
 

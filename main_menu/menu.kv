@@ -1,9 +1,15 @@
 #:import Manager screen_manager
 <MainMenuScreen>:
     manager_screen: manager_screen
+    backdrop: backdrop
+    backdrop_front: backdrop_front
+
+    button_profile: button_profile
+    button_news: button_news
+    button_message: button_message
     MDBackdrop:
         id: backdrop
-        left_action_items: [['menu', lambda x: self.open()]]
+        left_action_items: [['menu', lambda x: root.open_menu_backdrop1()]]
         title: "Example Backdrop"
         radius_left: "25dp"
         radius_right: "0dp"
@@ -19,8 +25,9 @@
                 cols: 1
                 padding: "5dp"
                 OneLineIconListItem:
+                    id: button_profile
                     text: "Profile"
-                    on_press: root.go_to_profile_screen(), backdrop.open()
+                    on_press: root.go_to_profile_screen(), root.open_menu_backdrop()
                     theme_text_color: 'Custom'
                     text_color: 0.96, 1, 0.98, 1
                     IconLeftWidget:
@@ -28,8 +35,9 @@
                         text_color: 0.96, 1, 0.98, 1
                         icon: "account"
                 OneLineIconListItem:
+                    id: button_news
                     text: "News"
-                    on_press: root.go_to_news_screen(), backdrop.open()
+                    on_press: root.go_to_news_screen(), root.open_menu_backdrop()
                     theme_text_color: 'Custom'
                     text_color: 0.96, 1, 0.98, 1
                     IconLeftWidget:
@@ -37,8 +45,9 @@
                         text_color: 0.96, 1, 0.98, 1
                         icon: "newspaper-variant"
                 OneLineIconListItem:
+                    id: button_message
                     text: "Message"
-                    on_press: root.go_to_message_screen(), backdrop.open()
+                    on_press: root.go_to_message_screen(), root.open_menu_backdrop()
                     theme_text_color: 'Custom'
                     text_color: 0.96, 1, 0.98, 1
                     IconLeftWidget:
@@ -46,5 +55,6 @@
                         text_color: 0.96, 1, 0.98, 1
                         icon: "forum"
         MDBackdropFrontLayer:
+            id: backdrop_front
             Manager:
                 id: manager_screen
