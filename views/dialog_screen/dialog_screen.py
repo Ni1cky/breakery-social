@@ -6,6 +6,8 @@ from components.dialog_widget.dialog_widget import DialogWidget
 from views.base import BaseScreen
 from views.meta import SCREENS
 from components.message.message import MessageWidget
+from controllers.message import get_time_send_sorted_message
+
 
 Builder.load_file('views/dialog_screen/dialog_screen.kv')
 
@@ -31,3 +33,14 @@ class DialogScreen(BaseScreen):
                                                        'is_important': False,
                                                        'is_edited': False}))
         self.scrollable_messages.add_widget(list_view)
+
+
+    def get_validate_message(sender_id: int, recipient_id: int):
+        #messages = get_time_send_sorted_message(sender_id, recipient_id)
+        messages = []
+        for message in messages:
+            if message.id == recipient_id:
+                message.send_from_me = True
+            else:
+                message.send_from_me = False
+        return messages
