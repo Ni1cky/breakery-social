@@ -18,15 +18,14 @@ class MainMenuScreen(BaseScreen):
 
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.backdrop.bind(on_open=self.backdrop_front_open_True)
-        self.backdrop.bind(on_close=self.backdrop_front_open_False)
+        self.backdrop.bind(on_open=self.front_backdrop_closing)
+        self.backdrop.bind(on_close=self.front_backdrop_opening)
 
-    def backdrop_front_open_True(self, instance):
+    def front_backdrop_closing(self, instance):
         self.is_backdrop_front_open = False
-        print(self.is_backdrop_front_open)
-    def backdrop_front_open_False(self, instance):
+
+    def front_backdrop_opening(self, instance):
         self.is_backdrop_front_open = True
-        print(self.is_backdrop_front_open)
 
     def go_to_message_screen(self):
         if not self.is_backdrop_front_open:
@@ -45,12 +44,6 @@ class MainMenuScreen(BaseScreen):
             if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
                 self.backdrop.open()
 
-    def open_menu_backdrop1(self):
+    def move_menu_backdrop(self):
         if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
             self.backdrop.open()
-
-
-
-
-
-
