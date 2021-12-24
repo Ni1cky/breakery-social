@@ -1,5 +1,4 @@
 from kivy.uix.screenmanager import ScreenManager
-from main_menu.menu import MainMenuScreen
 from views.authorization.authorization import LoginScreen
 from views.message_screen.message_screen import MessageScreen
 from views.news_screen.news_screen import NewsScreen
