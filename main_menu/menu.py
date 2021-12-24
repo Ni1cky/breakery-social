@@ -1,5 +1,7 @@
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
+from kivymd.uix.backdrop import MDBackdrop
+from screen_manager import Manager
 from views import meta
 from views.base import BaseScreen
 
@@ -8,18 +10,14 @@ Builder.load_file('main_menu/menu.kv')
 
 class MainMenuScreen(BaseScreen):
     SCREEN_NAME = meta.SCREENS.MAINMENU_SCREEN
-    manager_screen = ObjectProperty()
-    backdrop = ObjectProperty()
-    backdrop_front = ObjectProperty()
-    button_profile = ObjectProperty()
-    button_news = ObjectProperty()
-    button_message = ObjectProperty()
-    is_backdrop_front_open = True
+    manager_screen: Manager = ObjectProperty()
+    backdrop: MDBackdrop = ObjectProperty()
 
     def __init__(self, **kw):
         super().__init__(**kw)
         self.backdrop.bind(on_open=self.front_backdrop_closing)
         self.backdrop.bind(on_close=self.front_backdrop_opening)
+        self.is_backdrop_front_open = True
 
     def front_backdrop_closing(self, instance):
         self.is_backdrop_front_open = False
