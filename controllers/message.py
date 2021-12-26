@@ -1,5 +1,4 @@
 from datetime import datetime
-
 import requests
 from store.models.models import Message
 
@@ -18,7 +17,7 @@ def get_messages_for_dialogue(user1_id: int, user2_id: int):
 
 def get_time_send_sorted_message(sender_id: int, recipient_id: int):
     messages = get_messages_for_dialogue(sender_id, recipient_id)
-    messages_sort = sorted(messages,
-                           key=lambda task: datetime.strptime(task.deadline, "%Y-%m-%d").date(),
-                           reverse=True)
-    return messages_sort
+    sorted_messages = sorted(messages,
+                             key=lambda message: datetime.strptime(str(message.time_send), "%Y-%m-%d %H:%M:%S.%f"),
+                             reverse=True)
+    return sorted_messages
