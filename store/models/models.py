@@ -47,7 +47,6 @@ class MessageBase(BaseModel):
 
 class Message(MessageBase):
     id: int
-    send_from_me: bool
 
 
 class MessageCreate(MessageBase):
