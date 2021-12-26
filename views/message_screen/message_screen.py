@@ -15,17 +15,17 @@ class MessageScreen(BaseScreen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        scroll = ScrollView()
-        list_view = MDList()
-        for _ in range(13):
-            list_view.add_widget(DialogWidget(message=Message(text='dsdssd',
-                                                              time_send=datetime.datetime(2019, 6, 1, 12, 22),
-                                                              is_read=False,
-                                                              is_important=False,
-                                                              is_edited=False,
-                                                              send_from_me=True,
-                                                              id=1), name="User"))
-        self.add_widget(MDList())
-        scroll.add_widget(list_view)
-        self.add_widget(scroll)
+        # scroll = ScrollView()
+        # list_view = MDList()
+        # for _ in range(13):
+        #     list_view.add_widget(DialogWidget(message=Message(text='dsdssd',
+        #                                                       time_send=datetime.datetime(2019, 6, 1, 12, 22),
+        #                                                       is_read=False,
+        #                                                       is_important=False,
+        #                                                       is_edited=False,
+        #                                                       send_from_me=True,
+        #                                                       id=1), name="User"))
+        # self.add_widget(MDList())
+        # scroll.add_widget(list_view)
+        # self.add_widget(scroll)
 

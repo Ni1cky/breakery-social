@@ -10,8 +10,6 @@ Builder.load_file('main_menu/menu.kv')
 
 class MainMenuScreen(BaseScreen):
     SCREEN_NAME = meta.SCREENS.MAINMENU_SCREEN
-    manager_screen = ObjectProperty()
-
     manager_screen: Manager = ObjectProperty()
     backdrop: MDBackdrop = ObjectProperty()
 

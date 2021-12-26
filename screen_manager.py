@@ -13,12 +13,5 @@ class Manager(ScreenManager):
         self.add_widget(ProfileScreen())
         self.add_widget(NewsScreen())
         self.add_widget(DialogScreen())
-        self.current = ProfileScreen.SCREEN_NAME
-
-
-class MainManager(ScreenManager):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
         self.add_widget(LoginScreen())
-
         self.current = LoginScreen.SCREEN_NAME
