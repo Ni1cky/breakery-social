@@ -25,7 +25,8 @@ class NewsScreen(BaseScreen):
         #RiseInTransition()
         for _ in range(4):
             new_post = PostWidget(
-                post=Post(id=1, text="ыафждыалфждыажцдуьэж", author="Gosha", time_send=datetime(2019, 6, 1, 12, 22)))
+                post=Post(id=1, text="Ппп- п-п-Привет, м-м-мменя зовут наташа. Мне 7 лет. Я из Красоярска",
+                          author="Настя 200 метров от вас", time_send=datetime(2019, 6, 1, 12, 22)))
             self.post_item.add_widget(new_post)
             # new_post._dismiss_size()
 

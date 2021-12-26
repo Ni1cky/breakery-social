@@ -1,7 +1,30 @@
 <PostWidget>:
+    canvas:
+        Color:
+            rgba: 0, 0, 1, 0.1
+            # цвет может меняться в зависимости от темы
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [25, 25, 25, 25]
     MDBoxLayout:
         orientation: "vertical"
-        MDLabel:
+        TwoLineIconListItem:
             text: root.author
+            secondary_text: "Вчера в 25:00"
+            IconLeftWidget:
+                source: "img/profile.jpg"
         MDLabel:
+            padding_x: 10
             text: root.text
+            # text: "привет я поовоаоыррррррраовыаоывшаовшоашв"
+            halign: "center"
+        MDBoxLayout:
+            orientation: "horizontal"
+            MDIconButton:
+                icon: "heart"
+                # badge_icon: "numeric-10"
+            MDIconButton:
+                icon: "comment"
+            MDIconButton:
+                icon: "arrow-right"
