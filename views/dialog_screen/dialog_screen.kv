@@ -2,6 +2,7 @@
 
 <DialogScreen>:
     scrollable_messages: scrollable_messages
+    messages: messages
     MDBoxLayout:
         orientation: "vertical"
         MDBoxLayout:
@@ -17,6 +18,8 @@
         RecycleView:
             size_hint: 1, 0.8
             id: scrollable_messages
+            MDList:
+                id: messages
         MDBoxLayout:
             size_hint: 1, 0.1
             orientation: "horizontal"
