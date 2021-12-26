@@ -22,7 +22,9 @@ class MessageScreen(BaseScreen):
                                                               time_send=datetime.datetime(2019, 6, 1, 12, 22),
                                                               is_read=False,
                                                               is_important=False,
-                                                              is_edited=False), name="User"))
+                                                              is_edited=False,
+                                                              send_from_me=True,
+                                                              id=1), name="User"))
         self.add_widget(MDList())
         scroll.add_widget(list_view)
         self.add_widget(scroll)
