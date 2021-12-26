@@ -8,4 +8,5 @@ class SCREENS:
     MAINMENU_SCREEN = 'MainMenuScreen'
     MESSAGE_SCREEN = 'MessageScreen'
     PROFILE_SCREEN = 'ProfileScreen'
+    NEWS_SCREEN = 'NewsScreen'
     DIALOG_SCREEN = "DialogScreen"

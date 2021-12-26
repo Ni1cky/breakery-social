@@ -9,7 +9,7 @@ class LoginScreen(BaseScreen):
     SCREEN_NAME = meta.SCREENS.LOGIN_SCREEN
 
     def go_to_main_screen(self):
-        self.manager.current = meta.SCREENS.MAINMENU_SCREEN
+        self.manager.current = meta.SCREENS.NEWS_SCREEN
 
 
 class RegisterScreen(BaseScreen):
