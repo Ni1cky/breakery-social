@@ -27,15 +27,27 @@ class MainMenuScreen(BaseScreen):
 
     def go_to_message_screen(self):
         if not self.is_backdrop_front_open:
-            self.manager_screen.current = meta.SCREENS.MESSAGE_SCREEN
+            if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
+                self.manager_screen.current = meta.SCREENS.MESSAGE_SCREEN
+            else:
+                self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
+            self.move_menu_backdrop()
 
     def go_to_profile_screen(self):
         if not self.is_backdrop_front_open:
-            self.manager_screen.current = meta.SCREENS.PROFILE_SCREEN
+            if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
+                self.manager_screen.current = meta.SCREENS.PROFILE_SCREEN
+            else:
+                self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
+            self.move_menu_backdrop()
 
     def go_to_news_screen(self):
         if not self.is_backdrop_front_open:
-            self.manager_screen.current = meta.SCREENS.NEWS_SCREEN
+            if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
+                self.manager_screen.current = meta.SCREENS.NEWS_SCREEN
+            else:
+                self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
+            self.move_menu_backdrop()
 
     def open_menu_backdrop(self):
         if not self.is_backdrop_front_open:
@@ -43,5 +55,4 @@ class MainMenuScreen(BaseScreen):
                 self.backdrop.open()
 
     def move_menu_backdrop(self):
-        if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
-            self.backdrop.open()
+        self.backdrop.open()

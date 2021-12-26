@@ -29,6 +29,7 @@
                         theme_text_color: 'Custom'
                         text_color: 0.96, 1, 0.98, 1
                         icon: "account"
+                        on_press: root.go_to_profile_screen(), root.open_menu_backdrop()
                 OneLineIconListItem:
                     text: "News"
                     on_press: root.go_to_news_screen(), root.open_menu_backdrop()
@@ -38,6 +39,7 @@
                         theme_text_color: 'Custom'
                         text_color: 0.96, 1, 0.98, 1
                         icon: "newspaper-variant"
+                        on_press: root.go_to_news_screen(), root.open_menu_backdrop()
                 OneLineIconListItem:
                     text: "Message"
                     on_press: root.go_to_message_screen(), root.open_menu_backdrop()
@@ -47,6 +49,7 @@
                         theme_text_color: 'Custom'
                         text_color: 0.96, 1, 0.98, 1
                         icon: "forum"
+                        on_press: root.go_to_message_screen(), root.open_menu_backdrop()
         MDBackdropFrontLayer:
             Manager:
                 id: manager_screen
