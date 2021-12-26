@@ -18,21 +18,28 @@ class DialogScreen(BaseScreen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        list_view = MDList()
+        '''list_view = MDList(spacing=10)
         for _ in range(13):
-            '''tmp_message = MessageWidget(message={'text': 'sdasd',
-    'time_send': datetime.datetime.now(),
-    'is_read': False,
-    'is_important': False,
-    'is_edited': False})
-            
-            list_view.add_widget(MessageWidget(tmp_message))'''
             list_view.add_widget(MessageWidget(message={'text': 'dsdssd',
                                                        'time_send': datetime.datetime(2019, 6, 1, 12, 22),
                                                        'is_read': False,
                                                        'is_important': False,
                                                        'is_edited': False}))
-        self.scrollable_messages.add_widget(list_view)
+        self.scrollable_messages.add_widget(list_view)'''
+        # list_view = MDList(spacing=10)
+        # for _ in range(13):
+        #     list_view.add_widget(MessageWidget(message={'text': 'dsdssd',
+        #                                                 'time_send': datetime.datetime(2019, 6, 1, 12, 22),
+        #                                                 'is_read': False,
+        #                                                 'is_important': False,
+        #                                                 'is_edited': False}))
+        self.scrollable_messages.data = []
+        for _ in range(13):
+            self.scrollable_messages.data.append({'text': 'dsdssd',
+                                                        'time_send': datetime.datetime(2019, 6, 1, 12, 22),
+                                                        'is_read': False,
+                                                        'is_important': False,
+                                                        'is_edited': False})
 
 
     def get_validate_message(sender_id: int, recipient_id: int):

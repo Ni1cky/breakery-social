@@ -1,3 +1,4 @@
+from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.widget import Widget
 from kivymd.uix.list import OneLineListItem
 from store.models.models import Message
@@ -7,6 +8,9 @@ Builder.load_file('components/message/message.kv')
 
 
 class MessageWidget(OneLineListItem):
-    def __init__(self, message: Message, **kwargs):
+    message_text = StringProperty()
+    message = ObjectProperty()
+
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.data = message
+        # .message_text = message["text"]
