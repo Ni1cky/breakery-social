@@ -18,15 +18,16 @@ class DialogScreen(BaseScreen):
 
     def get_validate_message(self, recipient_id):
         messages = get_time_send_sorted_message(current_user.CURRENT_USER_ID, recipient_id)
-        for message in messages:
-            if message.id == recipient_id:
-                message.send_from_me = True
-            else:
-                message.send_from_me = False
+        # for message in messages:
+        #     if message.id == recipient_id:
+        #         message.send_from_me = True
+        #     else:
+        #         message.send_from_me = False
         return messages
     
     def reload_messages(self):
         messages = self.get_validate_message(2)
+        self.messages.clear_widgets()
         for message in messages:
             message: Message
             self.messages.add_widget(MessageWidget(message))
