@@ -29,7 +29,7 @@ class MessageBase(BaseModel):
 
 class Message(MessageBase):
     id: int
-    send_from_me: bool
+    send_from_me: int
 
 
 class MessageCreate(MessageBase):

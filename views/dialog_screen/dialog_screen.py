@@ -1,6 +1,9 @@
 import datetime
+import random
+
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
+from kivy.uix.anchorlayout import AnchorLayout
 from kivymd.uix.list import MDList
 from components.dialog_widget.dialog_widget import DialogWidget
 from views.base import BaseScreen
@@ -18,31 +21,22 @@ class DialogScreen(BaseScreen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        '''list_view = MDList(spacing=10)
-        for _ in range(13):
-            list_view.add_widget(MessageWidget(message={'text': 'dsdssd',
-                                                       'time_send': datetime.datetime(2019, 6, 1, 12, 22),
-                                                       'is_read': False,
-                                                       'is_important': False,
-                                                       'is_edited': False}))
-        self.scrollable_messages.add_widget(list_view)'''
-        # list_view = MDList(spacing=10)
-        # for _ in range(13):
-        #     list_view.add_widget(MessageWidget(message={'text': 'dsdssd',
-        #                                                 'time_send': datetime.datetime(2019, 6, 1, 12, 22),
-        #                                                 'is_read': False,
-        #                                                 'is_important': False,
-        #                                                 'is_edited': False}))
         self.scrollable_messages.data = []
-        for _ in range(13):
-            self.scrollable_messages.data.append({'text': 'dsdssd',
+
+        for i in range(1, 40):
+            print(len(i * "привет") // 20 * 100)
+            self.scrollable_messages.data.append({'message_text': i * "привет)",
                                                         'time_send': datetime.datetime(2019, 6, 1, 12, 22),
                                                         'is_read': False,
                                                         'is_important': False,
-                                                        'is_edited': False})
+                                                        'is_edited': False,
+                                                  "height": int(max(len(i * "привет") / 40, 1) * 50),
+                                                'send_from_me': i % 2})
 
 
-    def get_validate_message(sender_id: int, recipient_id: int):
+
+
+    def get_validate_message(self, sender_id: int, recipient_id: int):
         #messages = get_time_send_sorted_message(sender_id, recipient_id)
         messages = []
         for message in messages:

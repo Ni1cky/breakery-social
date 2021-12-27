@@ -1,4 +1,5 @@
 #: import DialogWidget components.dialog_widget.dialog_widget
+#: import MessageWidget components.message.message
 
 <DialogScreen>:
     scrollable_messages: scrollable_messages
@@ -16,10 +17,11 @@
                     source: "img/profile.jpg"
         RecycleView:
             id: scrollable_messages
-            size_hint: 1, 0.8
-            viewclass: 'MessageWidget'
+            viewclass: "MessageWidget"
+            key_size: "height"
             RecycleBoxLayout:
-                default_size: None, dp(56)
+                spacing: 20
+                default_size: None, None
                 default_size_hint: 1, None
                 size_hint_y: None
                 height: self.minimum_height
