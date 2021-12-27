@@ -36,6 +36,7 @@ class DialogScreen(BaseScreen):
 
 
 
+
     def get_validate_message(self, sender_id: int, recipient_id: int):
         #messages = get_time_send_sorted_message(sender_id, recipient_id)
         messages = []
