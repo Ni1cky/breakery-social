@@ -4,6 +4,7 @@ import random
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.anchorlayout import AnchorLayout
+from kivy.uix.recycleview import RecycleView
 from kivymd.uix.list import MDList
 from components.dialog_widget.dialog_widget import DialogWidget
 from views.base import BaseScreen
@@ -17,7 +18,7 @@ Builder.load_file('views/dialog_screen/dialog_screen.kv')
 
 class DialogScreen(BaseScreen):
     SCREEN_NAME = SCREENS.DIALOG_SCREEN
-    scrollable_messages = ObjectProperty()
+    scrollable_messages: RecycleView = ObjectProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
