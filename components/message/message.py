@@ -25,7 +25,7 @@ class MessageWidget(RecycleDataViewBehavior, BoxLayout):
             self._latest_data["height"] = self.height
         self._latest_data = data
         # print(self._latest_data)
-        super(MessageWidget, self).refresh_view_attrs(recycle_view, index, data)
+        super().refresh_view_attrs(recycle_view, index, data)
 
     def on_height(self, instance, value):
         data = self._latest_data
