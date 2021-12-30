@@ -1,5 +1,5 @@
 <MessageWidget>:
-    textik: textik
+    message_label: message_label
     MDBoxLayout:
         size_hint: max(0.25 * root.send_from_me, 0.0001), 1
     AnchorLayout:
@@ -19,8 +19,9 @@
 #                    pos: self.pos
 #                    size: self.size
 #                    radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
-            id: textik
+            id: message_label
             size_hint: 0.9, 0.9
+            multiline: True
             # text_size: root.width, root.height
             # text: root.message_text + ' ' + str(self.size) + ' ' + str(len(root.message_text) + len(str(self.size)))
             text: root.message_text

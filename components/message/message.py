@@ -1,6 +1,7 @@
 from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
+from kivymd.uix.label import MDLabel
 
 Builder.load_file('components/message/message.kv')
 
@@ -11,9 +12,8 @@ class MessageWidget(RecycleDataViewBehavior, BoxLayout):
     _latest_data = None
     _recycle_view = None
     message_text = StringProperty()
-    message = ObjectProperty()
     send_from_me = NumericProperty()
-    textik = ObjectProperty()
+    message_label: MDLabel = ObjectProperty()
 
     def refresh_view_attrs(self, recycle_view, index, data):
         self._recycle_view = recycle_view
