@@ -1,9 +1,5 @@
 from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.widget import Widget
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.list import OneLineListItem
-from store.models.models import Message
 from kivy.lang import Builder
 
 Builder.load_file('components/message/message.kv')
@@ -24,7 +20,6 @@ class MessageWidget(RecycleDataViewBehavior, BoxLayout):
         if self._latest_data is not None:
             self._latest_data["height"] = self.height
         self._latest_data = data
-        # print(self._latest_data)
         super().refresh_view_attrs(recycle_view, index, data)
 
     def on_height(self, instance, value):
