@@ -9,3 +9,7 @@ class SCREENS:
     MESSAGE_SCREEN = 'MessageScreen'
     PROFILE_SCREEN = 'ProfileScreen'
     NEWS_SCREEN = 'NewsScreen'
+
+class AUTHORIZATION:
+    LOGIN = ''
+    PASSWORD = ''

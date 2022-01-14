@@ -1,9 +1,22 @@
-<LoginScreen>:
+<RegisterScreen>:
     login: login
     passw: passw
+    your_name: your_name
+    surname: surname
     BoxLayout:
-        padding: 0.4
+        padding: 0.2
         orientation: 'vertical'
+        AnchorLayout:
+            MDTextField:
+                id: your_name
+                hint_text: "name"
+                mode: "fill"
+        AnchorLayout:
+            MDTextField:
+                id: surname
+                #size_hint: 0.5,0.2
+                hint_text: "surname"
+                mode: "fill"
         AnchorLayout:
             MDTextField:
                 id: login
@@ -21,10 +34,10 @@
             AnchorLayout:
                 Button:
                     size_hint: 0.5,0.2
-                    text: "Логин"
-                    on_press: root.go_to_main_screen()
+                    text: "Register"
+                    on_press: root.register()
             AnchorLayout:
                 Button:
                     size_hint: 0.5,0.2
-                    text: "REG"
-                    on_press: root.go_to_registration_screen()
+                    text: "go to LOG"
+                    on_press: root.go_to_login_screen()

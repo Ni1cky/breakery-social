@@ -1,5 +1,6 @@
 from kivy.uix.screenmanager import ScreenManager
 from views.authorization.authorization import LoginScreen
+from views.authorization.registration import RegisterScreen
 from views.message_screen.message_screen import MessageScreen
 from views.news_screen.news_screen import NewsScreen
 from views.profile_screen.profile_screen import ProfileScreen
@@ -13,6 +14,7 @@ class Manager(ScreenManager):
         self.add_widget(ProfileScreen())
         self.add_widget(NewsScreen())
         self.add_widget(LoginScreen())
+        self.add_widget(RegisterScreen())
 
         self.current = LoginScreen.SCREEN_NAME
 

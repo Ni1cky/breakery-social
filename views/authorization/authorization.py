@@ -15,27 +15,21 @@ class LoginScreen(BaseScreen):
     passw = ObjectProperty()
 
 
+
     def go_to_main_screen(self):
-        r = requests.Request('GET', 'http://127.0.0.1:8000/users/me')
-        user = self.send(r)
-        print(user.text)
-        self.manager.current = meta.SCREENS.PROFILE_SCREEN
-
-
-    def send(self, req: Request):
         token = requests.post('http://127.0.0.1:8000/token',
                               data={'grant_type': '', 'username': self.login.text, 'password': self.passw.text,
                                     'scope': '', 'client_id': '', 'client_secret': ''})
-        req.headers[
-            'Authorization'] = f"Bearer {token.json()['access_token']}"
-        s = requests.Session()
-        resp = s.send(req.prepare())
-        return resp
+
+        if token.json() != None:
+            meta.AUTHORIZATION.LOGIN = self.login.text
+            meta.AUTHORIZATION.PASSWORD = self.passw.text
+
+            self.manager.current = meta.SCREENS.PROFILE_SCREEN
+
+    def go_to_registration_screen(self):
+        self.manager.current = meta.SCREENS.REGISTER_SCREEN
 
 
 
 
-
-
-class RegisterScreen(BaseScreen):
-    pass

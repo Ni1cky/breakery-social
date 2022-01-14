@@ -1,14 +1,17 @@
+import requests
+from requests import Request
+#from views.authorization.authorization import LOGIN, PASSWORD
+from views import meta
 from views.base import BaseScreen
 from views.meta import SCREENS
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.filemanager import MDFileManager
-
 Builder.load_file('views/profile_screen/profile_screen.kv')
 
-user_name = "Name"
-user_surname = "Surname"
+user_name = ""
+user_surname = ""
 user_avatar_source = "img/profile.jpg"
 
 
@@ -29,6 +32,35 @@ class ProfileScreen(BaseScreen):
             select_path=self.select_path,
             preview=True,
         )
+
+    def on_enter(self, *args):
+        user = self.get_my_profile()
+        print(user)
+        self.name_field.text = user["name"]
+        self.surname_field.text = user["surname"]
+
+
+    def get_my_profile(self):
+        req = requests.Request('GET', 'http://127.0.0.1:8000/users/me')
+        resp = self.send(req)
+        return resp.json()
+
+
+    def send(self, req: Request):
+        token = requests.post('http://127.0.0.1:8000/token',
+                              data={'grant_type': '', 'username': meta.AUTHORIZATION.LOGIN, 'password': meta.AUTHORIZATION.PASSWORD,
+                                    'scope': '', 'client_id': '', 'client_secret': ''})
+
+        req.headers['Authorization'] = f"Bearer {token.json()['access_token']}"
+        s = requests.Session()
+        resp = s.send(req.prepare())
+        return resp
+
+
+
+
+
+
 
     def enable_edit_mode(self):
         if self.edit_mode_is_enable:
