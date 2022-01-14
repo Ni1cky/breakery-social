@@ -1,6 +1,24 @@
 <LoginScreen>:
-    AnchorLayout:
-        Button:
-            size_hint: 0.5,0.2
-            text: "Логин"
-            on_press: root.go_to_main_screen()
+    login: login
+    passw: passw
+    BoxLayout:
+        padding: 0.4
+        orientation: 'vertical'
+        AnchorLayout:
+            MDTextField:
+                id: login
+                #size_hint: 0.5,0.2
+                hint_text: "login"
+                mode: "fill"
+        AnchorLayout:
+            MDTextField:
+                id: passw
+                password: True
+                #size_hint: 0.5,0.2
+                hint_text: "password"
+                mode: "fill"
+        AnchorLayout:
+            Button:
+                size_hint: 0.5,0.2
+                text: "Логин"
+                on_press: root.go_to_main_screen()
