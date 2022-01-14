@@ -11,10 +11,17 @@ class LoginScreen(BaseScreen):
     SCREEN_NAME = meta.SCREENS.LOGIN_SCREEN
     login = ObjectProperty()
     passw = ObjectProperty()
+
     def go_to_main_screen(self):
-        #print(self.login.text, self.passw.text)
-        r = requests.get('http://127.0.0.1:8000/users/me')
-        print(r.text)
+
+        token = requests.post('http://127.0.0.1:8000/token', headers={'accept': 'application/json', 'Content-Type': 'application/x-www-form-url-encoded'}, data={ 'grant_type': '', 'username': self.login.text, 'password': self.passw.text, 'scope': '', 'client_id': '', 'client_secret': ''})
+
+        print(token.request.body, token.request.url, token.request.headers)
+        print(token.text)
+
+
+
+
         #self.manager.current = meta.SCREENS.NEWS_SCREEN
 
 
