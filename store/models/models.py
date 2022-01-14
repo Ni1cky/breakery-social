@@ -53,6 +53,19 @@ class MessageCreate(MessageBase):
     pass
 
 
+class PostBase(BaseModel):
+    text: str
+    author: str
+    time_send: datetime.datetime
+
+
+class Post(PostBase):
+    id: int
+
+
+class PostCreate(PostBase):
+    pass
+
 class DialogBase(BaseModel):
     name_dialog: str
     last_message: str
