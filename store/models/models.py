@@ -51,3 +51,18 @@ class Message(MessageBase):
 
 class MessageCreate(MessageBase):
     pass
+
+
+class DialogBase(BaseModel):
+    name_dialog: str
+    last_message: str
+    timme_send: datetime.datetime
+    is_read: bool
+
+
+class Dialog(DialogBase):
+    id: int
+
+
+class DialogCreate(DialogBase):
+    pass
