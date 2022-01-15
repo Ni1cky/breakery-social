@@ -24,7 +24,6 @@ class LoginScreen(BaseScreen):
         if token.json() != None:
             meta.AUTHORIZATION.LOGIN = self.login.text
             meta.AUTHORIZATION.PASSWORD = self.passw.text
-
             self.manager.current = meta.SCREENS.PROFILE_SCREEN
 
     def go_to_registration_screen(self):
