@@ -7,37 +7,62 @@
         padding: 0.2
         orientation: 'vertical'
         AnchorLayout:
+            padding: 20
             MDTextField:
                 id: your_name
                 hint_text: "name"
                 mode: "fill"
+                line_color_focus: 0.57, 0.57, 0.57, 1
+                fill_color_focus: 0.57, 0.57, 0.57, 1
+                hint_text_color_focus: 0.96, 1, 0.98, 1
+                text_color_focus:0.96, 1, 0.98, 1
         AnchorLayout:
+            padding: 20
             MDTextField:
                 id: surname
                 #size_hint: 0.5,0.2
                 hint_text: "surname"
                 mode: "fill"
+                line_color_focus: 0.57, 0.57, 0.57, 1
+                fill_color_focus: 0.57, 0.57, 0.57, 1
+                hint_text_color_focus: 0.96, 1, 0.98, 1
+                text_color_focus:0.96, 1, 0.98, 1
         AnchorLayout:
+            padding: 20
             MDTextField:
                 id: login
                 #size_hint: 0.5,0.2
-                hint_text: "login"
+                icon_left: "account"
+                hint_text: "Login"
                 mode: "fill"
+                line_color_focus: 0.57, 0.57, 0.57, 1
+                fill_color_focus: 0.57, 0.57, 0.57, 1
+                hint_text_color_focus: 0.96, 1, 0.98, 1
+                icon_left_color_focus: 0.96, 1, 0.98, 1
+                text_color_focus:0.96, 1, 0.98, 1
         AnchorLayout:
+            padding: 20
             MDTextField:
                 id: passw
                 password: True
                 #size_hint: 0.5,0.2
-                hint_text: "password"
+                icon_left: "lock"
+                hint_text: "Password"
                 mode: "fill"
+                line_color_focus: 0.57, 0.57, 0.57, 1
+                fill_color_focus: 0.57, 0.57, 0.57, 1
+                hint_text_color_focus: 0.96, 1, 0.98, 1
+                icon_left_color_focus: 0.96, 1, 0.98, 1
+                text_color_focus:0.96, 1, 0.98, 1
+                max_text_length: 10
         BoxLayout:
             AnchorLayout:
-                Button:
-                    size_hint: 0.5,0.2
+                MDFillRoundFlatButton:
                     text: "Register"
+                    md_bg_color: 0.57, 0.57, 0.57, 1
                     on_press: root.register()
             AnchorLayout:
-                Button:
-                    size_hint: 0.5,0.2
-                    text: "go to LOG"
+                MDFillRoundFlatButton:
+                    text: "Go to login"
+                    md_bg_color: 0.57, 0.57, 0.57, 1
                     on_press: root.go_to_login_screen()
