@@ -3,7 +3,6 @@
 
 <DialogScreen>:
     scrollable_messages: scrollable_messages
-    messages: messages
     MDBoxLayout:
         orientation: "vertical"
         MDBoxLayout:
@@ -21,7 +20,6 @@
             viewclass: "MessageWidget"
             key_size: "height"
             RecycleBoxLayout:
-                id: messages
                 spacing: 20
                 default_size: None, None
                 default_size_hint: 1, None
