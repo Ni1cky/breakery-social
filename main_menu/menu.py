@@ -1,9 +1,11 @@
+from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivymd.uix.backdrop import MDBackdrop
 from screen_manager import Manager
 from views import meta
 from views.base import BaseScreen
+from views.dialog_screen.dialog_screen import DialogScreen
 
 Builder.load_file('main_menu/menu.kv')
 
@@ -18,6 +20,12 @@ class MainMenuScreen(BaseScreen):
         self.backdrop.bind(on_open=self.front_backdrop_closing)
         self.backdrop.bind(on_close=self.front_backdrop_opening)
         self.is_backdrop_front_open = True
+        self.event = Clock.schedule_interval(self.update_messages, 1)
+
+    def update_messages(self, *args):
+        if self.manager_screen.current == meta.SCREENS.DIALOG_SCREEN:
+            dialog_screen: DialogScreen = self.manager_screen.current_screen
+            dialog_screen.reload_messages()
 
     def front_backdrop_closing(self, instance):
         self.is_backdrop_front_open = False
@@ -29,6 +37,14 @@ class MainMenuScreen(BaseScreen):
         if not self.is_backdrop_front_open:
             if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
                 self.manager_screen.current = meta.SCREENS.MESSAGE_SCREEN
+            else:
+                self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
+            self.move_menu_backdrop()
+
+    def go_to_dialogue_screen(self):
+        if not self.is_backdrop_front_open:
+            if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
+                self.manager_screen.current = meta.SCREENS.DIALOG_SCREEN
             else:
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
             self.move_menu_backdrop()

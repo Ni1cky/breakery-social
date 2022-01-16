@@ -1,0 +1,41 @@
+#: import DialogWidget components.dialog_widget.dialog_widget
+#: import MessageWidget components.message.message
+
+<DialogScreen>:
+    scrollable_messages: scrollable_messages
+    MDBoxLayout:
+        orientation: "vertical"
+        MDBoxLayout:
+            size_hint: 1, 0.1
+            orientation: "horizontal"
+            MDIconButton:
+                icon: 'arrow-left'
+            TwoLineAvatarIconListItem:
+                text: "Gosha"
+                secondary_text: "Был(а) в сети завтра"
+                ImageLeftWidget:
+                    source: "img/profile.jpg"
+        RecycleView:
+            id: scrollable_messages
+            viewclass: "MessageWidget"
+            key_size: "height"
+            RecycleBoxLayout:
+                spacing: 20
+                default_size: None, None
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+        MDBoxLayout:
+            size_hint: 1, 0.1
+            orientation: "horizontal"
+            AnchorLayout:
+                padding: 10
+                size_hint: 0.8, 1
+                MDTextField:
+                    hint_text: "Введите сообщение"
+            AnchorLayout:
+                padding: 10
+                size_hint: 0.2, 1
+                MDIconButton:
+                    icon: "send"

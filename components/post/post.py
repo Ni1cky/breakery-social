@@ -11,8 +11,8 @@ class PostWidget(MDSwiperItem):
     def __init__(self, post: Post, **kwargs):
         super().__init__(**kwargs)
         self.text = post.text
-        self.author = post.author
-        self.time_send = post.time_send
+        self.author = "Настя 200 метров от вас"
+        self.time_send = post.time_created
 
 
 
