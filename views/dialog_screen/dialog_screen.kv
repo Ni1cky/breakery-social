@@ -3,6 +3,7 @@
 
 <DialogScreen>:
     scrollable_messages: scrollable_messages
+    message_text: message_text
     MDBoxLayout:
         orientation: "vertical"
         MDBoxLayout:
@@ -33,9 +34,12 @@
                 padding: 10
                 size_hint: 0.8, 1
                 MDTextField:
+                    id: message_text
+                    on_text_validate: root.send_message()
                     hint_text: "Введите сообщение"
             AnchorLayout:
                 padding: 10
                 size_hint: 0.2, 1
                 MDIconButton:
                     icon: "send"
+                    on_press: root.send_message()

@@ -12,3 +12,9 @@ def get_user(user_id: int):
     response = requests.get(f"http://127.0.0.1:8000/users/{user_id}")
     user = User(**response.json())
     return user
+
+
+def get_current_user():
+    response = requests.get(f"http://127.0.0.1:8000/users/me")
+    user = User(**response.json())
+    return user

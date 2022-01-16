@@ -1,6 +1,6 @@
 from datetime import datetime
 import requests
-from store.models.models import Message
+from store.models.models import Message, MessageCreate
 
 
 def get_message(message_id: int):
@@ -21,3 +21,7 @@ def get_time_send_sorted_message(sender_id: int, recipient_id: int):
                              key=lambda message: datetime.strptime(str(message.time_send), "%Y-%m-%d %H:%M:%S.%f"),
                              reverse=True)
     return sorted_messages
+
+
+def create_message(message: MessageCreate):
+    requests.post("http://127.0.0.1:8000/messages", json=message.dict())
