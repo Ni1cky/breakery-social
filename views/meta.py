@@ -12,5 +12,4 @@ class SCREENS:
     DIALOG_SCREEN = "DialogScreen"
 
 class AUTHORIZATION:
-    LOGIN = ''
-    PASSWORD = ''
+    TOKEN = ''
