@@ -19,6 +19,9 @@ class LoginScreen(BaseScreen):
     def go_to_main_screen(self):
         if get_token(self.login.text, self.passw.text) != None:
             self.manager.current = meta.SCREENS.PROFILE_SCREEN
+        else:
+            pass
+            # неправильный логин или пароль
 
     def go_to_registration_screen(self):
         self.manager.current = meta.SCREENS.REGISTER_SCREEN
