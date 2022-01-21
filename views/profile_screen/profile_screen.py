@@ -5,11 +5,8 @@ from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.filemanager import MDFileManager
+import requests
 Builder.load_file('views/profile_screen/profile_screen.kv')
-
-user_name = ""
-user_surname = ""
-user_avatar_source = "img/profile.jpg"
 
 
 class ProfileScreen(BaseScreen):
@@ -35,6 +32,7 @@ class ProfileScreen(BaseScreen):
         #print(user)
         self.name_field.text = user["name"]
         self.surname_field.text = user["surname"]
+        self.avatar.icon = user['photo']
 
     def enable_edit_mode(self):
         if self.edit_mode_is_enable:
@@ -57,16 +55,18 @@ class ProfileScreen(BaseScreen):
         self.close_button = None
 
     def save_changes(self, i):
-        global user_name, user_surname, user_avatar_source
-        user_name = self.name_field.text
-        user_surname = self.surname_field.text
-        user_avatar_source = self.avatar.icon
+        user = get_my_profile()
+        user['name'] = self.name_field.text
+        user['surname'] = self.surname_field.text
+        user['photo'] = self.avatar.icon
+        requests.put(f'http://127.0.0.1:8000/users/{user["id"]}/edit', json=user)
         self.disable_edit_mode()
 
     def reset_changes(self, i):
-        self.name_field.text = user_name
-        self.surname_field.text = user_surname
-        self.avatar.icon = user_avatar_source
+        user = get_my_profile()
+        self.name_field.text = user['name']
+        self.surname_field.text = user['surname']
+        self.avatar.icon = user['photo']
         self.disable_edit_mode()
 
     def change_avatar(self):
