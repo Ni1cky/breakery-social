@@ -32,7 +32,7 @@ class ProfileScreen(BaseScreen):
         #print(user)
         self.name_field.text = user["name"]
         self.surname_field.text = user["surname"]
-        self.avatar.icon = user['photo']
+        #self.avatar.icon = user['photo'] добавить после того, как в базе появятся фотографии
 
     def enable_edit_mode(self):
         if self.edit_mode_is_enable:
