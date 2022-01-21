@@ -3,6 +3,7 @@ from kivy.properties import ObjectProperty
 import requests
 from requests import Request
 
+from controllers.authorization import get_token
 from views.base import BaseScreen
 from views import meta
 
@@ -15,16 +16,12 @@ class LoginScreen(BaseScreen):
     passw = ObjectProperty()
 
 
-
     def go_to_main_screen(self):
-        token = requests.post('http://127.0.0.1:8000/token',
-                              data={'grant_type': '', 'username': self.login.text, 'password': self.passw.text,
-                                    'scope': '', 'client_id': '', 'client_secret': ''})
-
-        if token.json() != None:
-            meta.AUTHORIZATION.LOGIN = self.login.text
-            meta.AUTHORIZATION.PASSWORD = self.passw.text
+        if get_token(self.login.text, self.passw.text) != None:
             self.manager.current = meta.SCREENS.PROFILE_SCREEN
+        else:
+            pass
+            # неправильный логин или пароль
 
     def go_to_registration_screen(self):
         self.manager.current = meta.SCREENS.REGISTER_SCREEN

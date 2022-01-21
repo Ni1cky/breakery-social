@@ -5,6 +5,7 @@ from views.dialog_screen.dialog_screen import DialogScreen
 from views.message_screen.message_screen import MessageScreen
 from views.news_screen.news_screen import NewsScreen
 from views.profile_screen.profile_screen import ProfileScreen
+from views.users_screen.users_screen import UsersScreen
 
 
 class Manager(ScreenManager):
@@ -17,6 +18,7 @@ class Manager(ScreenManager):
         self.add_widget(DialogScreen())
         self.add_widget(LoginScreen())
         self.add_widget(RegisterScreen())
+        self.add_widget(UsersScreen())
 
         self.current = LoginScreen.SCREEN_NAME
 
@@ -27,4 +29,3 @@ class Manager(ScreenManager):
 #         self.add_widget(LoginScreen())
 #         self.add_widget(MainMenuScreen())
 #         self.current = LoginScreen.SCREEN_NAME
-

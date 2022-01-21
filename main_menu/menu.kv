@@ -60,6 +60,18 @@
                         text_color: 0.96, 1, 0.98, 1
                         icon: "forum"
                         on_press: root.go_to_dialogue_screen(), root.open_menu_backdrop()
+
+                OneLineIconListItem:
+                    text: "Users"
+                    on_press: root.go_to_users_screen(), root.open_menu_backdrop()
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "account-multiple"
+                        on_press: root.go_to_users_screen(), root.open_menu_backdrop()
+
         MDBackdropFrontLayer:
             Manager:
                 id: manager_screen
