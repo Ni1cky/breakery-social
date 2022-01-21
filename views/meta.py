@@ -13,5 +13,4 @@ class SCREENS:
     USERS_SCREEN = 'UsersScreen'
 
 class AUTHORIZATION:
-    LOGIN = ''
-    PASSWORD = ''
+    TOKEN = ''
