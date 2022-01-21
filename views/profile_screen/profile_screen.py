@@ -32,7 +32,7 @@ class ProfileScreen(BaseScreen):
 
     def on_enter(self, *args):
         user = get_my_profile()
-        print(user)
+        #print(user)
         self.name_field.text = user["name"]
         self.surname_field.text = user["surname"]
 
