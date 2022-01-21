@@ -10,6 +10,7 @@ class SCREENS:
     PROFILE_SCREEN = 'ProfileScreen'
     NEWS_SCREEN = 'NewsScreen'
     DIALOG_SCREEN = "DialogScreen"
+    USERS_SCREEN = 'UsersScreen'
 
 class AUTHORIZATION:
     TOKEN = ''
