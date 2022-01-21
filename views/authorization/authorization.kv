@@ -1,6 +1,7 @@
 <LoginScreen>:
     login: login
     passw: passw
+    check: check
     MDBoxLayout:
         size_hint: 0.8, 0.4
         orientation: "vertical"
@@ -34,6 +35,11 @@
                 hint_text_color_focus: 0.96, 1, 0.98, 1
                 icon_left_color_focus: 0.96, 1, 0.98, 1
                 text_color_focus:0.96, 1, 0.98, 1
+    MDBoxLayout:
+        pos_hint: {'center_x': .5, 'center_y': .4}
+        MDCheckbox:
+            id: check
+            active: False
     MDBoxLayout:
         size_hint: 1, 0.6
         pos_hint: {"center_x": .5, "center_y": .4}
