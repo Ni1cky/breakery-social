@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivymd.uix.selectioncontrol import MDCheckbox
+from kivymd.uix.textfield import MDTextField
 
 from controllers.authorization import get_token
 from views.base import BaseScreen
@@ -11,8 +12,8 @@ Builder.load_file('views/authorization/authorization.kv')
 
 class LoginScreen(BaseScreen):
     SCREEN_NAME = meta.SCREENS.LOGIN_SCREEN
-    login = ObjectProperty()
-    passw = ObjectProperty()
+    login: MDTextField = ObjectProperty()
+    passw: MDTextField = ObjectProperty()
     remember_me: MDCheckbox = ObjectProperty()
 
     def on_enter(self, *args):
