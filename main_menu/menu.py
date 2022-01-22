@@ -1,3 +1,4 @@
+import os
 from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
@@ -6,6 +7,7 @@ from screen_manager import Manager
 from views import meta
 from views.base import BaseScreen
 from views.dialog_screen.dialog_screen import DialogScreen
+from views.meta import AUTHORIZATION
 
 Builder.load_file('main_menu/menu.kv')
 
@@ -80,3 +82,11 @@ class MainMenuScreen(BaseScreen):
 
     def move_menu_backdrop(self):
         self.backdrop.open()
+
+    def log_out(self):
+        try:
+            self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
+            AUTHORIZATION.TOKEN = ''
+            os.remove('saved\\access_token')
+        except:
+            pass
