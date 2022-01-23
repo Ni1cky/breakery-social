@@ -1,4 +1,5 @@
 from controllers.authorization import get_my_profile
+from views import meta
 from views.base import BaseScreen
 from views.meta import SCREENS
 from kivy.lang import Builder
@@ -32,7 +33,10 @@ class ProfileScreen(BaseScreen):
         #print(user)
         self.name_field.text = user["name"]
         self.surname_field.text = user["surname"]
-        #self.avatar.icon = user['photo'] добавить когда в бд появятся фото !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        #self.avatar.icon = user['photo'] добавить после того, как в базе появятся фотографии
+
+    def go_to_my_news_screen(self):
+        self.manager.current = meta.SCREENS.MY_NEWS_SCREEN
 
     def enable_edit_mode(self):
         if self.edit_mode_is_enable:
