@@ -52,5 +52,5 @@ class DialogScreen(BaseScreen):
 
     def send_message(self):
         current_user = get_current_user()
-        message = MessageCreate(text=self.message_text.text, time_send=datetime.datetime.now(), sender_id=current_user.id, receiver_id=self.data.user.id)
+        message = MessageCreate(text=self.message_text.text, time_send=datetime.datetime.now(), sender_id=current_user.id, dialog_id=self.data.id)
         create_message(message)
