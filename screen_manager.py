@@ -6,6 +6,7 @@ from views.message_screen.message_screen import MessageScreen
 from views.news_screen.news_screen import NewsScreen
 from views.profile_screen.profile_screen import ProfileScreen
 from views.users_screen.users_screen import UsersScreen
+from views.my_news_screen.my_news_screen import MyNewsScreen
 
 
 class Manager(ScreenManager):
@@ -13,6 +14,7 @@ class Manager(ScreenManager):
         super().__init__(**kwargs)
         #self.add_widget(MainMenuScreen())
         self.add_widget(MessageScreen())
+        self.add_widget(MyNewsScreen())
         self.add_widget(ProfileScreen())
         self.add_widget(NewsScreen())
         self.add_widget(DialogScreen())

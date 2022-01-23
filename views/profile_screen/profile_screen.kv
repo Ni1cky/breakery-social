@@ -47,10 +47,15 @@
                         text_color_focus: 0, 0, 0, 1
                         text_color_normal: 0, 0, 0, 1
 
-        StackLayout:
-            orientation: "rl-bt"
-            id: edit_buttons
-
-            MDIconButton:
-                icon: "pencil"
-                on_release: root.enable_edit_mode()
+        AnchorLayout:
+            BoxLayout:
+                orientation: "horizontal"
+                BoxLayout:
+                    orientation: "horizontal"
+                    MDIconButton:
+                        id: edit_buttons
+                        icon: "pencil"
+                        on_release: root.enable_edit_mode()
+                MDIconButton:
+                    icon: "newspaper-variant-multiple"
+                    on_release: root.go_to_my_news_screen()
