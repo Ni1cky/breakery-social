@@ -10,6 +10,7 @@ from views.profile_screen.profile_screen import ProfileScreen
 from views.users_screen.users_screen import UsersScreen
 from views.my_news_screen.my_news_screen import MyNewsScreen
 from views.subscribers_screen.subscribers_screen import SubscribersScreen
+from views.subscriptions_screen.subscriptions_screen import SubscriptionsScreen
 
 
 class Manager(ScreenManager):
@@ -24,6 +25,7 @@ class Manager(ScreenManager):
         self.add_widget(RegisterScreen())
         self.add_widget(UsersScreen())
         self.add_widget(SubscribersScreen())
+        self.add_widget(SubscriptionsScreen())
         try:
             f = open('saved\\access_token', 'r').read()
             AUTHORIZATION.TOKEN = str(f)

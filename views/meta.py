@@ -13,6 +13,7 @@ class SCREENS:
     DIALOG_SCREEN = "DialogScreen"
     USERS_SCREEN = 'UsersScreen'
     SUBSCRIBERS_SCREEN = 'SubscribersScreen'
+    SUBSCRIPTIONS_SCREEN = 'SubscriptionsScreen'
 
 
 class AUTHORIZATION:
