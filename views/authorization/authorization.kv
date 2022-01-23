@@ -1,6 +1,7 @@
 <LoginScreen>:
     login: login
     passw: passw
+    remember_me: remember_me
     MDBoxLayout:
         size_hint: 0.8, 0.4
         orientation: "vertical"
@@ -35,8 +36,20 @@
                 icon_left_color_focus: 0.96, 1, 0.98, 1
                 text_color_focus:0.96, 1, 0.98, 1
     MDBoxLayout:
-        size_hint: 1, 0.6
-        pos_hint: {"center_x": .5, "center_y": .4}
+        size_hint: 1, 0.1
+        pos_hint: {"center_x": .63, "center_y": .4}
+        orientation: "horizontal"
+        MDCheckbox:
+            pos_hint: {"center_x": .5, "center_y": .5}
+            size_hint_x: 0.08
+            size_hint_y: 0.3
+            id: remember_me
+            active: False
+        MDLabel:
+            text: "remember me"
+    MDBoxLayout:
+        size_hint: 1, 0.5
+        pos_hint: {"center_x": .5, "center_y": .3}
         AnchorLayout:
             MDFillRoundFlatButton:
                 id: sign_in_button
