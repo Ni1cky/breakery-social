@@ -12,6 +12,9 @@ class SCREENS:
     MY_NEWS_SCREEN = 'MyNewsScreen'
     DIALOG_SCREEN = "DialogScreen"
     USERS_SCREEN = 'UsersScreen'
+    SUBSCRIBERS_SCREEN = 'SubscribersScreen'
+    SUBSCRIPTIONS_SCREEN = 'SubscriptionsScreen'
+
 
 class AUTHORIZATION:
     TOKEN = ''
