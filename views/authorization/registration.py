@@ -5,6 +5,7 @@ from requests import Request
 
 from views.base import BaseScreen
 from views import meta
+from views.meta import HOST
 
 Builder.load_file('views/authorization/registration.kv')
 
@@ -21,7 +22,7 @@ class RegisterScreen(BaseScreen):
         self.manager.current = meta.SCREENS.LOGIN_SCREEN
 
     def register(self):
-        reg = requests.post('http://127.0.0.1:8000/auth/register',
+        reg = requests.post(f'{HOST.URL}/auth/register',
                               json={"login": self.login.text, "password_hash": self.passw.text,
                                     "name": self.your_name.text, "surname": self.surname.text,
                                     "photo": "", "additional_data": ""},

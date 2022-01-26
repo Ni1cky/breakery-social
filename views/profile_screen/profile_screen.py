@@ -1,7 +1,7 @@
 from controllers.authorization import get_my_profile
 from views import meta
 from views.base import BaseScreen
-from views.meta import SCREENS
+from views.meta import SCREENS, HOST
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivymd.uix.button import MDIconButton
@@ -63,7 +63,7 @@ class ProfileScreen(BaseScreen):
         user['name'] = self.name_field.text
         user['surname'] = self.surname_field.text
         user['photo'] = self.avatar.icon
-        requests.put(f'http://127.0.0.1:8000/users/{user["id"]}/edit', json=user)
+        requests.put(f'{HOST.URL}/users/{user["id"]}/edit', json=user)
         self.disable_edit_mode()
 
     def reset_changes(self, i):
