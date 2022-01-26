@@ -15,6 +15,8 @@ class SCREENS:
     SUBSCRIBERS_SCREEN = 'SubscribersScreen'
     SUBSCRIPTIONS_SCREEN = 'SubscriptionsScreen'
 
+class HOST:
+    URL = 'http://127.0.0.1:8000'
 
 class AUTHORIZATION:
     TOKEN = ''
