@@ -3,7 +3,6 @@ from kivymd.uix.list import OneLineAvatarIconListItem, IRightBodyTouch
 
 from kivy.lang import Builder
 from kivy.properties import StringProperty, ObjectProperty
-from kivy.utils import get_color_from_hex
 
 from controllers.subscription import subscribe_to_user, unsubscribe_from_user
 
