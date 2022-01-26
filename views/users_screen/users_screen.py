@@ -18,7 +18,9 @@ class UsersScreen(BaseScreen):
     def on_enter(self, *args):
         self.users_list.clear_widgets()
         all_users = get_users()
-        my_subscriptions = get_subscriptions(get_my_profile()["id"])
+        me = get_my_profile()
+        my_subscriptions = get_subscriptions(me["id"])
         for user in all_users:
-            item = UserListItem(user, True if user in my_subscriptions else False)
-            self.users_list.add_widget(item)
+            if user != me:
+                item = UserListItem(user, True if user in my_subscriptions else False)
+                self.users_list.add_widget(item)
