@@ -32,3 +32,7 @@ class PeopleScreen(BaseScreen):
     def go_to_his_news_screen(self):
         self.manager.current = meta.SCREENS.MY_NEWS_SCREEN
 
+    def load_dialog(self):
+        pass
+
+
