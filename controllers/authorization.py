@@ -4,15 +4,18 @@ from views.meta import AUTHORIZATION, HOST
 
 
 def get_token(login: str, password: str):
-    token = requests.post(f'{HOST.URL}/token',
-                          data={'grant_type': '', 'username': login, 'password': password,
-                                'scope': '', 'client_id': '', 'client_secret': ''})
+    try:
+        token = requests.post(f'{HOST.URL}/token',
+                              data={'grant_type': '', 'username': login, 'password': password,
+                                    'scope': '', 'client_id': '', 'client_secret': ''})
 
-    if token.status_code != 401:
-        AUTHORIZATION.TOKEN = token.json()['access_token']
-        return AUTHORIZATION.TOKEN
-    else:
-        return None
+        if token.status_code != 401:
+            AUTHORIZATION.TOKEN = token.json()['access_token']
+            return AUTHORIZATION.TOKEN
+        else:
+            return None
+    except:
+        pass
 
 
 def send(req: Request):
