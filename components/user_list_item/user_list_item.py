@@ -42,5 +42,6 @@ class UserListItem(OneLineAvatarIconListItem):
             self.button.md_bg_color = (0.28, 0.24, 0.55, 1)
             self.button.text_color = (0.96, 1, 0.98, 1)
         else:
-            self.button.md_bg_color = (0.96, 1, 0.98, 1)
+            self.button.md_bg_color = (0.57, 0.57, 0.57, 1)
             self.button.text_color = (0.28, 0.24, 0.55, 1)
+
