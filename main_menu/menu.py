@@ -103,6 +103,7 @@ class MainMenuScreen(BaseScreen):
         if not self.is_backdrop_front_open:
             try:
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
+                self.move_menu_backdrop()
                 AUTHORIZATION.TOKEN = ''
                 os.remove('saved\\access_token')
             except:
