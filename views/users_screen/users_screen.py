@@ -1,8 +1,10 @@
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
-from kivymd.uix.list import OneLineAvatarListItem, ImageLeftWidget
-import requests
 
+from components.user_list_item.user_list_item import UserListItem
+from controllers.user import get_users
+from controllers.subscription import get_subscriptions
+from controllers.authorization import get_my_profile
 from views.base import BaseScreen
 from views import meta
 
@@ -15,8 +17,10 @@ class UsersScreen(BaseScreen):
 
     def on_enter(self, *args):
         self.users_list.clear_widgets()
-        all_users = requests.get("http://127.0.0.1:8000/users")
-        for user in all_users.json():
-            item = OneLineAvatarListItem(text=f"{user['name']} {user['surname']}")
-            item.add_widget(ImageLeftWidget(source=user['photo']))
-            self.users_list.add_widget(item)
+        all_users = get_users()
+        me = get_my_profile()
+        my_subscriptions = get_subscriptions(me["id"])
+        for user in all_users:
+            if user != me:
+                item = UserListItem(user, True if user in my_subscriptions else False)
+                self.users_list.add_widget(item)

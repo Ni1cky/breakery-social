@@ -1,12 +1,11 @@
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
-from kivymd.uix.list import OneLineAvatarListItem, ImageLeftWidget
-import requests
 
 from controllers.authorization import get_my_profile
+from controllers.subscription import get_subscriptions
 from views.base import BaseScreen
 from views import meta
-from views.meta import HOST
+from components.user_list_item.user_list_item import UserListItem
 
 Builder.load_file('views/subscriptions_screen/subscriptions_screen.kv')
 
@@ -18,9 +17,6 @@ class SubscriptionsScreen(BaseScreen):
     def on_enter(self, *args):
         self.subscriptions_list.clear_widgets()
         me = get_my_profile()
-        subscribers = requests.get(f"{HOST.URL}/subscriptions/{me['id']}/subscriptions").json()
-        for data in subscribers:
-            user = requests.get(f"{HOST.URL}/users/{data['user_id']}").json()
-            item = OneLineAvatarListItem(text=f"{user['name']} {user['surname']}")
-            item.add_widget(ImageLeftWidget(source=user['photo']))
-            self.subscriptions_list.add_widget(item)
+        subscriptions = get_subscriptions(me["id"])
+        for user in subscriptions:
+            self.subscriptions_list.add_widget(UserListItem(user, True))
