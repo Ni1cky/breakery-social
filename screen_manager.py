@@ -6,6 +6,7 @@ from views.dialog_screen.dialog_screen import DialogScreen
 from views.message_screen.message_screen import MessageScreen
 from views.meta import AUTHORIZATION
 from views.news_screen.news_screen import NewsScreen
+from views.people_screen.people_screen import PeopleScreen
 from views.profile_screen.profile_screen import ProfileScreen
 from views.users_screen.users_screen import UsersScreen
 from views.my_news_screen.my_news_screen import MyNewsScreen
@@ -24,6 +25,7 @@ class Manager(ScreenManager):
         self.add_widget(LoginScreen())
         self.add_widget(RegisterScreen())
         self.add_widget(UsersScreen())
+        self.add_widget(PeopleScreen())
         self.add_widget(SubscribersScreen())
         self.add_widget(SubscriptionsScreen())
         try:

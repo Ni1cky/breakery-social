@@ -3,9 +3,10 @@ from kivymd.uix.list import OneLineAvatarIconListItem, IRightBodyTouch
 
 from kivy.lang import Builder
 from kivy.properties import StringProperty, ObjectProperty
-
+from views.meta import CLICK_USER
 from controllers.subscription import subscribe_to_user, unsubscribe_from_user
-
+from views import meta
+from views.people_screen.people_screen import PeopleScreen
 Builder.load_file('components/user_list_item/user_list_item.kv')
 
 
@@ -26,6 +27,11 @@ class UserListItem(OneLineAvatarIconListItem):
         self.image = user["photo"]
         self.button.text = self.TO_UNSUBSCRIBE if is_my_subscription else self.TO_SUBSCRIBE
         self.update_button_color()
+
+    def on_press(self):
+        CLICK_USER.NAME = self.user['name']
+        CLICK_USER.SURNAME = self.user['surname']
+        self.parent.parent.parent.manager.current = meta.SCREENS.PEOPLE_SCREEN
 
     def subscribe(self):
         subscribe_to_user(self.user["id"])
