@@ -100,9 +100,10 @@ class MainMenuScreen(BaseScreen):
         self.backdrop.open()
 
     def log_out(self):
-        try:
-            self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
-            AUTHORIZATION.TOKEN = ''
-            os.remove('saved\\access_token')
-        except:
-            pass
+        if not self.is_backdrop_front_open:
+            try:
+                self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
+                AUTHORIZATION.TOKEN = ''
+                os.remove('saved\\access_token')
+            except:
+                pass
