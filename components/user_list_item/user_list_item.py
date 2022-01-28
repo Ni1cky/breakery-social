@@ -31,6 +31,7 @@ class UserListItem(OneLineAvatarIconListItem):
     def on_press(self):
         CLICK_USER.NAME = self.user['name']
         CLICK_USER.SURNAME = self.user['surname']
+        CLICK_USER.USER_ID = self.user["id"]
         #добавить потом фотографию
         self.parent.parent.parent.manager.current = meta.SCREENS.PEOPLE_SCREEN
 
