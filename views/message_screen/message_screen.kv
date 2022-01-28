@@ -1,15 +1,19 @@
-#: import MessageWidget components.message.message
+#: import DialogWidget components.dialog_widget.dialog_widget
 
 <MessageScreen>:
-    listBox:listBox
+    dialogs_list: dialogs_list
+    dialogs_recycle_view: dialogs_recycle_view
     orientation: 'vertical'
     BoxLayout:
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint: 1, 0.94
-            BoxLayout:
+        RecycleView:
+            id: dialogs_recycle_view
+            viewclass: "DalogWidget"
+            key_size: "height"
+            RecycleBoxLayout:
+                id: dialogs_list
+                spacing: 10
+                default_size: None, None
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
                 orientation: 'vertical'
-                # size_hint: 2,2
-                BoxLayout:
-                    ScrollView:
-                        id: listBox
