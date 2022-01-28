@@ -1,31 +1,18 @@
-from kivymd.uix.list import MDList
-from kivy.uix.scrollview import ScrollView
+from kivy.properties import ObjectProperty
+from kivy.uix.recycleboxlayout import RecycleBoxLayout
+from kivy.uix.recycleview import RecycleView
+from components.dialog_widget.dialog_widget import DialogWidget
 from views.base import BaseScreen
 from views.meta import SCREENS
 from kivy.lang import Builder
-import datetime
-from components.dialog_widget.dialog_widget import DialogWidget
-from store.models.models import Message
 
 Builder.load_file('views/message_screen/message_screen.kv')
 
 
 class MessageScreen(BaseScreen):
     SCREEN_NAME = SCREENS.MESSAGE_SCREEN
+    dialogs_list: RecycleBoxLayout = ObjectProperty()
+    dialogs_recycle_view: RecycleView = ObjectProperty()
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        # scroll = ScrollView()
-        # list_view = MDList()
-        # for _ in range(13):
-        #     list_view.add_widget(DialogWidget(message=Message(text='dsdssd',
-        #                                                       time_send=datetime.datetime(2019, 6, 1, 12, 22),
-        #                                                       is_read=False,
-        #                                                       is_important=False,
-        #                                                       is_edited=False,
-        #                                                       send_from_me=True,
-        #                                                       id=1), name="User"))
-        # self.add_widget(MDList())
-        # scroll.add_widget(list_view)
-        # self.add_widget(scroll)
-
+    def add_dialog_widget(self, dialog_widget: DialogWidget):
+        self.dialogs_recycle_view.data.append({"dialog_id": dialog_widget.dialog.id})
