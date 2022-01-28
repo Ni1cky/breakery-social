@@ -1,4 +1,6 @@
 from controllers.authorization import get_my_profile
+from controllers.dialog import create_dialog
+from store.models.models import DialogCreate
 from views import meta
 from views.base import BaseScreen
 from views.meta import SCREENS, HOST, CLICK_USER
@@ -33,6 +35,9 @@ class PeopleScreen(BaseScreen):
         self.manager.current = meta.SCREENS.MY_NEWS_SCREEN
 
     def load_dialog(self):
-        pass
-
-
+        message_screen = self.manager.get_screen(meta.SCREENS.MESSAGE_SCREEN)
+        d = DialogCreate(user1_id=CLICK_USER.USER_ID, user2_id=get_my_profile()["id"])
+        create_dialog(d)
+        '''
+        ДОРОЖНЫЕ РАБОТЫ
+        '''
