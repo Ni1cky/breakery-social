@@ -1,7 +1,8 @@
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.recycleview import RecycleView
-import current_user
+
+from controllers.authorization import get_my_profile
 from store.models.models import Message
 from views.base import BaseScreen
 from views.meta import SCREENS
@@ -29,7 +30,7 @@ class DialogScreen(BaseScreen):
         #                                         'send_from_me': i % 2})
 
     def get_validate_message(self, recipient_id):
-        messages = get_time_send_sorted_message(current_user.CURRENT_USER_ID, recipient_id)
+        messages = get_time_send_sorted_message(get_my_profile()["id"], recipient_id)
         # for message in messages:
         #     if message.id == recipient_id:
         #         message.send_from_me = True
