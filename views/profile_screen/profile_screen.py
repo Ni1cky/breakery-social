@@ -37,7 +37,6 @@ class ProfileScreen(BaseScreen):
         self.name_field.text = user["name"]
         self.surname_field.text = user["surname"]
         refresh_user_profile_picture(user["id"])
-        self.picture.icon = get_path_to_user_profile_image(user["id"])
 
     def go_to_my_news_screen(self):
         self.manager.current = meta.SCREENS.MY_NEWS_SCREEN
@@ -78,7 +77,7 @@ class ProfileScreen(BaseScreen):
         self.disable_edit_mode()
 
     def open_file_manager(self):
-        self.file_manager.show("/home/prom/Загрузки")
+        self.file_manager.show("/home")
 
     def select_path(self, path):
         self.exit_manager()
