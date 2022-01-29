@@ -15,7 +15,7 @@ class SCREENS:
     USERS_SCREEN = 'UsersScreen'
     SUBSCRIBERS_SCREEN = 'SubscribersScreen'
     SUBSCRIPTIONS_SCREEN = 'SubscriptionsScreen'
-
+    ADDNEWNEWS_SCREEN = 'AddNewNewsScreen'
 class CLICK_USER:
     USER_ID = 0
     LOGIN = ''

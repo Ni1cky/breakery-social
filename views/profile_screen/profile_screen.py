@@ -82,3 +82,6 @@ class ProfileScreen(BaseScreen):
 
     def exit_manager(self, *args):
         self.file_manager.close()
+
+    def go_to_adding_post_screen(self):
+        self.manager.current = meta.SCREENS.ADDNEWNEWS_SCREEN

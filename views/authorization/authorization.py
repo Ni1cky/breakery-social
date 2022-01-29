@@ -2,11 +2,13 @@ from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivymd.uix.selectioncontrol import MDCheckbox
 from kivymd.uix.textfield import MDTextField
+from kivy.animation import Animation
+from kivy.clock import Clock
+from kivy.metrics import dp
 from controllers.authorization import get_token
 from views.base import BaseScreen
 from views import meta
 from kivymd.uix.snackbar import Snackbar
-
 Builder.load_file('views/authorization/authorization.kv')
 
 
@@ -22,6 +24,7 @@ class LoginScreen(BaseScreen):
 
         self.login.text = ''
         self.passw.text = ''
+
 
     def go_to_main_screen(self):
 

@@ -1,5 +1,6 @@
 from kivy.uix.screenmanager import ScreenManager
 from views import meta
+from views.add_new_news_screen.add_new_news_screen import AddNewNewsScreen
 from views.authorization.authorization import LoginScreen
 from views.authorization.registration import RegisterScreen
 from views.dialog_screen.dialog_screen import DialogScreen
@@ -28,6 +29,7 @@ class Manager(ScreenManager):
         self.add_widget(PeopleScreen())
         self.add_widget(SubscribersScreen())
         self.add_widget(SubscriptionsScreen())
+        self.add_widget(AddNewNewsScreen())
         try:
             f = open('saved\\access_token', 'r').read()
             AUTHORIZATION.TOKEN = str(f)
