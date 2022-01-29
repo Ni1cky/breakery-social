@@ -31,7 +31,7 @@ class UsersScreen(BaseScreen):
         for user in self.users_to_load:
             item = UserListItem(user, True if user in my_subscriptions else False)
             self.users_list.add_widget(item)
-        self.delta = 1 / len(self.users_list.children)
+        self.delta = 1 / len(self.users_list.children) if len(self.users_list.children) else 1
         self.min_y = 1
         self.loaded = 0
         for i in range(1, min(self.ON_SCREEN, len(self.users_to_load)) + 1):
