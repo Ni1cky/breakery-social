@@ -1,7 +1,7 @@
 <AddNewNewsScreen>:
     post_item: post_item
     MDSwiper:
-        #adaptive_height: False
+        adaptive_height: False
         id: post_item
         pos_hint: {'center_x': .5, 'center_y': .5}
 
@@ -23,9 +23,10 @@
                 source: "img/profile.jpg"
         MDTextField:
             padding_x: 10
-            text: root.text
-            # text: "привет я поовоаоыррррррраовыаоывшаовшоашв"
+            multiline: True
             halign: "center"
+        FitImage:
+            source:
         MDBoxLayout:
             orientation: "horizontal"
             MDIconButton:

@@ -15,7 +15,6 @@ class AddNewNewsScreen(BaseScreen):
     def __init__(self, **kwargs):
         super(AddNewNewsScreen, self).__init__(**kwargs)
 
-
     def on_enter(self, *args):
         self.post_item.add_widget(MDSwiperItem())
         self.post_item.add_widget(NewPostWidget())
