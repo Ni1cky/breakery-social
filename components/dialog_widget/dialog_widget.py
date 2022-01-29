@@ -15,7 +15,7 @@ class DialogWidget(TwoLineAvatarIconListItem):
         self.init_text()
 
     def init_text(self):
-        current_user = User(**get_my_profile())
-        second_person_id = self.dialog.user1_id if current_user.id != self.dialog.user1_id else self.dialog.user2_id
-        second_person = User(**get_user(second_person_id))
-        self.text = f"{second_person.name} {second_person.surname}"
+        current_user = get_my_profile()
+        second_person_id = self.dialog.user1_id if current_user["id"] != self.dialog.user1_id else self.dialog.user2_id
+        second_person = get_user(second_person_id)
+        self.text = f"{second_person['name']} {second_person['surname']}"
