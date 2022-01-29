@@ -2,7 +2,7 @@ from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 import requests
 from requests import Request
-
+from controllers.photo import set_default_picture
 from views.base import BaseScreen
 from views import meta
 from views.meta import HOST
@@ -28,5 +28,5 @@ class RegisterScreen(BaseScreen):
                                     "photo": "", "additional_data": ""},
                               headers={'accept': 'application/json', 'Content-Type': 'application/json'})
         if reg.text == 'null':
+            set_default_picture(self.login.text)
             self.manager.current = meta.SCREENS.LOGIN_SCREEN
-
