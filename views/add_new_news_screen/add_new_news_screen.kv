@@ -1,34 +1,37 @@
 <AddNewNewsScreen>:
     post_item: post_item
-        MDSwiper:
-            adaptive_height: False
-            id: post_item
-            pos_hint: {'center_x': .5, 'center_y': .5}
-#<Item>:
-#    canvas:
-#        Color:
-#            rgba: 0, 0, 1, 0.1
-#            # цвет может меняться в зависимости от темы
-#        RoundedRectangle:
-#            pos: self.pos
-#            size: self.size
-#            radius: [25, 25, 25, 25]
-#    MDBoxLayout:
-#        orientation: "vertical"
-#        TwoLineIconListItem:
-#            text:"qwe"
-#            secondary_text: "Вчера в 25:00"
-#            IconLeftWidget:
-#                source: "img/profile.jpg"
-#        MDLabel:
-#            padding_x: 10
-#            text: "привет я поовоаоыррррррраовыаоывшаовшоашв"
-#            halign: "center"
-#        MDBoxLayout:
-#            orientation: "horizontal"
-#            MDIconButton:
-#                icon: "heart"
-#            MDIconButton:
-#                icon: "comment"
-#            MDIconButton:
-#                icon: "arrow-right"
+    MDSwiper:
+        #adaptive_height: False
+        id: post_item
+        pos_hint: {'center_x': .5, 'center_y': .5}
+
+<NewPostWidget>:
+    canvas:
+        Color:
+            rgba: 0, 0, 1, 0.1
+            # цвет может меняться в зависимости от темы
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [25, 25, 25, 25]
+    MDBoxLayout:
+        orientation: "vertical"
+        TwoLineIconListItem:
+            text: root.author
+            secondary_text: "Вчера в 25:00"
+            IconLeftWidget:
+                source: "img/profile.jpg"
+        MDTextField:
+            padding_x: 10
+            text: root.text
+            # text: "привет я поовоаоыррррррраовыаоывшаовшоашв"
+            halign: "center"
+        MDBoxLayout:
+            orientation: "horizontal"
+            MDIconButton:
+                icon: "heart"
+                # badge_icon: "numeric-10"
+            MDIconButton:
+                icon: "comment"
+            MDIconButton:
+                icon: "arrow-right"
