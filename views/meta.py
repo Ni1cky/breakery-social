@@ -16,6 +16,7 @@ class SCREENS:
     SUBSCRIBERS_SCREEN = 'SubscribersScreen'
     SUBSCRIPTIONS_SCREEN = 'SubscriptionsScreen'
 
+
 class CLICK_USER:
     USER_ID = 0
     LOGIN = ''
@@ -25,8 +26,10 @@ class CLICK_USER:
     ADDITIONAL_DATA = ''
     POSTS = []
 
+
 class HOST:
     URL = 'http://127.0.0.1:8000'
+
 
 class AUTHORIZATION:
     TOKEN = ''
