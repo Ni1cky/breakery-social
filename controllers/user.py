@@ -18,6 +18,10 @@ def get_user(user_id: int):
 
 
 def get_current_user():
-    response = requests.get(f"http://127.0.0.1:8000/users/me")
+    response = requests.get(f"{HOST.URL}/users/me")
     user = User(**response.json())
     return user
+
+
+def update_user(user: dict):
+    requests.put(f'{HOST.URL}/users/{user["id"]}/edit', json=user)

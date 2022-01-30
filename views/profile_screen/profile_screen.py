@@ -1,12 +1,16 @@
-from controllers.authorization import get_my_profile
-from views import meta
-from views.base import BaseScreen
-from views.meta import SCREENS, HOST
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.filemanager import MDFileManager
-import requests
+
+from controllers.authorization import get_my_profile
+from controllers.photo import set_user_profile_picture, get_path_to_user_profile_image, \
+    refresh_user_profile_picture, FOLDER_WITH_PHOTOS
+from controllers.user import update_user
+from views import meta
+from views.base import BaseScreen
+from views.meta import SCREENS
+
 Builder.load_file('views/profile_screen/profile_screen.kv')
 
 
@@ -14,7 +18,7 @@ class ProfileScreen(BaseScreen):
     SCREEN_NAME = SCREENS.PROFILE_SCREEN
     name_field = ObjectProperty()
     surname_field = ObjectProperty()
-    avatar = ObjectProperty()
+    picture = ObjectProperty()
     edit_buttons = ObjectProperty()
     save_button = None
     close_button = None
@@ -30,10 +34,11 @@ class ProfileScreen(BaseScreen):
 
     def on_enter(self, *args):
         user = get_my_profile()
-        #print(user)
         self.name_field.text = user["name"]
         self.surname_field.text = user["surname"]
-        #self.avatar.icon = user['photo'] добавить после того, как в базе появятся фотографии
+        refresh_user_profile_picture(user["id"])
+        self.picture.source = get_path_to_user_profile_image(user['id'])
+        self.picture.reload()
 
     def go_to_my_news_screen(self):
         self.manager.current = meta.SCREENS.MY_NEWS_SCREEN
@@ -62,23 +67,26 @@ class ProfileScreen(BaseScreen):
         user = get_my_profile()
         user['name'] = self.name_field.text
         user['surname'] = self.surname_field.text
-        user['photo'] = self.avatar.icon
-        requests.put(f'{HOST.URL}/users/{user["id"]}/edit', json=user)
+        set_user_profile_picture(user["id"], self.picture.source)
+        update_user(user)
+        self.picture.source = get_path_to_user_profile_image(user['id'])
+        self.picture.reload()
         self.disable_edit_mode()
 
     def reset_changes(self, i):
         user = get_my_profile()
         self.name_field.text = user['name']
         self.surname_field.text = user['surname']
-        self.avatar.icon = user['photo']
+        self.picture.source = get_path_to_user_profile_image(user['id'])
+        self.picture.reload()
         self.disable_edit_mode()
 
-    def change_avatar(self):
+    def open_file_manager(self):
         self.file_manager.show("/home")
 
     def select_path(self, path):
         self.exit_manager()
-        self.avatar.icon = path
+        self.picture.source = path
 
     def exit_manager(self, *args):
         self.file_manager.close()

@@ -7,6 +7,7 @@ from views.meta import CLICK_USER
 from controllers.subscription import subscribe_to_user, unsubscribe_from_user
 from views import meta
 from views.people_screen.people_screen import PeopleScreen
+from controllers.photo import refresh_user_profile_picture, get_path_to_user_profile_image
 Builder.load_file('components/user_list_item/user_list_item.kv')
 
 
@@ -15,7 +16,7 @@ class RightButton(IRightBodyTouch, MDRaisedButton):
 
 
 class UserListItem(OneLineAvatarIconListItem):
-    image = StringProperty()
+    image = ObjectProperty()
     button = ObjectProperty()
     TO_SUBSCRIBE = "Подписаться"
     TO_UNSUBSCRIBE = "Отписаться"
@@ -24,7 +25,6 @@ class UserListItem(OneLineAvatarIconListItem):
         super(UserListItem, self).__init__(**kwargs)
         self.user = user
         self.text = f"{user['name']} {user['surname']}"
-        self.image = user["photo"]
         self.button.text = self.TO_UNSUBSCRIBE if is_my_subscription else self.TO_SUBSCRIBE
         self.update_button_color()
 
@@ -53,3 +53,6 @@ class UserListItem(OneLineAvatarIconListItem):
             self.button.md_bg_color = (0.57, 0.57, 0.57, 1)
             self.button.text_color = (0.28, 0.24, 0.55, 1)
 
+    def load_image(self):
+        refresh_user_profile_picture(self.user['id'])
+        self.image.source = get_path_to_user_profile_image(self.user['id'])

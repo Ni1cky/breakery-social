@@ -1,21 +1,25 @@
+<ImageButton@ButtonBehavior+Image>:
+
+
 <ProfileScreen>:
     name_field: name_field
     surname_field: surname_field
-    avatar: avatar
+    picture: picture
     edit_buttons: edit_buttons
 
     BoxLayout:
         orientation: "vertical"
         BoxLayout:
             orientation: "vertical"
-            # size_hint: 1, 0.8
+
             AnchorLayout:
                 anchor_x: "center"
-                MDIconButton:
-                    id: avatar
-                    icon: "img/profile.jpg"
-                    icon_size: "100dp"
-                    on_release: if root.edit_mode_is_enable: root.change_avatar()
+                ImageButton:
+                    id: picture
+                    size_hint: None, None
+                    size: 100, 100
+                    on_press: if root.edit_mode_is_enable: root.open_file_manager()
+
             AnchorLayout:
                 anchor_x: "center"
                 BoxLayout:
@@ -52,10 +56,12 @@
                 orientation: "horizontal"
                 BoxLayout:
                     orientation: "horizontal"
+                    id: edit_buttons
+
                     MDIconButton:
-                        id: edit_buttons
                         icon: "pencil"
                         on_release: root.enable_edit_mode()
+
                 MDIconButton:
                     icon: "newspaper-variant-multiple"
                     on_release: root.go_to_my_news_screen()
