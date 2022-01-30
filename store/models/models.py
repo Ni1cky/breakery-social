@@ -54,11 +54,8 @@ class MessageCreate(MessageBase):
 
 
 class DialogBase(BaseModel):
-    user: User
-    last_message: str
-    time_send: datetime.datetime
-    is_read: bool
-
+    user1_id: int
+    user2_id: int
 
 class Dialog(DialogBase):
     id: int

@@ -1,18 +1,21 @@
 import requests
 from requests import Request
-from views.meta import AUTHORIZATION
+from views.meta import AUTHORIZATION, HOST
 
 
 def get_token(login: str, password: str):
-    token = requests.post('http://127.0.0.1:8000/token',
-                          data={'grant_type': '', 'username': login, 'password': password,
-                                'scope': '', 'client_id': '', 'client_secret': ''})
+    try:
+        token = requests.post(f'{HOST.URL}/token',
+                              data={'grant_type': '', 'username': login, 'password': password,
+                                    'scope': '', 'client_id': '', 'client_secret': ''})
 
-    if token.status_code != 401:
-        AUTHORIZATION.TOKEN = token.json()['access_token']
-        return AUTHORIZATION.TOKEN
-    else:
-        return None
+        if token.status_code != 401:
+            AUTHORIZATION.TOKEN = token.json()['access_token']
+            return AUTHORIZATION.TOKEN
+        else:
+            return None
+    except:
+        pass
 
 
 def send(req: Request):
@@ -24,6 +27,6 @@ def send(req: Request):
 
 
 def get_my_profile():
-    req = requests.Request('GET', 'http://127.0.0.1:8000/users/me')
+    req = requests.Request('GET', f'{HOST.URL}/users/me')
     resp = send(req)
     return resp.json()
