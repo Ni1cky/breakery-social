@@ -17,5 +17,11 @@ def get_user(user_id: int):
     return user
 
 
+def get_current_user():
+    response = requests.get(f"{HOST.URL}/users/me")
+    user = User(**response.json())
+    return user
+
+
 def update_user(user: dict):
     requests.put(f'{HOST.URL}/users/{user["id"]}/edit', json=user)

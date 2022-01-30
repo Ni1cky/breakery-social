@@ -1,7 +1,10 @@
 from controllers.authorization import get_my_profile
+from controllers.dialog import create_dialog, get_dialog_by_users_ids
+from store.models.models import DialogCreate
 from views import meta
 from views.base import BaseScreen
-from views.meta import SCREENS, HOST, CLICK_USER
+from views.dialog_screen.dialog_screen import DialogScreen
+from views.meta import SCREENS, CLICK_USER
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivymd.uix.filemanager import MDFileManager
@@ -14,7 +17,6 @@ class PeopleScreen(BaseScreen):
     name_field = ObjectProperty()
     surname_field = ObjectProperty()
     avatar = ObjectProperty()
-
 
     def __init__(self, **kwargs):
         super(PeopleScreen, self).__init__(**kwargs)
@@ -33,6 +35,16 @@ class PeopleScreen(BaseScreen):
         self.manager.current = meta.SCREENS.MY_NEWS_SCREEN
 
     def load_dialog(self):
-        pass
-
-
+        dialog_screen: DialogScreen = self.manager.get_screen(meta.SCREENS.DIALOG_SCREEN)
+        try:
+            existing_dialog = get_dialog_by_users_ids(CLICK_USER.USER_ID, get_my_profile()["id"])
+        except:
+            d = DialogCreate(user1_id=CLICK_USER.USER_ID, user2_id=get_my_profile()["id"])
+            create_dialog(d)
+        else:
+            dialog_screen.load_dialog(existing_dialog.id)
+            self.manager.current = meta.SCREENS.DIALOG_SCREEN
+            return
+        created_dialog = get_dialog_by_users_ids(CLICK_USER.USER_ID, get_my_profile()["id"])
+        dialog_screen.load_dialog(created_dialog.id)
+        self.manager.current = meta.SCREENS.DIALOG_SCREEN
