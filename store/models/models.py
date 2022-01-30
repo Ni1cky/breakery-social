@@ -38,9 +38,9 @@ class UserCreate(UserBase):
 class MessageBase(BaseModel):
     text: str
     time_send: datetime.datetime
-    is_read: bool
-    is_important: bool
-    is_edited: bool
+    is_read: bool = False
+    is_important: bool = False
+    is_edited: bool = False
     sender_id: int
     receiver_id: int
 

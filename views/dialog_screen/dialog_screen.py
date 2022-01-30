@@ -1,6 +1,11 @@
+import datetime
+import requests
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.recycleview import RecycleView
+from kivymd.uix.textfield import MDTextField
+from controllers.authorization import get_my_profile
+from store.models.models import Message, MessageCreate
 from kivymd.uix.list import TwoLineAvatarIconListItem
 
 from controllers.authorization import get_my_profile
@@ -9,7 +14,7 @@ from controllers.user import get_user
 from store.models.models import Message
 from views.base import BaseScreen
 from views.meta import SCREENS
-from controllers.message import get_time_send_sorted_message
+from controllers.message import get_time_send_sorted_message, create_message
 
 Builder.load_file('views/dialog_screen/dialog_screen.kv')
 
@@ -18,6 +23,7 @@ class DialogScreen(BaseScreen):
     SCREEN_NAME = SCREENS.DIALOG_SCREEN
     scrollable_messages: RecycleView = ObjectProperty()
     header: TwoLineAvatarIconListItem = ObjectProperty()
+    message_text: MDTextField = ObjectProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -55,6 +61,11 @@ class DialogScreen(BaseScreen):
                 data["send_from_me"] = 0
             self.scrollable_messages.data.append(data)
 
+    def send_message(self):
+        current_user = get_my_profile()
+        message = MessageCreate(text=self.message_text.text, time_send=datetime.datetime.now(), sender_id=current_user["id"], dialog_id=self.dialog_data["dialog_id"])
+        create_message(message)
+
     def load_dialog(self, dialog_id: int):
         self.dialog_data = None
         dialog = get_dialog_by_id(dialog_id)
@@ -66,3 +77,4 @@ class DialogScreen(BaseScreen):
             self.dialog_data = {"current_user_id": dialog.user2_id, "another_user_id": dialog.user1_id}
             another_user = get_user(dialog.user1_id)
             self.header.text = f"{another_user['name']} {another_user['surname']}"
+        self.dialog_data["dialog_id"] = dialog.id
