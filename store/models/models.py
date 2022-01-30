@@ -42,11 +42,12 @@ class MessageBase(BaseModel):
     is_important: bool = False
     is_edited: bool = False
     sender_id: int
-    receiver_id: int
+    dialog_id: int
 
 
 class Message(MessageBase):
     id: int
+    send_from_me: int = -1
 
 
 class MessageCreate(MessageBase):
