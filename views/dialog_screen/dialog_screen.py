@@ -3,14 +3,16 @@ from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.recycleview import RecycleView
 from kivymd.uix.textfield import MDTextField
+
+from controllers.photo import refresh_user_profile_picture, get_path_to_user_profile_image
 from store.models.models import MessageCreate
-from kivymd.uix.list import TwoLineAvatarIconListItem
+from kivymd.uix.list import TwoLineAvatarIconListItem, ImageLeftWidget
 from controllers.authorization import get_my_profile
 from controllers.dialog import get_dialog_by_id
 from controllers.user import get_user
 from store.models.models import Message
 from views.base import BaseScreen
-from views.meta import SCREENS
+from views.meta import SCREENS, CLICK_USER
 from controllers.message import get_time_send_sorted_message, create_message
 
 Builder.load_file('views/dialog_screen/dialog_screen.kv')
@@ -21,20 +23,16 @@ class DialogScreen(BaseScreen):
     scrollable_messages: RecycleView = ObjectProperty()
     header: TwoLineAvatarIconListItem = ObjectProperty()
     message_text: MDTextField = ObjectProperty()
-
+    picture: ImageLeftWidget = ObjectProperty()
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.dialog_data = None
 
-        # for i in range(1, 40):
-        #     print(len(i * "привет") // 20 * 100)
-        #     self.scrollable_messages.data.append({'message_text': i * "привет)",
-        #                                                 'time_send': datetime.datetime(2019, 6, 1, 12, 22),
-        #                                                 'is_read': False,
-        #                                                 'is_important': False,
-        #                                                 'is_edited': False,
-        #                                           "height": int(max(len(i * "привет") / 40, 1) * 50),
-        #                                         'send_from_me': i % 2})
+    def on_enter(self, *args):
+        user = CLICK_USER
+        refresh_user_profile_picture(user.USER_ID)
+        self.picture.source = get_path_to_user_profile_image(user.USER_ID)
+        self.picture.reload()
 
     def get_validate_message(self, recipient_id):
         current_user = get_my_profile()

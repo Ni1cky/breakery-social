@@ -39,6 +39,7 @@ class MainMenuScreen(BaseScreen):
         if not self.is_backdrop_front_open:
             if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
                 self.manager_screen.current = meta.SCREENS.MESSAGE_SCREEN
+                self.backdrop.title = 'Dialods'
             else:
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
             self.move_menu_backdrop()
@@ -47,6 +48,7 @@ class MainMenuScreen(BaseScreen):
         if not self.is_backdrop_front_open:
             if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
                 self.manager_screen.current = meta.SCREENS.DIALOG_SCREEN
+                self.backdrop.title = 'Dialogs'
             else:
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
             self.move_menu_backdrop()
@@ -54,7 +56,9 @@ class MainMenuScreen(BaseScreen):
     def go_to_profile_screen(self):
         if not self.is_backdrop_front_open:
             if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
+                self.backdrop.title = 'Profile'
                 self.manager_screen.current = meta.SCREENS.PROFILE_SCREEN
+
             else:
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
             self.move_menu_backdrop()
@@ -63,6 +67,7 @@ class MainMenuScreen(BaseScreen):
         if not self.is_backdrop_front_open:
             if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
                 self.manager_screen.current = meta.SCREENS.NEWS_SCREEN
+                self.backdrop.title = 'News'
             else:
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
             self.move_menu_backdrop()
@@ -71,6 +76,7 @@ class MainMenuScreen(BaseScreen):
         if not self.is_backdrop_front_open:
             if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
                 self.manager_screen.current = meta.SCREENS.USERS_SCREEN
+                self.backdrop.title = 'Users'
             else:
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
             self.move_menu_backdrop()
@@ -79,6 +85,7 @@ class MainMenuScreen(BaseScreen):
         if not self.is_backdrop_front_open:
             if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
                 self.manager_screen.current = meta.SCREENS.SUBSCRIBERS_SCREEN
+                self.backdrop.title = 'Your Subscribers'
             else:
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
             self.move_menu_backdrop()
@@ -87,6 +94,7 @@ class MainMenuScreen(BaseScreen):
         if not self.is_backdrop_front_open:
             if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
                 self.manager_screen.current = meta.SCREENS.SUBSCRIPTIONS_SCREEN
+                self.backdrop.title = 'Subscriptions'
             else:
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
             self.move_menu_backdrop()
@@ -104,6 +112,7 @@ class MainMenuScreen(BaseScreen):
             try:
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
                 self.move_menu_backdrop()
+                self.backdrop.title = ''
                 AUTHORIZATION.TOKEN = ''
                 os.remove('saved\\access_token')
             except:
