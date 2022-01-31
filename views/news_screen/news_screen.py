@@ -13,22 +13,9 @@ from views.meta import SCREENS
 Builder.load_file('views/news_screen/news_screen.kv')
 
 
-# MDSwiper
-
 class NewsScreen(BaseScreen):
     SCREEN_NAME = SCREENS.NEWS_SCREEN
-    #post_item = ObjectProperty()
-    post_item = MDSwiper()
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        #self.post_item.size_transition()
-        #RiseInTransition()
-        # for _ in range(4):
-        #     new_post = PostWidget(
-        #         post=Post(id=1, text="Ппп- п-п-Привет, м-м-мменя зовут наташа. Мне 7 лет. Я из Красоярска",
-        #                   author_id=1, time_created=datetime(2019, 6, 1, 12, 22)))
-        #     self.post_item.add_widget(new_post)
-            # new_post._dismiss_size()
+    post_item = ObjectProperty()
 
     def on_enter(self, *args):
         super().on_enter(*args)

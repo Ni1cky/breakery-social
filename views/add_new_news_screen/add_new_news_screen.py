@@ -49,14 +49,14 @@ class NewPostWidget(MDCard):
     time = StringProperty()
     image = ObjectProperty()
     post_text = ObjectProperty()
-    profile_picture = StringProperty()
+    profile_picture = ObjectProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         me = get_my_profile()
         self.author_id = me['id']
         self.author = me["name"] + ' ' + me['surname']
-        self.profile_picture = get_path_to_user_profile_image(me['id'])
+        self.profile_picture.source = get_path_to_user_profile_image(me['id'])
         self.time = datetime.datetime.now().strftime(DATE_FORMAT)
         self.image.source = NO_IMAGE
         self.file_manager = MDFileManager(

@@ -1,5 +1,7 @@
 <ImageButton@ButtonBehavior+FitImage>:
 
+<Picture@ILeftBody+FitImage>:
+
 <AddNewNewsScreen>:
     post_item: post_item
     MDBoxLayout:
@@ -20,6 +22,7 @@
 <NewPostWidget>:
     image: image
     post_text: post_text
+    profile_picture: profile_picture
     radius: [25, 25, 25, 25]
     pos_hint: {'center_x': .5, "center_y": .5}
     md_bg_color: 0, 0, 1, .05
@@ -32,8 +35,8 @@
             secondary_text: root.time
             ripple_scale: 0
 
-            IconLeftWidget:
-                icon: root.profile_picture
+            Picture:
+                id: profile_picture
 
         MDTextField:
             id: post_text

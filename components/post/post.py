@@ -10,7 +10,7 @@ Builder.load_file('components/post/post.kv')
 class PostWidget(MDSwiperItem):
     author = StringProperty()
     time = StringProperty()
-    profile_picture = StringProperty()
+    profile_picture = ObjectProperty()
     post_text = ObjectProperty()
     image = ObjectProperty()
 
@@ -24,5 +24,5 @@ class PostWidget(MDSwiperItem):
 
     def load_pictures(self):
         refresh_user_profile_picture(self.author_id)
-        self.profile_picture = get_path_to_user_profile_image(self.author_id)
+        self.profile_picture.source = get_path_to_user_profile_image(self.author_id)
         self.image.source = get_post_picture(self.author_id, self.post_id)

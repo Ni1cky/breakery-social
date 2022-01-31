@@ -38,6 +38,8 @@ class PeopleScreen(BaseScreen):
 
     def go_to_his_news_screen(self):
         self.manager.current = meta.SCREENS.MY_NEWS_SCREEN
+        user = CLICK_USER
+        self.manager.get_screen(meta.SCREENS.MY_NEWS_SCREEN).user_id = user.USER_ID
 
     def load_dialog(self):
         dialog_screen: DialogScreen = self.manager.get_screen(meta.SCREENS.DIALOG_SCREEN)

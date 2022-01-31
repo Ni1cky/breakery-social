@@ -47,6 +47,8 @@ class ProfileScreen(BaseScreen):
     def go_to_my_news_screen(self):
         self.parent.parent.parent.parent.parent.title = "My posts"
         self.manager.current = meta.SCREENS.MY_NEWS_SCREEN
+        user = get_my_profile()
+        self.manager.get_screen(meta.SCREENS.MY_NEWS_SCREEN).user_id = user['id']
 
     def go_to_adding_post_screen(self):
         self.parent.parent.parent.parent.parent.title = "New post"
