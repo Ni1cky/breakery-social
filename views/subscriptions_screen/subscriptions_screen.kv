@@ -1,8 +1,12 @@
 <SubscriptionsScreen>:
-    subscriptions_list: subscriptions_list
+    users_list: users_list
+    sv: sv
 
     ScrollView:
+        id: sv
+        on_touch_down: root.update_screen()
+        on_touch_move: root.update_screen()
 
         MDList:
-            id: subscriptions_list
+            id: users_list
             pos_hint: {"top": 1}

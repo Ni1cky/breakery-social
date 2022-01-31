@@ -1,12 +1,14 @@
 <UserListItem>:
     button: button
+    image: image
     ripple_scale: 0
     on_size:
         self.ids._right_container.width = 120
         self.ids._right_container.x = 120
 
     ImageLeftWidget:
-        source: root.image
+        id: image
+        source: ''
 
     RightButton:
         id: button

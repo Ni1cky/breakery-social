@@ -3,6 +3,9 @@
 
 <DialogScreen>:
     scrollable_messages: scrollable_messages
+    header: header
+    message_text: message_text
+    picture: picture
     MDBoxLayout:
         orientation: "vertical"
         MDBoxLayout:
@@ -11,9 +14,10 @@
             MDIconButton:
                 icon: 'arrow-left'
             TwoLineAvatarIconListItem:
-                text: "Gosha"
+                id: header
                 secondary_text: "Был(а) в сети завтра"
                 ImageLeftWidget:
+                    id: picture
                     source: "img/profile.jpg"
         RecycleView:
             id: scrollable_messages
@@ -33,9 +37,12 @@
                 padding: 10
                 size_hint: 0.8, 1
                 MDTextField:
+                    id: message_text
+                    on_text_validate: root.send_message()
                     hint_text: "Введите сообщение"
             AnchorLayout:
                 padding: 10
                 size_hint: 0.2, 1
                 MDIconButton:
                     icon: "send"
+                    on_press: root.send_message()
