@@ -9,7 +9,7 @@ from kivymd.uix.snackbar import Snackbar
 
 from controllers.authorization import get_my_profile
 from controllers.photo import get_path_to_user_profile_image
-from controllers.post import add_post
+from controllers.post import add_post, DATE_FORMAT
 from views.base import BaseScreen
 from views.meta import SCREENS
 
@@ -57,7 +57,7 @@ class NewPostWidget(MDCard):
         self.author_id = me['id']
         self.author = me["name"] + ' ' + me['surname']
         self.profile_picture = get_path_to_user_profile_image(me['id'])
-        self.time = datetime.datetime.now().strftime("%d %b %y  %H:%M")
+        self.time = datetime.datetime.now().strftime(DATE_FORMAT)
         self.image.source = NO_IMAGE
         self.file_manager = MDFileManager(
             exit_manager=self.exit_manager,

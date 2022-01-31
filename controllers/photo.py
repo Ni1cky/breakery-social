@@ -49,6 +49,17 @@ def set_default_picture(login: str):
     requests.post(f"{HOST.URL}/photos/default", json={"source": enc_img}, params={"login": login})
 
 
+def get_path_to_user_post(user_id: int, post_id: int):
+    return f"{FOLDER_WITH_PHOTOS}/{user_id}/{post_id}"
+
+
 def add_post_picture(user_id: int, post_id: int, path_to_image: str):
     enc_img = '' if not path_to_image else encode_image(path_to_image)
     requests.post(f"{HOST.URL}/photos/{user_id}/{post_id}", json={'source': enc_img})
+
+
+def get_post_picture(user_id: int, post_id: int):
+    enc_img = requests.get(F"{HOST.URL}/photos/{user_id}/{post_id}").json()
+    img = decode_image(enc_img)
+    open(f"{FOLDER_WITH_PHOTOS}/{user_id}/{post_id}", 'wb').write(img)
+    return f"{FOLDER_WITH_PHOTOS}/{user_id}/{post_id}" if img else ''
