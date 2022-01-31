@@ -1,7 +1,7 @@
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 
-from controllers.post import get_time_sorted_posts
+from controllers.post import get_sorted_user_posts
 from controllers.authorization import get_my_profile
 from controllers.user import get_user
 from components.post.post import PostWidget
@@ -22,7 +22,7 @@ class MyNewsScreen(BaseScreen):
         super().on_enter(*args)
         self.post_item.children[0].clear_widgets()
         me = get_user(self.user_id)
-        posts = get_time_sorted_posts(me['id'])
+        posts = get_sorted_user_posts(me['id'])
         for post in posts:
             author = me['name'] + ' ' + me['surname']
             self.post_item.add_widget(PostWidget(me['id'], post['id'], author, post['time_created'], post['text']))
