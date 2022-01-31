@@ -45,7 +45,12 @@ class ProfileScreen(BaseScreen):
         self.picture.reload()
 
     def go_to_my_news_screen(self):
+        self.parent.parent.parent.parent.parent.title = "My posts"
         self.manager.current = meta.SCREENS.MY_NEWS_SCREEN
+
+    def go_to_adding_post_screen(self):
+        self.parent.parent.parent.parent.parent.title = "New post"
+        self.manager.current = meta.SCREENS.ADDNEWNEWS_SCREEN
 
     def enable_edit_mode(self):
         if self.edit_mode_is_enable:
@@ -98,6 +103,3 @@ class ProfileScreen(BaseScreen):
 
     def exit_manager(self, *args):
         self.file_manager.close()
-
-    def go_to_adding_post_screen(self):
-        self.manager.current = meta.SCREENS.ADDNEWNEWS_SCREEN

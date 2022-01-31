@@ -9,6 +9,7 @@ from kivymd.uix.snackbar import Snackbar
 
 from controllers.authorization import get_my_profile
 from controllers.photo import get_path_to_user_profile_image
+from controllers.post import add_post
 from views.base import BaseScreen
 from views.meta import SCREENS
 
@@ -16,6 +17,7 @@ from views.meta import SCREENS
 Builder.load_file('views/add_new_news_screen/add_new_news_screen.kv')
 
 NO_IMAGE = 'img/image-plus.png'
+
 
 class AddNewNewsScreen(BaseScreen):
     SCREEN_NAME = SCREENS.ADDNEWNEWS_SCREEN
@@ -34,22 +36,25 @@ class AddNewNewsScreen(BaseScreen):
         self.manager.current = SCREENS.PROFILE_SCREEN
 
     def check_and_publish_post(self):
-        if not self.post.text and self.post.image.source == NO_IMAGE:
+        if not self.post.post_text.text and self.post.image.source == NO_IMAGE:
             Snackbar(text='You must fill in at least one of the fields!', snackbar_animation_dir="Top").open()
             return
-
+        image = '' if self.post.image.source == NO_IMAGE else self.post.image.source
+        add_post(self.post.author_id, self.post.post_text.text, self.post.time, image)
+        self.go_to_profile_screen()
 
 
 class NewPostWidget(MDCard):
     author = StringProperty()
-    text = StringProperty()
     time = StringProperty()
     image = ObjectProperty()
+    post_text = ObjectProperty()
     profile_picture = StringProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         me = get_my_profile()
+        self.author_id = me['id']
         self.author = me["name"] + ' ' + me['surname']
         self.profile_picture = get_path_to_user_profile_image(me['id'])
         self.time = datetime.datetime.now().strftime("%d %b %y  %H:%M")

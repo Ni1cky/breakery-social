@@ -19,6 +19,7 @@
 
 <NewPostWidget>:
     image: image
+    post_text: post_text
     radius: [25, 25, 25, 25]
     pos_hint: {'center_x': .5, "center_y": .5}
     md_bg_color: 0, 0, 1, .05
@@ -35,6 +36,7 @@
                 icon: root.profile_picture
 
         MDTextField:
+            id: post_text
             size_hint_x: .95
             pos_hint: {"center_x": .5}
             halign: "center"
