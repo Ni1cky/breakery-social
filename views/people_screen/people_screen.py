@@ -1,5 +1,6 @@
 from controllers.authorization import get_my_profile
 from controllers.dialog import create_dialog, get_dialog_by_users_ids
+from controllers.photo import refresh_user_profile_picture, get_path_to_user_profile_image
 from store.models.models import DialogCreate
 from views import meta
 from views.base import BaseScreen
@@ -16,7 +17,7 @@ class PeopleScreen(BaseScreen):
     SCREEN_NAME = SCREENS.PEOPLE_SCREEN
     name_field = ObjectProperty()
     surname_field = ObjectProperty()
-    avatar = ObjectProperty()
+    picture = ObjectProperty()
 
     def __init__(self, **kwargs):
         super(PeopleScreen, self).__init__(**kwargs)
@@ -30,6 +31,10 @@ class PeopleScreen(BaseScreen):
         user = CLICK_USER
         self.name_field.text = user.NAME
         self.surname_field.text = user.SURNAME
+
+        refresh_user_profile_picture(user.USER_ID)
+        self.picture.source = get_path_to_user_profile_image(user.USER_ID)
+        self.picture.reload()
 
     def go_to_his_news_screen(self):
         self.manager.current = meta.SCREENS.MY_NEWS_SCREEN

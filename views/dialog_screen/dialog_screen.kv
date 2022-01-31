@@ -5,6 +5,7 @@
     scrollable_messages: scrollable_messages
     header: header
     message_text: message_text
+    picture: picture
     MDBoxLayout:
         orientation: "vertical"
         MDBoxLayout:
@@ -16,6 +17,7 @@
                 id: header
                 secondary_text: "Был(а) в сети завтра"
                 ImageLeftWidget:
+                    id: picture
                     source: "img/profile.jpg"
         RecycleView:
             id: scrollable_messages

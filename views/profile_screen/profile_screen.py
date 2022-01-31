@@ -33,6 +33,8 @@ class ProfileScreen(BaseScreen):
         )
 
     def on_enter(self, *args):
+        # welcome to my GOVNO-CODE
+        self.parent.parent.parent.parent.parent.title = "Profile"
         user = get_my_profile()
         self.name_field.text = user["name"]
         self.surname_field.text = user["surname"]
@@ -82,7 +84,7 @@ class ProfileScreen(BaseScreen):
         self.disable_edit_mode()
 
     def open_file_manager(self):
-        self.file_manager.show("/home")
+        self.file_manager.show("C:\\")
 
     def select_path(self, path):
         self.exit_manager()
