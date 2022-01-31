@@ -1,38 +1,49 @@
 <AddNewNewsScreen>:
     post_item: post_item
-    MDSwiper:
-        adaptive_height: False
-        id: post_item
-        pos_hint: {'center_x': .5, 'center_y': .5}
+    MDBoxLayout:
+        spacing: 5
+
+        MDIconButton:
+            icon: 'close'
+
+        MDBoxLayout:
+            id: post_item
+
+        MDIconButton:
+            icon: 'check'
+
 
 <NewPostWidget>:
-    canvas:
-        Color:
-            rgba: 0, 0, 1, 0.1
-            # цвет может меняться в зависимости от темы
-        RoundedRectangle:
-            pos: self.pos
-            size: self.size
-            radius: [25, 25, 25, 25]
+    radius: [25, 25, 25, 25]
+    pos_hint: {'center_x': .5, "center_y": .5}
+    md_bg_color: 0, 0, 1, .05
+
     MDBoxLayout:
         orientation: "vertical"
+
         TwoLineIconListItem:
             text: root.author
-            secondary_text: "Вчера в 25:00"
+            secondary_text: root.time
+
             IconLeftWidget:
-                source: "img/profile.jpg"
+                icon: root.profile_picture
+
         MDTextField:
             padding_x: 10
             multiline: True
             halign: "center"
+
         FitImage:
             source:
+
         MDBoxLayout:
             orientation: "horizontal"
+
             MDIconButton:
                 icon: "heart"
-                # badge_icon: "numeric-10"
+
             MDIconButton:
                 icon: "comment"
+
             MDIconButton:
                 icon: "arrow-right"

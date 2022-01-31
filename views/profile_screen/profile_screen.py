@@ -1,3 +1,5 @@
+import platform
+
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivymd.uix.button import MDIconButton
@@ -84,7 +86,11 @@ class ProfileScreen(BaseScreen):
         self.disable_edit_mode()
 
     def open_file_manager(self):
-        self.file_manager.show("C:\\")
+        os = platform.system()
+        if os == "Linux":
+            self.file_manager.show("/home")
+        else:
+            self.file_manager.show("C:\\")
 
     def select_path(self, path):
         self.exit_manager()

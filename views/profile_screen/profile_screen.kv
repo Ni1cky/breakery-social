@@ -51,22 +51,23 @@
                         text_color_focus: 0, 0, 0, 1
                         text_color_normal: 0, 0, 0, 1
 
-        AnchorLayout:
+        BoxLayout:
+            orientation: "horizontal"
             BoxLayout:
                 orientation: "horizontal"
-                BoxLayout:
-                    orientation: "horizontal"
-                    id: edit_buttons
+                id: edit_buttons
 
-                    MDIconButton:
-                        icon: "pencil"
-                        on_release: root.enable_edit_mode()
+                MDIconButton:
+                    icon: "pencil"
+                    on_release: root.enable_edit_mode()
 
+            StackLayout:
+                orientation: 'rl-bt'
                 MDIconButton:
                     icon: "newspaper-variant-multiple"
                     on_release: root.go_to_my_news_screen()
-                AnchorLayout:
-                    MDIconButton:
-                        id:add_post_button
-                        icon: "plus"
-                        on_release: root.go_to_adding_post_screen()
+
+                MDIconButton:
+                    id:add_post_button
+                    icon: "plus"
+                    on_release: root.go_to_adding_post_screen()
