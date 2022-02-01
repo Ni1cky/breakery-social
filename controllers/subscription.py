@@ -32,3 +32,9 @@ def get_subscriptions(user_id: int):
         user = get_user(data['user_id'])
         users.append(user)
     return users
+
+
+def get_subscriptions_ids(user_id: int):
+    subscriptions = requests.get(f"{HOST.URL}/subscriptions/{user_id}/subscriptions").json()
+    subscriptions_ids = [s['user_id'] for s in subscriptions]
+    return subscriptions_ids

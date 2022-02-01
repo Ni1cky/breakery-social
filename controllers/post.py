@@ -7,6 +7,7 @@ from controllers.subscription import get_subscriptions
 from controllers.user import get_users, get_user
 
 DATE_FORMAT = "%d %b %y  %H:%M"
+BLOCK_SIZE = 50
 
 
 def add_post(user_id: int, text: str, time_created: str, path_to_image: str):
@@ -28,6 +29,17 @@ def get_sorted_user_posts(user_id: int):
     posts = requests.get(f"{HOST.URL}/posts/{user_id}/all").json()
     posts = sort_posts(posts)
     return posts
+
+
+def get_last_post_id():
+    post_id = requests.get(f"{HOST.URL}/posts_last_id").json()
+    return post_id
+
+
+def get_block_of_all_posts(max_id: int):
+    min_id = max_id - BLOCK_SIZE
+    block = requests.get(f"{HOST.URL}/posts", params={"min_id": min_id, "max_id": max_id}).json()
+    return block
 
 
 def get_all_sorted_posts(user_id):
