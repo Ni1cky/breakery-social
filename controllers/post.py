@@ -15,6 +15,11 @@ def add_post(user_id: int, text: str, time_created: str, path_to_image: str):
     add_post_picture(user_id, post_id, path_to_image)
 
 
+def get_post_by_id(post_id: int):
+    post = requests.get(f"{HOST.URL}/posts/{post_id}").json()
+    return post
+
+
 def sort_posts(posts: list):
     return sorted(posts, key=lambda x: datetime.datetime.strptime(x['time_created'], DATE_FORMAT), reverse=True)
 
@@ -22,6 +27,15 @@ def sort_posts(posts: list):
 def get_sorted_user_posts(user_id: int):
     posts = requests.get(f"{HOST.URL}/posts/{user_id}/all").json()
     posts = sort_posts(posts)
+    return posts
+
+
+def get_all_sorted_posts(user_id):
+    posts = requests.get(f"{HOST.URL}/posts").json()
+    subscriptions = requests.get(f"{HOST.URL}/subscriptions/{user_id}/subscriptions").json()
+    subscriptions_ids = [s['user_id'] for s in subscriptions]
+    posts.sort(key=lambda x: (x['author_id'] in subscriptions_ids,
+                              datetime.datetime.strptime(x['time_created'], DATE_FORMAT)), reverse=True)
     return posts
 
 
