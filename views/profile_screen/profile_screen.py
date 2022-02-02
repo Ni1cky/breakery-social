@@ -1,3 +1,5 @@
+import platform
+
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivymd.uix.button import MDIconButton
@@ -43,7 +45,14 @@ class ProfileScreen(BaseScreen):
         self.picture.reload()
 
     def go_to_my_news_screen(self):
+        self.parent.parent.parent.parent.parent.title = "My posts"
         self.manager.current = meta.SCREENS.MY_NEWS_SCREEN
+        user = get_my_profile()
+        self.manager.get_screen(meta.SCREENS.MY_NEWS_SCREEN).user_id = user['id']
+
+    def go_to_adding_post_screen(self):
+        self.parent.parent.parent.parent.parent.title = "New post"
+        self.manager.current = meta.SCREENS.ADDNEWNEWS_SCREEN
 
     def enable_edit_mode(self):
         if self.edit_mode_is_enable:
@@ -84,7 +93,11 @@ class ProfileScreen(BaseScreen):
         self.disable_edit_mode()
 
     def open_file_manager(self):
-        self.file_manager.show("C:\\")
+        os = platform.system()
+        if os == "Linux":
+            self.file_manager.show("/home")
+        else:
+            self.file_manager.show("C:\\")
 
     def select_path(self, path):
         self.exit_manager()

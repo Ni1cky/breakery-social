@@ -1,30 +1,53 @@
+<Picture@ILeftBody+FitImage>:
+
 <PostWidget>:
+    post_text: post_text
+    image: image
+    profile_picture: profile_picture
+
     canvas:
         Color:
             rgba: 0, 0, 1, 0.1
-            # цвет может меняться в зависимости от темы
         RoundedRectangle:
             pos: self.pos
             size: self.size
             radius: [25, 25, 25, 25]
+
     MDBoxLayout:
         orientation: "vertical"
+
         TwoLineIconListItem:
             text: root.author
-            secondary_text: "Вчера в 25:00"
-            IconLeftWidget:
-                source: "img/profile.jpg"
-        MDLabel:
-            padding_x: 10
-            text: root.text
-            # text: "привет я поовоаоыррррррраовыаоывшаовшоашв"
+            secondary_text: root.time
+            ripple_scale: 0
+
+            Picture:
+                id: profile_picture
+
+        MDTextField:
+            id: post_text
+            size_hint_x: .95
+            pos_hint: {"center_x": .5}
             halign: "center"
+            multiline: True
+            max_height: 250
+            theme_text_color: "Custom"
+            line_color_normal: 1, 1, 1, 0
+            disabled: True
+
+        FitImage:
+            id: image
+
         MDBoxLayout:
             orientation: "horizontal"
+            size_hint_y: None
+            size: 0, 48
+
             MDIconButton:
                 icon: "heart"
-                # badge_icon: "numeric-10"
+
             MDIconButton:
                 icon: "comment"
+
             MDIconButton:
                 icon: "arrow-right"

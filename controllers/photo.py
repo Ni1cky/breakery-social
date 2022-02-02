@@ -29,19 +29,6 @@ def decode_image(enc_img: str):
     return dec_img
 
 
-def get_user_images(user_id: int):
-    response = requests.get(f"{HOST.URL}/photos/{user_id}").json()
-    for photo in response:
-        dec_photo = decode_image(photo["source"])
-        post_id = photo["post_id"]
-        create_path(user_id)
-        path_to_dir = f"{FOLDER_WITH_PHOTOS}/{user_id}"
-        if post_id is None:
-            open(f"{path_to_dir}/profile", "wb").write(dec_photo)
-        else:
-            open(f"{path_to_dir}/{post_id}", "wb").write(dec_photo)
-
-
 def set_user_profile_picture(user_id: int, path_to_image: str):
     enc_img = encode_image(path_to_image)
     requests.put(f"{HOST.URL}/photos/{user_id}/profile",json={"source": enc_img})
@@ -60,3 +47,19 @@ def refresh_user_profile_picture(user_id: int):
 def set_default_picture(login: str):
     enc_img = encode_image('img/profile.jpg')
     requests.post(f"{HOST.URL}/photos/default", json={"source": enc_img}, params={"login": login})
+
+
+def get_path_to_user_post(user_id: int, post_id: int):
+    return f"{FOLDER_WITH_PHOTOS}/{user_id}/{post_id}"
+
+
+def add_post_picture(user_id: int, post_id: int, path_to_image: str):
+    enc_img = '' if not path_to_image else encode_image(path_to_image)
+    requests.post(f"{HOST.URL}/photos/{user_id}/{post_id}", json={'source': enc_img})
+
+
+def get_post_picture(user_id: int, post_id: int):
+    enc_img = requests.get(F"{HOST.URL}/photos/{user_id}/{post_id}").json()
+    img = decode_image(enc_img)
+    open(f"{FOLDER_WITH_PHOTOS}/{user_id}/{post_id}", 'wb').write(img)
+    return f"{FOLDER_WITH_PHOTOS}/{user_id}/{post_id}" if img else ''
