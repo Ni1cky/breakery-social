@@ -3,7 +3,7 @@ from kivy.properties import ObjectProperty
 
 from components.post.post import PostWidget
 from controllers.authorization import get_my_profile
-from controllers.post import get_sorted_user_posts, get_block_of_all_posts, get_last_post_id, BLOCK_SIZE
+from controllers.post import get_sorted_user_posts, get_block_of_all_posts, get_last_post_id, POSTS_BLOCK_SIZE
 from controllers.subscription import get_subscriptions_ids
 from views.base import BaseScreen
 from views.meta import SCREENS
@@ -49,7 +49,7 @@ class NewsScreen(BaseScreen):
             if self.search_subscriptions:
                 posts = self.get_block()
 
-                if len(posts) < BLOCK_SIZE:
+                if len(posts) < POSTS_BLOCK_SIZE:
                     self.min_id = get_last_post_id()
                     self.search_subscriptions = False
                     posts_2 = self.get_block()
@@ -67,7 +67,7 @@ class NewsScreen(BaseScreen):
 
     def get_block(self):
         posts = []
-        while len(posts) < BLOCK_SIZE:
+        while len(posts) < POSTS_BLOCK_SIZE:
             block = get_block_of_all_posts(self.min_id)
             if self.search_subscriptions:
                 for post in block:
@@ -77,7 +77,7 @@ class NewsScreen(BaseScreen):
                 for post in block:
                     if post['author_id'] not in self.subscriptions_ids and post['author_id'] != self.my_id:
                         posts.append(post)
-            self.min_id -= BLOCK_SIZE
+            self.min_id -= POSTS_BLOCK_SIZE
             if self.min_id <= 0:
                 break
         posts.sort(key=lambda x: x['id'], reverse=True)
