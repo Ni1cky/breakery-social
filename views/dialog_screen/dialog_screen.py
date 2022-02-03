@@ -67,6 +67,7 @@ class DialogScreen(BaseScreen):
             dialog_id=self.dialog_data["dialog_id"]
         )
         create_message(message)
+        self.message_text.text = ''
 
     def load_dialog(self, dialog_id: int):
         current_user = get_my_profile()
