@@ -22,9 +22,12 @@ class NewsScreen(BaseScreen):
     my_posts = []
     subscriptions_ids = []
 
+    def on_pre_enter(self, *args):
+        self.post_item.children[0].clear_widgets()
+
     def on_enter(self, *args):
         super().on_enter(*args)
-        self.post_item.children[0].clear_widgets()
+        #self.post_item.children[0].clear_widgets()
         self.my_id = get_my_profile()['id']
         self.search_subscriptions = True
         self.my_posts = get_sorted_user_posts(self.my_id)
