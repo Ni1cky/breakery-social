@@ -1,29 +1,25 @@
 <MessageWidget>:
     message_label: message_label
+    card: card
+#    time: time
+    size_hint_y: None
+    spacing: 10
+#    md_bg_color: 1, 0, 0, 1
+#    padding: 100, 100, 100, 100
     MDBoxLayout:
         size_hint: max(0.25 * root.send_from_me, 0.0001), 1
-    AnchorLayout:
-        size_hint: 0.75, 1
-        canvas:
-            Color:
-                rgba: 0.41,0.16,0.72, 0.15
-            RoundedRectangle:
-                pos: self.pos
-                size: self.size
-                radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
-        MDLabel:
-#            canvas:
-#                Color:
-#                    rgba: 1, 0, 0, 0.55
-#                RoundedRectangle:
-#                    pos: self.pos
-#                    size: self.size
-#                    radius: [(20, 20), (20, 20), (20, 20), (20, 20)]
-            id: message_label
-            size_hint: 0.9, 0.9
-            multiline: True
-            # text_size: root.width, root.height
-            # text: root.message_text + ' ' + str(self.size) + ' ' + str(len(root.message_text) + len(str(self.size)))
-            text: root.message_text
+
+    MDCard:
+        id: card
+
+        MDBoxLayout:
+            padding: 10, 0
+            spacing: 0
+            orientation: 'vertical'
+
+            MDLabel:
+                id: message_label
+                markup: True
+
     MDBoxLayout:
         size_hint: max(0.25 * (1 - root.send_from_me), 0.0001), 1

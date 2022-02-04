@@ -1,10 +1,12 @@
 <ImageButton@ButtonBehavior+FitImage>:
-<CustomPopup>:
+<Content>:
     title: 'Color'
     red: red
     green: green
     blue: blue
     label_color: label_color
+    size_hint_y: None
+    height: 250
     BoxLayout:
         BoxLayout:
             orientation: 'vertical'
@@ -43,7 +45,7 @@
                 text: 'Done'
                 background_normal: ''
                 background_color: 0, .5, 1, 1
-                on_press: root.dismiss()
+                on_press: root.parent.parent.parent.dismiss()
 
 <ProfileScreen>:
     name_field: name_field

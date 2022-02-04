@@ -1,9 +1,12 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import get_hex_from_color kivy.utils.get_hex_from_color
 <Picture@ILeftBody+FitImage>:
 
 <PostWidget>:
     post_text: post_text
     image: image
     profile_picture: profile_picture
+    like: like
 
     canvas:
         Color:
@@ -44,7 +47,10 @@
             size: 0, 48
 
             MDIconButton:
+                id: like
                 icon: "heart"
+                icon_color: '000000'
+                on_release: root.add_like() if get_hex_from_color(self.icon_color) == "#000000ff" else root.remove_like();
 
             MDIconButton:
                 icon: "comment"

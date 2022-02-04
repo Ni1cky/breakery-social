@@ -1,29 +1,40 @@
+import math
+import string
+
 from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 from kivymd.uix.label import MDLabel
+from kivymd.uix.card import MDCard
+from kivymd.uix.boxlayout import MDBoxLayout
 
 Builder.load_file('components/message/message.kv')
 
-from kivy.uix.recycleview.views import RecycleDataViewBehavior
+RU = 'ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ'
+ru = 'йцукенгшщзхъфывапролджэячсмитьбю'
 
 
-class MessageWidget(RecycleDataViewBehavior, BoxLayout):
-    _latest_data = None
-    _recycle_view = None
-    message_text = StringProperty()
+class MessageWidget(MDBoxLayout):
     send_from_me = NumericProperty()
-    message_label: MDLabel = ObjectProperty()
+    message_label = ObjectProperty()
+    time = ObjectProperty()
 
-    def refresh_view_attrs(self, recycle_view, index, data):
-        self._recycle_view = recycle_view
-        if self._latest_data is not None:
-            self._latest_data["height"] = self.height
-        self._latest_data = data
-        super().refresh_view_attrs(recycle_view, index, data)
-
-    def on_height(self, instance, value):
-        data = self._latest_data
-        if data is not None and data["height"] != value:
-            data["height"] = value
-            self._recycle_view.refresh_from_data()
+    def __init__(self, message_text, time_send, **kwargs):
+        super(MessageWidget, self).__init__(**kwargs)
+        self.message_label.text = message_text + '\n' +\
+                                  '                                              ' + '[size=10]' + time_send + '[/size]'
+        cnt = 0
+        for c in message_text:
+            if c in RU:
+                cnt += 1 / 24
+            elif c in ru:
+                cnt += 1 / 29
+            elif c in string.ascii_lowercase:
+                cnt += 1 / 35
+            elif c in string.ascii_uppercase:
+                cnt += 1 / 26
+            elif c in string.digits:
+                cnt += 1 / 26
+            else:
+                cnt += 1 / 50
+        self.height = math.ceil(cnt + 1) * 35
