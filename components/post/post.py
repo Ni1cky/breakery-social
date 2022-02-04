@@ -15,6 +15,8 @@ class PostWidget(MDSwiperItem):
     profile_picture = ObjectProperty()
     post_text = ObjectProperty()
     image = ObjectProperty()
+    like = ObjectProperty()
+    like_cnt = 0
 
     def __init__(self, author_id: int, post_id: int, **kwargs):
         super().__init__(**kwargs)
@@ -31,3 +33,10 @@ class PostWidget(MDSwiperItem):
         post = get_post_by_id(self.post_id)
         self.time = post['time_created']
         self.post_text.text = post['text']
+
+    def add_like(self):
+        self.like_cnt += 1
+        self.like.badge_color.icon = f"numeric-{self.like_cnt}"
+
+    def remove_like(self):
+        print(0)
