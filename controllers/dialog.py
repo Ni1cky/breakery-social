@@ -21,4 +21,5 @@ def get_dialog_by_users_ids(user1_id: int, user2_id: int):
 
 def get_users_dialogs(user_id: int):
     response = requests.get(f"{HOST.URL}/dialogs/all/{user_id}")
-    print(response)
+    dialogs = [Dialog(**d) for d in response.json()]
+    return dialogs
