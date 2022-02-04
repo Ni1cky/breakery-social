@@ -8,41 +8,60 @@
     picture: picture
     MDBoxLayout:
         orientation: "vertical"
+
         MDBoxLayout:
-            size_hint: 1, 0.1
+            size_hint: 1, 0.12
             orientation: "horizontal"
+
             MDIconButton:
                 icon: 'arrow-left'
+
             TwoLineAvatarIconListItem:
                 id: header
                 secondary_text: "Был(а) в сети завтра"
+
                 ImageLeftWidget:
                     id: picture
                     source: "img/profile.jpg"
-        RecycleView:
-            id: scrollable_messages
-            viewclass: "MessageWidget"
-            key_size: "height"
-            RecycleBoxLayout:
-                spacing: 20
-                default_size: None, None
-                default_size_hint: 1, None
-                size_hint_y: None
-                height: self.minimum_height
-                orientation: 'vertical'
+
+        ScrollView:
+            do_scroll_x: False
+            scroll_y: 0
+
+            MDList:
+                id: scrollable_messages
+                size_hint_x: .75
+                spacing: 10
+                padding: 10
+
+#            viewclass: "MessageWidget"
+#            key_size: "height"
+#
+#            RecycleBoxLayout:
+#                spacing: 20
+#                default_size: None, None
+#                default_size_hint: 1, None
+#                size_hint_y: None
+#                height: self.minimum_height
+#                orientation: 'vertical'
+
         MDBoxLayout:
             size_hint: 1, 0.1
             orientation: "horizontal"
+
             AnchorLayout:
                 padding: 10
                 size_hint: 0.8, 1
+
                 MDTextField:
                     id: message_text
                     on_text_validate: root.send_message()
                     hint_text: "Введите сообщение"
+
             AnchorLayout:
                 padding: 10
                 size_hint: 0.2, 1
+
                 MDIconButton:
                     icon: "send"
                     on_press: root.send_message()
