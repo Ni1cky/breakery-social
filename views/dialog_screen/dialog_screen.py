@@ -3,7 +3,6 @@ from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.recycleview import RecycleView
 from kivymd.uix.textfield import MDTextField
-
 from controllers.photo import refresh_user_profile_picture, get_path_to_user_profile_image
 from store.models.models import MessageCreate
 from kivymd.uix.list import TwoLineAvatarIconListItem, ImageLeftWidget
