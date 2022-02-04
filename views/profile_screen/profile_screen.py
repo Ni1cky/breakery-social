@@ -9,6 +9,8 @@ from kivymd.app import MDApp
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.filemanager import MDFileManager
 from kivymd.uix.pickers import MDColorPicker
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.boxlayout import MDBoxLayout
 from controllers.authorization import get_my_profile
 from controllers.photo import set_user_profile_picture, get_path_to_user_profile_image, \
     refresh_user_profile_picture, FOLDER_WITH_PHOTOS
@@ -16,28 +18,31 @@ from controllers.user import update_user
 from views import meta
 from views.base import BaseScreen
 from views.meta import SCREENS
+from kivymd.uix.pickers import MDColorPicker
 
 Builder.load_file('views/profile_screen/profile_screen.kv')
 
 
-class CustomPopup(Popup):
+class Content(MDBoxLayout):
     label_color = ObjectProperty()
     red = ObjectProperty()
     green = ObjectProperty()
     blue = ObjectProperty()
 
     def __init__(self, paint, **kwargs):
-        super(CustomPopup, self).__init__(**kwargs)
+        super(Content, self).__init__(**kwargs)
         self.paint = paint
+        print(self.paint)
+    #
+    # def on_dismiss(self):
+    #     rgb = (self.red.value / 255, self.green.value / 255, self.blue.value / 255)
+    #     self.paint.back_layer_color = rgb
+    #     try:
+    #         with open('saved/color.txt', 'w') as f:
+    #             f.write(str(rgb))
+    #     except:
+    #         pass
 
-    def on_dismiss(self):
-        rgb = (self.red.value / 255, self.green.value / 255, self.blue.value / 255)
-        self.paint.back_layer_color = rgb
-        try:
-            with open('saved/color.txt', 'w') as f:
-                f.write(str(rgb))
-        except:
-            pass
     def on_open(self, *args):
         self.label_color.canvas.clear()
         with self.label_color.canvas:
@@ -54,6 +59,7 @@ class ProfileScreen(BaseScreen):
     save_button = None
     close_button = None
     edit_mode_is_enable = False
+    dialog = None
 
     def __init__(self, **kwargs):
         super(ProfileScreen, self).__init__(**kwargs)
@@ -136,8 +142,23 @@ class ProfileScreen(BaseScreen):
         self.file_manager.close()
 
     def open_color_picker(self):
-        self.popup = CustomPopup(self.parent.parent.parent.parent.parent)
-        self.popup.open()
+        if not self.dialog:
+            self.dialog = MDDialog(
+                title='Color',
+                type='custom',
+                content_cls=Content(self.parent.parent.parent.parent.parent),
+            )
+        self.dialog.bind(on_dismiss=self.close_color)
+        self.dialog.open()
+
+    def close_color(self, i):
+        rgb = (self.dialog.content_cls.red.value / 255, self.dialog.content_cls.green.value / 255, self.dialog.content_cls.blue.value / 255)
+        self.dialog.content_cls.paint.back_layer_color = rgb
+        try:
+            with open('saved/color.txt', 'w') as f:
+                f.write(str(rgb))
+        except:
+            pass
 
     # def get_selected_color(self, instance_color_picker: MDColorPicker, type_color: str, selected_color: Union[list, str]):
     #     self.update_color(selected_color[:-1] + [1])
