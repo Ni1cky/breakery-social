@@ -1,5 +1,49 @@
 <ImageButton@ButtonBehavior+FitImage>:
-
+<CustomPopup>:
+    title: 'Color'
+    red: red
+    green: green
+    blue: blue
+    label_color: label_color
+    BoxLayout:
+        BoxLayout:
+            orientation: 'vertical'
+            MDSlider:
+                id: red
+                min: 0
+                max: 255
+                show_off: False
+                on_touch_move: root.on_open()
+            MDSlider:
+                id: green
+                min: 0
+                max: 255
+                show_off: False
+                on_touch_move: root.on_open()
+            MDSlider:
+                id: blue
+                min: 0
+                max: 255
+                show_off: False
+                on_touch_move: root.on_open()
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 15
+            spacing: 10
+            Widget:
+                id: label_color
+                canvas:
+                    Color:
+                        rgb: 0, 0, 0
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            Button:
+                size_hint: 1, .2
+                text: 'Done'
+                background_normal: ''
+                background_color: 0, .5, 1, 1
+                on_press: root.dismiss()
 
 <ProfileScreen>:
     name_field: name_field
@@ -32,7 +76,7 @@
                         text: "Name"
                         halign: 'center'
                         hint_text_color_focus: .65, .65, .65, 1
-                        theme_text_color: "custom"
+                        theme_text_color: "Custom"
                         line_color_normal: 1, 1, 1, 0
                         line_color_focus: 0, 0, 0, 1
                         text_color_focus: 0, 0, 0, 1
@@ -45,7 +89,7 @@
                         text: "Surname"
                         halign: 'center'
                         hint_text_color_focus: .65, .65, .65, 1
-                        theme_text_color: "custom"
+                        theme_text_color: "Custom"
                         line_color_normal: 1, 1, 1, 0
                         line_color_focus: 0, 0, 0, 1
                         text_color_focus: 0, 0, 0, 1
@@ -56,7 +100,6 @@
             BoxLayout:
                 orientation: "horizontal"
                 id: edit_buttons
-
                 MDIconButton:
                     icon: "pencil"
                     on_release: root.enable_edit_mode()
@@ -66,8 +109,10 @@
                 MDIconButton:
                     icon: "newspaper-variant-multiple"
                     on_release: root.go_to_my_news_screen()
-
                 MDIconButton:
                     id:add_post_button
                     icon: "plus"
                     on_release: root.go_to_adding_post_screen()
+                MDIconButton:
+                    icon: "palette"
+                    on_release: root.open_color_picker()
