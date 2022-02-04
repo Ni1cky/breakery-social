@@ -63,7 +63,6 @@ class DialogScreen(BaseScreen):
             if data["sender_id"] == current_user["id"]:
                 item.send_from_me = 1
                 item.card.md_bg_color = self.parent.parent.parent.parent.parent.back_layer_color[:3] + [.3]
-                # item.padding = [50, 0, 0, 0]
             else:
                 item.send_from_me = 0
                 item.card.md_bg_color = [.7, .7, .7, 1]
