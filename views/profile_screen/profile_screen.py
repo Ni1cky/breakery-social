@@ -8,7 +8,6 @@ from kivy.uix.popup import Popup
 from kivymd.app import MDApp
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.filemanager import MDFileManager
-from kivymd.uix.pickers import MDColorPicker
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.boxlayout import MDBoxLayout
 from controllers.authorization import get_my_profile
@@ -18,7 +17,6 @@ from controllers.user import update_user
 from views import meta
 from views.base import BaseScreen
 from views.meta import SCREENS
-from kivymd.uix.pickers import MDColorPicker
 
 Builder.load_file('views/profile_screen/profile_screen.kv')
 
