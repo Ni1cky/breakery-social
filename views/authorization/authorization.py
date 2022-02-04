@@ -21,10 +21,14 @@ class LoginScreen(BaseScreen):
         super().__init__(**kwargs)
         self.snackbar = None
     def on_enter(self, *args):
-
         self.login.text = ''
         self.passw.text = ''
-
+        try:
+            with open('saved/color.txt', 'r') as f:
+                f = list(map(float,f.read()[1:-1].split(', ')))
+                self.parent.parent.parent.parent.parent.back_layer_color = f
+        except:
+            print(1)
 
     def go_to_main_screen(self):
 

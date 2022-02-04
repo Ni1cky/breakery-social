@@ -1,10 +1,14 @@
 import platform
+from typing import Union, NoReturn
 
+from kivy.graphics import Color, RoundedRectangle, Rectangle
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
+from kivy.uix.popup import Popup
+from kivymd.app import MDApp
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.filemanager import MDFileManager
-
+from kivymd.uix.pickers import MDColorPicker
 from controllers.authorization import get_my_profile
 from controllers.photo import set_user_profile_picture, get_path_to_user_profile_image, \
     refresh_user_profile_picture, FOLDER_WITH_PHOTOS
@@ -14,6 +18,31 @@ from views.base import BaseScreen
 from views.meta import SCREENS
 
 Builder.load_file('views/profile_screen/profile_screen.kv')
+
+
+class CustomPopup(Popup):
+    label_color = ObjectProperty()
+    red = ObjectProperty()
+    green = ObjectProperty()
+    blue = ObjectProperty()
+
+    def __init__(self, paint, **kwargs):
+        super(CustomPopup, self).__init__(**kwargs)
+        self.paint = paint
+
+    def on_dismiss(self):
+        rgb = (self.red.value / 255, self.green.value / 255, self.blue.value / 255)
+        self.paint.back_layer_color = rgb
+        try:
+            with open('saved/color.txt', 'w') as f:
+                f.write(str(rgb))
+        except:
+            pass
+    def on_open(self, *args):
+        self.label_color.canvas.clear()
+        with self.label_color.canvas:
+            Color(self.red.value / 255, self.green.value / 255, self.blue.value / 255)
+            Rectangle(size=self.label_color.size, pos=self.label_color.pos)
 
 
 class ProfileScreen(BaseScreen):
@@ -105,3 +134,13 @@ class ProfileScreen(BaseScreen):
 
     def exit_manager(self, *args):
         self.file_manager.close()
+
+    def open_color_picker(self):
+        self.popup = CustomPopup(self.parent.parent.parent.parent.parent)
+        self.popup.open()
+
+    # def get_selected_color(self, instance_color_picker: MDColorPicker, type_color: str, selected_color: Union[list, str]):
+    #     self.update_color(selected_color[:-1] + [1])
+    #
+    # def on_select_color(self, instance_gradient_tab, color: list):
+    #     '''Called when a gradient image is clicked.'''
