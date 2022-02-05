@@ -14,6 +14,8 @@ class DialogWidget(TwoLineAvatarIconListItem):
     persons_surname: str = ObjectProperty()
     dialog_id: int = ObjectProperty()
     person_id: int = ObjectProperty()
+    last_message_text: str = ObjectProperty()
+    last_message_time: str = ObjectProperty()
 
     def on_press(self):
         screen_manager: ScreenManager = self.parent.parent.parent.parent.manager
