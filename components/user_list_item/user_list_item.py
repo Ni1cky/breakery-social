@@ -18,8 +18,8 @@ class RightButton(IRightBodyTouch, MDRaisedButton):
 class UserListItem(OneLineAvatarIconListItem):
     image = ObjectProperty()
     button = ObjectProperty()
-    TO_SUBSCRIBE = "Подписаться"
-    TO_UNSUBSCRIBE = "Отписаться"
+    TO_SUBSCRIBE = "subscribe"
+    TO_UNSUBSCRIBE = "unsubscribe"
 
     def __init__(self, user: dict, is_my_subscription: bool, **kwargs):
         super(UserListItem, self).__init__(**kwargs)

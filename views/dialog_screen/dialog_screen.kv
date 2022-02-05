@@ -10,12 +10,13 @@
         orientation: "vertical"
 
         MDBoxLayout:
-            size_hint: 1, 0.12
+            size_hint: 1, 0.15
             orientation: "horizontal"
 
             MDIconButton:
                 icon: 'arrow-left'
-
+                pos_hint: {'center_y': 0.5}
+                on_press: root.go_to_dialogs()
             TwoLineAvatarIconListItem:
                 id: header
                 secondary_text: "Был(а) в сети завтра"
@@ -45,7 +46,7 @@
                 MDTextField:
                     id: message_text
                     on_text_validate: root.send_message()
-                    hint_text: "Введите сообщение"
+                    hint_text: "enter message"
 
             AnchorLayout:
                 padding: 10

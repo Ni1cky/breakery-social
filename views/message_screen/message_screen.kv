@@ -5,15 +5,15 @@
     dialogs_recycle_view: dialogs_recycle_view
     orientation: 'vertical'
     BoxLayout:
-        RecycleView:
+        ScrollView:
             id: dialogs_recycle_view
             viewclass: "DialogWidget"
             key_size: "height"
-            RecycleBoxLayout:
+            MDList:
                 id: dialogs_list
                 spacing: 10
                 default_size: None, None
                 default_size_hint: 1, None
                 size_hint_y: None
                 height: self.minimum_height
-                orientation: 'vertical'
+                #orientation: 'vertical'
