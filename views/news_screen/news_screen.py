@@ -48,25 +48,28 @@ class NewsScreen(BaseScreen):
         self.post_item._reset_size()
 
     def load_block_of_posts(self):
-        if self.min_id > 0:
-            if self.search_subscriptions:
-                posts = self.get_block()
+        try:
+            if self.min_id > 0:
+                if self.search_subscriptions:
+                    posts = self.get_block()
 
-                if len(posts) < POSTS_BLOCK_SIZE:
+                    if len(posts) < POSTS_BLOCK_SIZE:
+                        self.min_id = get_last_post_id()
+                        self.search_subscriptions = False
+                        posts_2 = self.get_block()
+                        posts.extend(posts_2)
+
+                else:
+                    posts = self.get_block()
+
+                if self.min_id <= 0 and self.search_subscriptions:
                     self.min_id = get_last_post_id()
                     self.search_subscriptions = False
-                    posts_2 = self.get_block()
-                    posts.extend(posts_2)
 
-            else:
-                posts = self.get_block()
-
-            if self.min_id <= 0 and self.search_subscriptions:
-                self.min_id = get_last_post_id()
-                self.search_subscriptions = False
-
-            for post in posts:
-                self.post_item.add_widget(PostWidget(post['author_id'], post['id']))
+                for post in posts:
+                    self.post_item.add_widget(PostWidget(post['author_id'], post['id']))
+        except:
+            pass
 
     def get_block(self):
         posts = []
