@@ -51,9 +51,9 @@ def refresh_user_profile_picture(user_id: int):
 
 def set_default_picture(login: str):
     enc_img = encode_image('img/profile.jpg')
-    req = requests.Request('POST', f"{HOST.URL}/photos/default", json={"source": enc_img}, params={"login": login})
-    resp = send(req)
-    #requests.post(f"{HOST.URL}/photos/default", json={"source": enc_img}, params={"login": login})
+    # req = requests.Request('POST', f"{HOST.URL}/photos/default", json={"source": enc_img}, params={"login": login})
+    # resp = send(req)
+    requests.post(f"{HOST.URL}/photos/default", json={"source": enc_img}, params={"login": login})
 
 
 def get_path_to_user_post(user_id: int, post_id: int):

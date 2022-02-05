@@ -29,7 +29,7 @@ class CLICK_USER:
 
 
 class HOST:
-    URL = 'http://127.0.0.1:80'
+    URL = 'http://127.0.0.1:8000'
 
 
 class AUTHORIZATION:
