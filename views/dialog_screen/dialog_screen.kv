@@ -1,0 +1,57 @@
+#: import DialogWidget components.dialog_widget.dialog_widget
+#: import MessageWidget components.message.message
+
+<DialogScreen>:
+    scrollable_messages: scrollable_messages
+    header: header
+    message_text: message_text
+    picture: picture
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDBoxLayout:
+            size_hint: 1, 0.15
+            orientation: "horizontal"
+
+            MDIconButton:
+                icon: 'arrow-left'
+                pos_hint: {'center_y': 0.5}
+                on_press: root.go_to_dialogs()
+            TwoLineAvatarIconListItem:
+                id: header
+                secondary_text: "Был(а) в сети завтра"
+
+                ImageLeftWidget:
+                    id: picture
+                    source: "img/profile.jpg"
+
+        ScrollView:
+            do_scroll_x: False
+            scroll_y: 0
+
+            MDList:
+                id: scrollable_messages
+                size_hint_x: .75
+                spacing: 10
+                padding: 10
+
+        MDBoxLayout:
+            size_hint: 1, 0.1
+            orientation: "horizontal"
+
+            AnchorLayout:
+                padding: 10
+                size_hint: 0.8, 1
+
+                MDTextField:
+                    id: message_text
+                    on_text_validate: root.send_message()
+                    hint_text: "enter message"
+
+            AnchorLayout:
+                padding: 10
+                size_hint: 0.2, 1
+
+                MDIconButton:
+                    icon: "send"
+                    on_press: root.send_message()

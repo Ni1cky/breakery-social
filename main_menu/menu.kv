@@ -1,0 +1,122 @@
+#:import Manager screen_manager
+<MainMenuScreen>:
+    manager_screen: manager_screen
+    backdrop: backdrop
+
+    MDBackdrop:
+        id: backdrop
+        left_action_items: [['menu', lambda x: root.move_menu_backdrop()]]
+        #title: "Example Backdrop"
+        radius_left: "25dp"
+        radius_right: "0dp"
+        header_text: ""
+        back_layer_color: 0.28, 0.24, 0.55, 1
+        front_layer_color: 0.96, 1, 0.98, 1
+        MDBackdropBackLayer:
+            backdrop: None
+            backlayer: None
+            MDGridLayout:
+                pos_hint: {"top": 1}
+                adaptive_height: True
+                cols: 1
+                padding: "5dp"
+                OneLineIconListItem:
+                    text: "Profile"
+                    on_press: root.go_to_profile_screen(), root.open_menu_backdrop()
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "alien-outline"
+                        on_press: root.go_to_profile_screen(), root.open_menu_backdrop()
+                OneLineIconListItem:
+                    text: "News"
+                    on_press: root.go_to_news_screen(), root.open_menu_backdrop()
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "newspaper-variant"
+                        on_press: root.go_to_news_screen(), root.open_menu_backdrop()
+
+                OneLineIconListItem:
+                    text: "Likes"
+                    on_press: root.go_to_likes_screen(), root.open_menu_backdrop()
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "heart"
+                        on_press: root.go_to_likes_screen(), root.open_menu_backdrop()
+
+                OneLineIconListItem:
+                    text: "Message"
+                    on_press: root.go_to_message_screen(), root.open_menu_backdrop()
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "forum"
+                        on_press: root.go_to_message_screen(), root.open_menu_backdrop()
+#                OneLineIconListItem:
+#                    text: "Message"
+#                    on_press: root.go_to_dialogue_screen(), root.open_menu_backdrop()
+#                    theme_text_color: 'Custom'
+#                    text_color: 0.96, 1, 0.98, 1
+#                    IconLeftWidget:
+#                        theme_text_color: 'Custom'
+#                        text_color: 0.96, 1, 0.98, 1
+#                        icon: "forum"
+#                        on_press: root.go_to_dialogue_screen(), root.open_menu_backdrop()
+
+                OneLineIconListItem:
+                    text: "Users"
+                    on_press: root.go_to_users_screen(), root.open_menu_backdrop()
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "account-group"
+                        on_press: root.go_to_users_screen(), root.open_menu_backdrop()
+
+                OneLineIconListItem:
+                    text: "Subscribers"
+                    on_press: root.go_to_subscribers_screen(), root.open_menu_backdrop()
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "account-multiple"
+                        on_press: root.go_to_subscribers_screen(), root.open_menu_backdrop()
+
+                OneLineIconListItem:
+                    text: "Subscriptions"
+                    on_press: root.go_to_subscriptions_screen(), root.open_menu_backdrop()
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "account-multiple"
+                        on_press: root.go_to_subscriptions_screen(), root.open_menu_backdrop()
+
+                OneLineIconListItem:
+                    text: "Log out"
+                    on_press: root.log_out()
+                    theme_text_color: 'Custom'
+                    text_color: 1, 0, 0, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 1, 0, 0, 1
+                        icon: "login-variant"
+                        on_press: root.log_out()
+
+        MDBackdropFrontLayer:
+            Manager:
+                id: manager_screen

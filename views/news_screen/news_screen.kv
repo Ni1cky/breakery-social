@@ -1,0 +1,9 @@
+<NewsScreen>:
+    post_item: post_item
+
+    MDSwiper:
+        on_swipe_right: root.inc_ind()
+        on_swipe_left: root.dec_ind()
+        adaptive_height: False
+        id: post_item
+        pos_hint: {'center_x': .5, 'center_y': .5}

@@ -1,0 +1,18 @@
+<UserListItem>:
+    button: button
+    image: image
+    ripple_scale: 0
+    on_size:
+        self.ids._right_container.width = 120
+        self.ids._right_container.x = 120
+
+    ImageLeftWidget:
+        id: image
+        source: ''
+
+    RightButton:
+        id: button
+        theme_text_color: "Custom"
+        size_hint_x: 1
+        pos_hint: {"center_y": .5}
+        on_release: root.subscribe() if self.text == root.TO_SUBSCRIBE else root.unsubscribe()

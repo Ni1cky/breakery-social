@@ -1,0 +1,161 @@
+<ImageButton@ButtonBehavior+FitImage>:
+
+<Content>:
+    title: 'Color'
+    red: red
+    green: green
+    blue: blue
+    label_color: label_color
+    cancel_button: cancel_button
+    done_button: done_button
+    size_hint_y: None
+    height: 250
+    orientation: 'vertical'
+
+    BoxLayout:
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            MDSlider:
+                id: red
+                min: 0
+                max: 255
+                show_off: False
+                color: 0, 0, 0
+                on_touch_move: root.on_open()
+
+            MDSlider:
+                id: green
+                min: 0
+                max: 255
+                show_off: False
+                color: 0, 0, 0
+                on_touch_move: root.on_open()
+
+            MDSlider:
+                id: blue
+                min: 0
+                max: 255
+                show_off: False
+                color: 0, 0, 0
+                on_touch_move: root.on_open()
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 15
+            spacing: 10
+
+            Widget:
+                id: label_color
+                canvas:
+                    Color:
+                        rgb: 0, 0, 0
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            MDRaisedButton:
+                id: done_button
+                size_hint: 1, .2
+                text: 'Done'
+                background_normal: ''
+                background_color: 0, .5, 1, 1
+                on_press: root.save()
+                theme_text_color: "Custom"
+                md_bg_color: [0.28, 0.24, 0.55, 1]
+
+    BoxLayout:
+        size_hint_y: None
+        height: 48
+
+        MDRaisedButton:
+            text: 'Default theme'
+            pos_hint: {"center_y": .5}
+            on_release: root.set_default_theme()
+            theme_text_color: "Custom"
+            md_bg_color: [0.28, 0.24, 0.55, 1]
+
+        StackLayout:
+            orientation: 'rl-bt'
+
+            MDIconButton:
+                id: cancel_button
+                icon: 'close-circle-outline'
+                pos_hint: {"center_y": .5}
+                on_release: root.close()
+                theme_text_color: "Custom"
+                icon_color: [0.28, 0.24, 0.55, 1]
+
+
+<ProfileScreen>:
+    name_field: name_field
+    surname_field: surname_field
+    picture: picture
+    edit_buttons: edit_buttons
+
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            orientation: "vertical"
+
+            AnchorLayout:
+                anchor_x: "center"
+                ImageButton:
+                    id: picture
+                    size_hint: None, None
+                    size: 150, 150
+                    on_press: if root.edit_mode_is_enable: root.open_file_manager()
+
+            AnchorLayout:
+                anchor_x: "center"
+                BoxLayout:
+                    orientation: "vertical"
+                    MDTextField:
+                        size_hint: 1, 0.4
+                        id: name_field
+                        disabled: True
+                        font_size: 25
+                        text: "Name"
+                        halign: 'center'
+                        hint_text_color_focus: .65, .65, .65, 1
+                        theme_text_color: "Custom"
+                        line_color_normal: 1, 1, 1, 0
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus: 0, 0, 0, 1
+                        text_color_normal: 0, 0, 0, 1
+                    MDTextField:
+                        id: surname_field
+                        size_hint: 1, 0.4
+                        disabled: True
+                        font_size: 25
+                        text: "Surname"
+                        halign: 'center'
+                        hint_text_color_focus: .65, .65, .65, 1
+                        theme_text_color: "Custom"
+                        line_color_normal: 1, 1, 1, 0
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus: 0, 0, 0, 1
+                        text_color_normal: 0, 0, 0, 1
+
+        BoxLayout:
+            orientation: "horizontal"
+            BoxLayout:
+                orientation: "horizontal"
+                id: edit_buttons
+                MDIconButton:
+                    icon: "pencil"
+                    on_release: root.enable_edit_mode()
+
+            StackLayout:
+                orientation: 'rl-bt'
+                MDIconButton:
+                    icon: "newspaper-variant-multiple"
+                    on_release: root.go_to_my_news_screen()
+                MDIconButton:
+                    id:add_post_button
+                    icon: "plus"
+                    on_release: root.go_to_adding_post_screen()
+                MDIconButton:
+                    icon: "palette"
+                    on_release: root.open_color_picker()

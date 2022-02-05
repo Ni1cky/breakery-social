@@ -1,0 +1,57 @@
+<ImageButton@ButtonBehavior+FitImage>:
+
+<PeopleScreen>:
+    name_field: name_field
+    surname_field: surname_field
+    picture: picture
+
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            orientation: "vertical"
+            # size_hint: 1, 0.8
+            AnchorLayout:
+                anchor_x: "center"
+                ImageButton:
+                    id: picture
+                    size_hint: None, None
+                    size: 150, 150
+            AnchorLayout:
+                anchor_x: "center"
+                BoxLayout:
+                    orientation: "vertical"
+                    MDTextField:
+                        size_hint: 1, 0.4
+                        id: name_field
+                        disabled: True
+                        font_size: 25
+                        text: "Name"
+                        halign: 'center'
+                        hint_text_color_focus: .65, .65, .65, 1
+                        theme_text_color: "custom"
+                        line_color_normal: 1, 1, 1, 0
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus: 0, 0, 0, 1
+                        text_color_normal: 0, 0, 0, 1
+                    MDTextField:
+                        id: surname_field
+                        size_hint: 1, 0.4
+                        disabled: True
+                        font_size: 25
+                        text: "Surname"
+                        halign: 'center'
+                        hint_text_color_focus: .65, .65, .65, 1
+                        theme_text_color: "custom"
+                        line_color_normal: 1, 1, 1, 0
+                        line_color_focus: 0, 0, 0, 1
+                        text_color_focus: 0, 0, 0, 1
+                        text_color_normal: 0, 0, 0, 1
+
+        AnchorLayout:
+            BoxLayout:
+                MDIconButton:
+                    icon: "newspaper-variant-multiple"
+                    on_release: root.go_to_his_news_screen()
+                MDIconButton:
+                    icon: "forum"
+                    on_release: root.load_dialog()

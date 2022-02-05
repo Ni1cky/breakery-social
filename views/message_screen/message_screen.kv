@@ -1,0 +1,19 @@
+#: import DialogWidget components.dialog_widget.dialog_widget
+
+<MessageScreen>:
+    dialogs_list: dialogs_list
+    dialogs_recycle_view: dialogs_recycle_view
+    orientation: 'vertical'
+    BoxLayout:
+        ScrollView:
+            id: dialogs_recycle_view
+            viewclass: "DialogWidget"
+            key_size: "height"
+            MDList:
+                id: dialogs_list
+                spacing: 10
+                default_size: None, None
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                #orientation: 'vertical'

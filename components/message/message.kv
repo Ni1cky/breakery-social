@@ -1,0 +1,25 @@
+<MessageWidget>:
+    message_label: message_label
+    card: card
+#    time: time
+    size_hint_y: None
+    spacing: 10
+#    md_bg_color: 1, 0, 0, 1
+#    padding: 100, 100, 100, 100
+    MDBoxLayout:
+        size_hint: max(0.25 * root.send_from_me, 0.0001), 1
+
+    MDCard:
+        id: card
+
+        MDBoxLayout:
+            padding: 10, 0
+            spacing: 0
+            orientation: 'vertical'
+
+            MDLabel:
+                id: message_label
+                markup: True
+
+    MDBoxLayout:
+        size_hint: max(0.25 * (1 - root.send_from_me), 0.0001), 1

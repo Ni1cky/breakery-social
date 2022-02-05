@@ -1,0 +1,58 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import get_hex_from_color kivy.utils.get_hex_from_color
+<Picture@ILeftBody+FitImage>:
+
+<PostWidget>:
+    post_text: post_text
+    image: image
+    profile_picture: profile_picture
+    like_icon: like_icon
+    cnt_box: cnt_box
+
+    canvas:
+        Color:
+            rgba: 0, 0, 1, 0.1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [25, 25, 25, 25]
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        TwoLineIconListItem:
+            text: root.author
+            secondary_text: root.time
+            ripple_scale: 0
+
+            Picture:
+                id: profile_picture
+
+        MDTextField:
+            id: post_text
+            size_hint_x: .95
+            pos_hint: {"center_x": .5}
+            halign: "center"
+            multiline: True
+            max_height: 250
+            theme_text_color: "Custom"
+            line_color_normal: 1, 1, 1, 0
+            disabled: True
+
+        FitImage:
+            id: image
+
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            size: 0, 48
+
+            MDBoxLayout:
+                id: cnt_box
+
+                MDIconButton:
+                    id: like_icon
+                    icon: "heart"
+                    theme_icon_color: "Custom"
+                    icon_color: '000000'
+                    on_release: root.add_like() if get_hex_from_color(self.icon_color) == "#000000ff" else root.remove_like();
