@@ -6,7 +6,8 @@
     post_text: post_text
     image: image
     profile_picture: profile_picture
-    like: like
+    like_icon: like_icon
+    cnt_box: cnt_box
 
     canvas:
         Color:
@@ -46,14 +47,12 @@
             size_hint_y: None
             size: 0, 48
 
-            MDIconButton:
-                id: like
-                icon: "heart"
-                icon_color: '000000'
-                on_release: root.add_like() if get_hex_from_color(self.icon_color) == "#000000ff" else root.remove_like();
+            MDBoxLayout:
+                id: cnt_box
 
-            MDIconButton:
-                icon: "comment"
-
-            MDIconButton:
-                icon: "arrow-right"
+                MDIconButton:
+                    id: like_icon
+                    icon: "heart"
+                    theme_icon_color: "Custom"
+                    icon_color: '000000'
+                    on_release: root.add_like() if get_hex_from_color(self.icon_color) == "#000000ff" else root.remove_like();

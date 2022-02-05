@@ -40,6 +40,18 @@
                         text_color: 0.96, 1, 0.98, 1
                         icon: "newspaper-variant"
                         on_press: root.go_to_news_screen(), root.open_menu_backdrop()
+
+                OneLineIconListItem:
+                    text: "Likes"
+                    on_press: root.go_to_likes_screen(), root.open_menu_backdrop()
+                    theme_text_color: 'Custom'
+                    text_color: 0.96, 1, 0.98, 1
+                    IconLeftWidget:
+                        theme_text_color: 'Custom'
+                        text_color: 0.96, 1, 0.98, 1
+                        icon: "heart"
+                        on_press: root.go_to_likes_screen(), root.open_menu_backdrop()
+
                 OneLineIconListItem:
                     text: "Message"
                     on_press: root.go_to_message_screen(), root.open_menu_backdrop()

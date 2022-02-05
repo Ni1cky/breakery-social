@@ -1,5 +1,6 @@
 import datetime
 import requests
+from controllers.authorization import send
 
 from views.meta import HOST
 from controllers.photo import add_post_picture
@@ -72,4 +73,27 @@ def get_sorted_other_posts(user_id: int):
         user_posts = requests.get(f"{HOST.URL}/posts/{user['id']}/all").json()
         posts.extend(user_posts)
     posts = sort_posts(posts)
+    return posts
+
+
+def get_post_likes(post_id: int):
+    req = requests.Request('GET', f"{HOST.URL}/likes/{post_id}")
+    users = send(req).json()
+    return users
+
+
+def add_like(user_id: int, post_id: int):
+    req = requests.Request('POST', f"{HOST.URL}/likes/{user_id}/{post_id}")
+    send(req)
+
+
+def remove_like(user_id: int, post_id: int):
+    req = requests.Request('DELETE', f"{HOST.URL}/likes/{user_id}/{post_id}")
+    send(req)
+
+
+def get_like_posts(user_id: int):
+    req = requests.Request('GET', f"{HOST.URL}/likes/{user_id}/all")
+    posts = send(req).json()
+    posts.reverse()
     return posts
