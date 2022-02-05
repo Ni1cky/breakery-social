@@ -7,7 +7,7 @@ import requests
 def subscribe_to_user(subscription_id: int):
     me = get_my_profile()
     p = {"subscriber_id": me["id"], "subscription_id": subscription_id}
-    req = requests.Request('GET', f"{HOST.URL}/subscriptions", params=p)
+    req = requests.Request('POST', f"{HOST.URL}/subscriptions", params=p)
     resp = send(req).json()
     #requests.post(f"{HOST.URL}/subscriptions", params=p)
 
