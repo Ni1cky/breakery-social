@@ -81,6 +81,15 @@ class MainMenuScreen(BaseScreen):
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
             self.move_menu_backdrop()
 
+    def go_to_likes_screen(self):
+        if not self.is_backdrop_front_open:
+            if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
+                self.manager_screen.current = meta.SCREENS.LIKES_SCREEN
+                self.backdrop.title = 'Likes'
+            else:
+                self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
+            self.move_menu_backdrop()
+
     def go_to_users_screen(self):
         if not self.is_backdrop_front_open:
             if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
