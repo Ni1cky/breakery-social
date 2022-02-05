@@ -7,7 +7,7 @@ from controllers.authorization import get_my_profile
 from controllers.dialog import get_users_dialogs
 from controllers.message import get_time_send_sorted_message
 from controllers.user import get_user
-from store.models.models import User
+from store.models.models import User, Message
 from views.base import BaseScreen
 from views.meta import SCREENS
 from kivy.lang import Builder
@@ -34,13 +34,13 @@ class MessageScreen(BaseScreen):
             second_person = get_user(second_persons_id)
 
             messages = get_time_send_sorted_message(get_my_profile()["id"], second_persons_id)
-            last_message = messages[-1]
-
-            self.dialogs_recycle_view.data.append({
-                "persons_name": second_person["name"],
-                "persons_surname": second_person["surname"],
-                "dialog_id": dialog.id,
-                "person_id": second_persons_id,
-                "last_message_text": last_message.text,
-                "last_message_time": str(last_message.time_send.strftime("%H:%M"))
-            })
+            if len(messages):
+                last_message = messages[-1]
+                self.dialogs_recycle_view.data.append({
+                    "persons_name": second_person["name"],
+                    "persons_surname": second_person["surname"],
+                    "dialog_id": dialog.id,
+                    "person_id": second_persons_id,
+                    "last_message_text": last_message.text,
+                    "last_message_time": str(last_message.time_send.strftime("%H:%M"))
+                })
