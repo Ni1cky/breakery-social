@@ -48,7 +48,7 @@ class MainMenuScreen(BaseScreen):
         if not self.is_backdrop_front_open:
             if self.manager_screen.current != meta.SCREENS.LOGIN_SCREEN:
                 self.manager_screen.current = meta.SCREENS.MESSAGE_SCREEN
-                self.backdrop.title = 'Dialods'
+                self.backdrop.title = 'Dialogs'
             else:
                 self.manager_screen.current = meta.SCREENS.LOGIN_SCREEN
             self.move_menu_backdrop()

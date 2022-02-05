@@ -8,6 +8,7 @@ from kivymd.uix.list import TwoLineAvatarIconListItem, ImageLeftWidget, MDList
 from controllers.authorization import get_my_profile
 from controllers.dialog import get_dialog_by_id
 from controllers.user import get_user
+from views import meta
 from views.base import BaseScreen
 from views.meta import SCREENS, CLICK_USER
 from controllers.message import get_time_send_sorted_message, create_message
@@ -88,3 +89,6 @@ class DialogScreen(BaseScreen):
             another_user = get_user(dialog.user1_id)
             self.header.text = f"{another_user['name']} {another_user['surname']}"
         self.dialog_data["dialog_id"] = dialog.id
+
+    def go_to_dialogs(self):
+        self.manager.current = meta.SCREENS.MESSAGE_SCREEN
