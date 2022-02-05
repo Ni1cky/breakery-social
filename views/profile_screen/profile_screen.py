@@ -26,16 +26,43 @@ class Content(MDBoxLayout):
     red = ObjectProperty()
     green = ObjectProperty()
     blue = ObjectProperty()
+    cancel_button = ObjectProperty()
+    done_button = ObjectProperty()
 
-    def __init__(self, paint, **kwargs):
+    def __init__(self, backdrop, **kwargs):
         super(Content, self).__init__(**kwargs)
-        self.paint = paint
+        self.backdrop = backdrop
+        self.done_button.md_bg_color = backdrop.back_layer_color
+        self.cancel_button.icon_color = backdrop.back_layer_color
 
     def on_open(self, *args):
         self.label_color.canvas.clear()
+        self.done_button.md_bg_color = (self.red.value / 255, self.green.value / 255, self.blue.value / 255)
+        self.cancel_button.icon_color = (self.red.value / 255, self.green.value / 255, self.blue.value / 255)
+        self.red.color = self.green.color = self.blue.color = (self.red.value / 255, self.green.value / 255, self.blue.value / 255)
+
         with self.label_color.canvas:
             Color(self.red.value / 255, self.green.value / 255, self.blue.value / 255)
             Rectangle(size=self.label_color.size, pos=self.label_color.pos)
+
+    def save(self):
+        rgb = (self.red.value / 255, self.green.value / 255, self.blue.value / 255)
+        self.backdrop.back_layer_color = rgb
+        try:
+            with open('saved/color.txt', 'w') as f:
+                f.write(str(rgb))
+        except:
+            pass
+        self.parent.parent.parent.dismiss()
+
+    def set_default_theme(self):
+        self.backdrop.back_layer_color = [0.28, 0.24, 0.55, 1]
+        self.done_button.md_bg_color = [0.28, 0.24, 0.55, 1]
+        self.cancel_button.icon_color = [0.28, 0.24, 0.55, 1]
+        self.parent.parent.parent.dismiss()
+
+    def close(self):
+        self.parent.parent.parent.dismiss()
 
 
 class ProfileScreen(BaseScreen):
@@ -135,11 +162,22 @@ class ProfileScreen(BaseScreen):
                 title='Color',
                 type='custom',
                 content_cls=Content(self.parent.parent.parent.parent.parent),
+                # buttons=[
+                #     MDIconButton(icon='close-circle-outline', on_release=self.close_color_picker_without_saving),
+                #     MDIconButton(icon='arrow-u-left-top', on_release=self.set_default_theme_color),
+                # ]
             )
-        self.dialog.bind(on_dismiss=self.close_color)
+        # self.dialog.bind(on_dismiss=self.close_color_picker)
         self.dialog.open()
 
-    def close_color(self, i):
+    def close_color_picker_without_saving(self, i):
+        self.dialog.dismiss()
+
+    def set_default_theme_color(self, i):
+        self.dialog.content_cls.paint.back_layer_color = [0.28, 0.24, 0.55, 1]
+        self.dialog.dismiss()
+
+    def close_color_picker(self, i):
         rgb = (self.dialog.content_cls.red.value / 255, self.dialog.content_cls.green.value / 255, self.dialog.content_cls.blue.value / 255)
         self.dialog.content_cls.paint.back_layer_color = rgb
         try:
@@ -147,4 +185,3 @@ class ProfileScreen(BaseScreen):
                 f.write(str(rgb))
         except:
             pass
-

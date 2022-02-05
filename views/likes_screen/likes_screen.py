@@ -22,10 +22,12 @@ class LikesScreen(BaseScreen):
     my_id = 0
 
     def on_pre_enter(self, *args):
-        self.post_item.children[0].clear_widgets()
+        # self.post_item.children[0].clear_widgets()
+        pass
 
     def on_enter(self, *args):
         super().on_enter(*args)
+        self.post_item.children[0].clear_widgets()
         self.my_id = get_my_profile()['id']
         self.min_id = 0
         self.posts_to_load = get_like_posts(self.my_id)
