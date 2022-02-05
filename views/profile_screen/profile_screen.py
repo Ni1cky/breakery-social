@@ -30,16 +30,6 @@ class Content(MDBoxLayout):
     def __init__(self, paint, **kwargs):
         super(Content, self).__init__(**kwargs)
         self.paint = paint
-        print(self.paint)
-    #
-    # def on_dismiss(self):
-    #     rgb = (self.red.value / 255, self.green.value / 255, self.blue.value / 255)
-    #     self.paint.back_layer_color = rgb
-    #     try:
-    #         with open('saved/color.txt', 'w') as f:
-    #             f.write(str(rgb))
-    #     except:
-    #         pass
 
     def on_open(self, *args):
         self.label_color.canvas.clear()
@@ -158,8 +148,3 @@ class ProfileScreen(BaseScreen):
         except:
             pass
 
-    # def get_selected_color(self, instance_color_picker: MDColorPicker, type_color: str, selected_color: Union[list, str]):
-    #     self.update_color(selected_color[:-1] + [1])
-    #
-    # def on_select_color(self, instance_gradient_tab, color: list):
-    #     '''Called when a gradient image is clicked.'''
