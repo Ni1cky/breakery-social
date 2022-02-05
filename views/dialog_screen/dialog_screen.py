@@ -1,17 +1,13 @@
 import datetime
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
-from kivy.uix.recycleview import RecycleView
 from kivymd.uix.textfield import MDTextField
-from kivymd.uix.label import MDLabel
-
 from controllers.photo import refresh_user_profile_picture, get_path_to_user_profile_image
 from store.models.models import MessageCreate
-from kivymd.uix.list import TwoLineAvatarIconListItem, ImageLeftWidget
+from kivymd.uix.list import TwoLineAvatarIconListItem, ImageLeftWidget, MDList
 from controllers.authorization import get_my_profile
 from controllers.dialog import get_dialog_by_id
 from controllers.user import get_user
-from store.models.models import Message
 from views.base import BaseScreen
 from views.meta import SCREENS, CLICK_USER
 from controllers.message import get_time_send_sorted_message, create_message
@@ -22,7 +18,7 @@ Builder.load_file('views/dialog_screen/dialog_screen.kv')
 
 class DialogScreen(BaseScreen):
     SCREEN_NAME = SCREENS.DIALOG_SCREEN
-    scrollable_messages: RecycleView = ObjectProperty()
+    scrollable_messages: MDList = ObjectProperty()
     header: TwoLineAvatarIconListItem = ObjectProperty()
     message_text: MDTextField = ObjectProperty()
     picture: ImageLeftWidget = ObjectProperty()
