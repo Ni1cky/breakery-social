@@ -3,6 +3,8 @@ from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.recycleview import RecycleView
 from kivymd.uix.textfield import MDTextField
+from kivymd.uix.label import MDLabel
+
 from controllers.photo import refresh_user_profile_picture, get_path_to_user_profile_image
 from store.models.models import MessageCreate
 from kivymd.uix.list import TwoLineAvatarIconListItem, ImageLeftWidget
@@ -13,6 +15,7 @@ from store.models.models import Message
 from views.base import BaseScreen
 from views.meta import SCREENS, CLICK_USER
 from controllers.message import get_time_send_sorted_message, create_message
+from components.message.message import MessageWidget
 
 Builder.load_file('views/dialog_screen/dialog_screen.kv')
 
@@ -23,6 +26,8 @@ class DialogScreen(BaseScreen):
     header: TwoLineAvatarIconListItem = ObjectProperty()
     message_text: MDTextField = ObjectProperty()
     picture: ImageLeftWidget = ObjectProperty()
+    card = ObjectProperty()
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.dialog_data = None
@@ -32,6 +37,8 @@ class DialogScreen(BaseScreen):
         refresh_user_profile_picture(user.USER_ID)
         self.picture.source = get_path_to_user_profile_image(user.USER_ID)
         self.picture.reload()
+        self.scrollable_messages.clear_widgets()
+        self.scrollable_messages.scroll_y = 0
 
     def get_validate_message(self, recipient_id):
         current_user = get_my_profile()
@@ -46,16 +53,20 @@ class DialogScreen(BaseScreen):
     def reload_messages(self):
         current_user = get_my_profile()
         messages = self.get_validate_message(self.dialog_data["another_user_id"])
-        self.scrollable_messages.data = []
-        for message in messages:
-            message: Message
+        for i in range(len(self.scrollable_messages.children), len(messages)):
+            message = messages[i]
             data = message.dict()
-            data["message_text"] = data.pop("text")
+            item = MessageWidget(message.text, message.time_send.strftime("%d %b %y  %H:%M"))
+            item.size_hint_x = None
+            item.width = self.width - 20
+
             if data["sender_id"] == current_user["id"]:
-                data["send_from_me"] = 1
+                item.send_from_me = 1
+                item.card.md_bg_color = self.parent.parent.parent.parent.parent.back_layer_color[:3] + [.3]
             else:
-                data["send_from_me"] = 0
-            self.scrollable_messages.data.append(data)
+                item.send_from_me = 0
+                item.card.md_bg_color = [.7, .7, .7, 1]
+            self.scrollable_messages.add_widget(item)
 
     def send_message(self):
         current_user = get_my_profile()

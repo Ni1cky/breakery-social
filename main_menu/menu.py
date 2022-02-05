@@ -13,6 +13,7 @@ Builder.load_file('main_menu/menu.kv')
 
 
 class MainMenuScreen(BaseScreen):
+    # app_color = ObjectProperty()
     SCREEN_NAME = meta.SCREENS.MAINMENU_SCREEN
     manager_screen: Manager = ObjectProperty()
     backdrop: MDBackdrop = ObjectProperty()
@@ -23,6 +24,14 @@ class MainMenuScreen(BaseScreen):
         self.backdrop.bind(on_close=self.front_backdrop_opening)
         self.is_backdrop_front_open = True
         self.event = Clock.schedule_interval(self.update_messages, 1)
+        # self.app_color = "Purple"
+        try:
+            with open('saved/color.txt', 'r') as f:
+                f = list(map(float,f.read()[1:-1].split(', ')))
+                self.backdrop.back_layer_color = f
+        except:
+            print(1)
+
 
     def update_messages(self, *args):
         if self.manager_screen.current == meta.SCREENS.DIALOG_SCREEN:

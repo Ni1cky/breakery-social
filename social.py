@@ -6,7 +6,6 @@ Window.size = (400, 700)
 
 
 class SocialApp(MDApp):
-    current_user_id = 1
 
     def build(self):
         return MainMenuScreen()

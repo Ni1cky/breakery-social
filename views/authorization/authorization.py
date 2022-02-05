@@ -21,10 +21,8 @@ class LoginScreen(BaseScreen):
         super().__init__(**kwargs)
         self.snackbar = None
     def on_enter(self, *args):
-
         self.login.text = ''
         self.passw.text = ''
-
 
     def go_to_main_screen(self):
 
@@ -41,6 +39,3 @@ class LoginScreen(BaseScreen):
 
     def go_to_registration_screen(self):
         self.manager.current = meta.SCREENS.REGISTER_SCREEN
-
-
-

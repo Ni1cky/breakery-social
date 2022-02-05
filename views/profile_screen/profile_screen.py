@@ -1,10 +1,15 @@
 import platform
+from typing import Union, NoReturn
 
+from kivy.graphics import Color, RoundedRectangle, Rectangle
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
+from kivy.uix.popup import Popup
+from kivymd.app import MDApp
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.filemanager import MDFileManager
-
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.boxlayout import MDBoxLayout
 from controllers.authorization import get_my_profile
 from controllers.photo import set_user_profile_picture, get_path_to_user_profile_image, \
     refresh_user_profile_picture, FOLDER_WITH_PHOTOS
@@ -16,6 +21,23 @@ from views.meta import SCREENS
 Builder.load_file('views/profile_screen/profile_screen.kv')
 
 
+class Content(MDBoxLayout):
+    label_color = ObjectProperty()
+    red = ObjectProperty()
+    green = ObjectProperty()
+    blue = ObjectProperty()
+
+    def __init__(self, paint, **kwargs):
+        super(Content, self).__init__(**kwargs)
+        self.paint = paint
+
+    def on_open(self, *args):
+        self.label_color.canvas.clear()
+        with self.label_color.canvas:
+            Color(self.red.value / 255, self.green.value / 255, self.blue.value / 255)
+            Rectangle(size=self.label_color.size, pos=self.label_color.pos)
+
+
 class ProfileScreen(BaseScreen):
     SCREEN_NAME = SCREENS.PROFILE_SCREEN
     name_field = ObjectProperty()
@@ -25,6 +47,7 @@ class ProfileScreen(BaseScreen):
     save_button = None
     close_button = None
     edit_mode_is_enable = False
+    dialog = None
 
     def __init__(self, **kwargs):
         super(ProfileScreen, self).__init__(**kwargs)
@@ -105,3 +128,23 @@ class ProfileScreen(BaseScreen):
 
     def exit_manager(self, *args):
         self.file_manager.close()
+
+    def open_color_picker(self):
+        if not self.dialog:
+            self.dialog = MDDialog(
+                title='Color',
+                type='custom',
+                content_cls=Content(self.parent.parent.parent.parent.parent),
+            )
+        self.dialog.bind(on_dismiss=self.close_color)
+        self.dialog.open()
+
+    def close_color(self, i):
+        rgb = (self.dialog.content_cls.red.value / 255, self.dialog.content_cls.green.value / 255, self.dialog.content_cls.blue.value / 255)
+        self.dialog.content_cls.paint.back_layer_color = rgb
+        try:
+            with open('saved/color.txt', 'w') as f:
+                f.write(str(rgb))
+        except:
+            pass
+

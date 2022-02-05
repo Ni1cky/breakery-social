@@ -13,7 +13,7 @@ from views.users_screen.users_screen import UsersScreen
 from views.my_news_screen.my_news_screen import MyNewsScreen
 from views.subscribers_screen.subscribers_screen import SubscribersScreen
 from views.subscriptions_screen.subscriptions_screen import SubscriptionsScreen
-
+from controllers.authorization import get_my_profile
 
 class Manager(ScreenManager):
     def __init__(self, **kwargs):
@@ -33,6 +33,7 @@ class Manager(ScreenManager):
         try:
             f = open('saved\\access_token', 'r').read()
             AUTHORIZATION.TOKEN = str(f)
+            get_my_profile()
             self.current = meta.SCREENS.PROFILE_SCREEN
         except:
             self.current = LoginScreen.SCREEN_NAME
