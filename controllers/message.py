@@ -13,7 +13,7 @@ from store.models.models import Message, MessageCreate
 
 
 def get_messages_for_dialogue(user1_id: int, user2_id: int):
-    req = requests.Request('GET', f"{HOST.URL}/messages/{user2_id}")
+    req = requests.Request('GET', f"{HOST.URL}/messages/{user1_id}/{user2_id}")
     response = send(req)
     messages = [Message(**message_params) for message_params in response.json()]
 
