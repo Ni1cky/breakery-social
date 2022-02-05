@@ -1,37 +1,51 @@
 <ImageButton@ButtonBehavior+FitImage>:
+
 <Content>:
     title: 'Color'
     red: red
     green: green
     blue: blue
     label_color: label_color
+    cancel_button: cancel_button
+    done_button: done_button
     size_hint_y: None
     height: 250
+    orientation: 'vertical'
+
     BoxLayout:
+
         BoxLayout:
             orientation: 'vertical'
+
             MDSlider:
                 id: red
                 min: 0
                 max: 255
                 show_off: False
+                color: 0, 0, 0
                 on_touch_move: root.on_open()
+
             MDSlider:
                 id: green
                 min: 0
                 max: 255
                 show_off: False
+                color: 0, 0, 0
                 on_touch_move: root.on_open()
+
             MDSlider:
                 id: blue
                 min: 0
                 max: 255
                 show_off: False
+                color: 0, 0, 0
                 on_touch_move: root.on_open()
+
         BoxLayout:
             orientation: 'vertical'
             padding: 15
             spacing: 10
+
             Widget:
                 id: label_color
                 canvas:
@@ -40,12 +54,39 @@
                     Rectangle:
                         size: self.size
                         pos: self.pos
-            Button:
+
+            MDRaisedButton:
+                id: done_button
                 size_hint: 1, .2
                 text: 'Done'
                 background_normal: ''
                 background_color: 0, .5, 1, 1
-                on_press: root.parent.parent.parent.dismiss()
+                on_press: root.save()
+                theme_text_color: "Custom"
+                md_bg_color: [0.28, 0.24, 0.55, 1]
+
+    BoxLayout:
+        size_hint_y: None
+        height: 48
+
+        MDRaisedButton:
+            text: 'Default theme'
+            pos_hint: {"center_y": .5}
+            on_release: root.set_default_theme()
+            theme_text_color: "Custom"
+            md_bg_color: [0.28, 0.24, 0.55, 1]
+
+        StackLayout:
+            orientation: 'rl-bt'
+
+            MDIconButton:
+                id: cancel_button
+                icon: 'close-circle-outline'
+                pos_hint: {"center_y": .5}
+                on_release: root.close()
+                theme_text_color: "Custom"
+                icon_color: [0.28, 0.24, 0.55, 1]
+
 
 <ProfileScreen>:
     name_field: name_field
