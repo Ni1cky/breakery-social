@@ -24,13 +24,16 @@ class MessageScreen(BaseScreen):
     dialogs_recycle_view: ScrollView = ObjectProperty()
 
     def on_enter(self, *args):
+
         self.dialogs_list.clear_widgets()
         try:
+
             dialogs_to_load = get_users_dialogs(get_my_profile()["id"])
             pass
         except JSONDecodeError:
             return
         try:
+            self.parent.parent.parent.parent.parent.title = "Dialogs"
             for dialog in dialogs_to_load:
                 if dialog.user1_id == get_my_profile()["id"]:
                     second_persons_id = dialog.user2_id

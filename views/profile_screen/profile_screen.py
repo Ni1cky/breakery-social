@@ -59,6 +59,11 @@ class Content(MDBoxLayout):
         self.backdrop.back_layer_color = [0.28, 0.24, 0.55, 1]
         self.done_button.md_bg_color = [0.28, 0.24, 0.55, 1]
         self.cancel_button.icon_color = [0.28, 0.24, 0.55, 1]
+        try:
+            with open('saved/color.txt', 'w') as f:
+                f.write('(0.28, 0.24, 0.55)')
+        except:
+            pass
         self.parent.parent.parent.dismiss()
 
     def close(self):
@@ -175,6 +180,7 @@ class ProfileScreen(BaseScreen):
 
     def set_default_theme_color(self, i):
         self.dialog.content_cls.paint.back_layer_color = [0.28, 0.24, 0.55, 1]
+
         self.dialog.dismiss()
 
     def close_color_picker(self, i):
