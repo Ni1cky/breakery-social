@@ -48,7 +48,9 @@ class MessageScreen(BaseScreen):
                     d.person_id = second_persons_id
                     d.last_message_text = last_message.text
                     d.last_message_time = str(last_message.time_send.strftime("%H:%M"))
+                    d.load_image()
                     self.dialogs_list.add_widget(d)
+
                     # self.dialogs_recycle_view.data.append({
                     #     "persons_name": second_person["name"],
                     #     "persons_surname": second_person["surname"],
