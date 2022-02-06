@@ -12,12 +12,12 @@
         MDBoxLayout:
             size_hint: 1, 0.15
             orientation: "horizontal"
-
             MDIconButton:
                 icon: 'arrow-left'
                 pos_hint: {'center_y': 0.5}
                 on_press: root.go_to_dialogs()
             TwoLineAvatarIconListItem:
+                on_press: root.go_to_profile()
                 id: header
                 secondary_text: "Был(а) в сети завтра"
 

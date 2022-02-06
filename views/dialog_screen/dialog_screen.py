@@ -92,3 +92,6 @@ class DialogScreen(BaseScreen):
 
     def go_to_dialogs(self):
         self.manager.current = meta.SCREENS.MESSAGE_SCREEN
+
+    def go_to_profile(self):
+        self.manager.current = meta.SCREENS.PEOPLE_SCREEN
