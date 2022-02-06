@@ -146,8 +146,10 @@ class ProfileScreen(BaseScreen):
         os = platform.system()
         if os == "Linux":
             self.file_manager.show("/home")
-        else:
+        elif os == "Windows":
             self.file_manager.show("C:\\")
+        else:
+            self.file_manager.show(".")
 
     def select_path(self, path):
         self.exit_manager()
