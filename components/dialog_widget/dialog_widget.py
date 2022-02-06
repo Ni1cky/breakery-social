@@ -3,6 +3,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.uix.list import TwoLineAvatarIconListItem
 
+from controllers.photo import refresh_user_profile_picture, get_path_to_user_profile_image
 from controllers.user import get_user
 from views import meta
 
@@ -16,6 +17,7 @@ class DialogWidget(TwoLineAvatarIconListItem):
     person_id: int = ObjectProperty()
     last_message_text: str = ObjectProperty()
     last_message_time: str = ObjectProperty()
+    image = ObjectProperty()
 
     def on_press(self):
         screen_manager: ScreenManager = self.parent.parent.parent.parent.manager
@@ -34,3 +36,7 @@ class DialogWidget(TwoLineAvatarIconListItem):
         click_user.SURNAME = person_user["surname"]
         click_user.PHOTO = person_user["photo"]
         click_user.ADDITIONAL_DATA = person_user["additional_data"]
+
+    def load_image(self):
+        refresh_user_profile_picture(self.person_id)
+        self.image.source = get_path_to_user_profile_image(self.person_id)
